@@ -10,6 +10,7 @@
     "build": "vite build",
     "lint": "oxlint",
     "ml:train": "python ml/train_model.py",
+    "ml:watch": "python ml/train_model.py --input sensor_data.log --output public/ml_predictions.json --watch --poll-seconds 5",
     "preview": "vite preview"
   },
   "dependencies": {

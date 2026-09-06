@@ -158,7 +158,7 @@ function Dashboard({ isDark }) {
           </div>
           <p className="mt-4 text-sm leading-relaxed text-[#8b9783]">Search uses OpenStreetMap geocoding. Results are approximate and intended for monitoring context.</p>
           <div className="mt-5 grid max-w-md grid-cols-2 gap-2">
-            <div className={`rounded-[5px] p-3 ${isDark ? 'bg-[#243220]' : 'bg-[#f4f6f0]'}`}><p className="text-[11px] tracking-wider text-[#718257]">CSV SAMPLES</p><strong className={`mt-1 block text-2xl ${isDark ? 'text-[#edf4e5]' : 'text-[#35451f]'}`}>{modelState?.summary?.rows ?? '...'}</strong></div>
+            <div className={`rounded-[5px] p-3 ${isDark ? 'bg-[#243220]' : 'bg-[#f4f6f0]'}`}><p className="text-[11px] tracking-wider text-[#718257]">DATA POINTS</p><strong className={`mt-1 block text-2xl ${isDark ? 'text-[#edf4e5]' : 'text-[#35451f]'}`}>{modelState?.summary?.rows ?? '...'}</strong></div>
             <div className={`rounded-[5px] p-3 ${isDark ? 'bg-[#33221f]' : 'bg-[#f4f6f0]'}`}><p className="text-[11px] tracking-wider text-[#718257]">ANOMALIES</p><strong className="mt-1 block text-2xl text-[#c4513b]">{modelState?.summary?.anomalies ?? '...'}</strong></div>
           </div>
           <p className="mt-3 text-sm text-[#718257]">Geospatial filter: {modelState?.refinement ? `${modelState.refinement.filteredNodes.toLocaleString()} impossible ocean or invalid nodes removed` : error || 'running...'}</p>
