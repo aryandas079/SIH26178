@@ -48,6 +48,10 @@
 }
 
 @layer components {
+  .dashboard-shell {
+    font-size: 16px;
+  }
+
   .dashboard-shell p,
   .dashboard-shell h1,
   .dashboard-shell h2,
@@ -57,8 +61,13 @@
   .dashboard-shell button,
   .dashboard-shell a,
   .dashboard-shell strong {
-    font-size: 1.25em;
+    font-size: 1.05em;
+    line-height: 1.5;
   }
+
+  .dashboard-shell h1 { font-size: 1.8em; }
+  .dashboard-shell h2 { font-size: 1.5em; }
+  .dashboard-shell h3 { font-size: 1.25em; }
 
   .dashboard-shell .leaflet-container {
     background: #ffffff;
