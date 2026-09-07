@@ -17,6 +17,9 @@ ERMS provides:
 - Automatic model refresh while `database/logs/sensor_data.log` changes.
 - Geographic filtering that removes invalid coordinates, ocean points, and hazard placements that do not make geographic sense.
 - Dashboard totals for data points and predicted anomalies.
+- Hazard-specific confidence scores and prioritized early-warning levels.
+- Affected-zone aggregation and time-bucketed risk trends for authority dashboards and long-term analysis.
+- Edge-ready execution using local files, with no continuous cloud connection required.
 
 ## System Overview
 
@@ -57,6 +60,8 @@ The Python pipeline converts numeric measurements and categorical risk levels in
 
 The current model uses 200 estimators, a contamination value of `0.08`, and a normalized anomaly threshold of `0.72`.
 
+In addition to the generic anomaly score, the model produces targeted risk intelligence for flooding, forest fires, hazardous pollution, landslides, extreme weather, and industrial safety incidents. Each warning includes a severity level, risk score, confidence score, region, coordinates, update time, and intended audiences: `local-authority` and `citizen`.
+
 ### 3. Prediction output
 
 The model writes its result to `frontend/public/ml_predictions.json`. The file contains:
@@ -66,6 +71,11 @@ The model writes its result to `frontend/public/ml_predictions.json`. The file c
 - The original normalized records.
 - `model_anomaly_score` for every record.
 - `model_is_anomaly` for every record.
+- `risk_scores` for the six operational warning classes.
+- Prioritized `alerts` for warning-level records.
+- `affectedZones` for hotspot ranking.
+- `riskTrends` for date-based trend analysis.
+- `model.execution` metadata describing edge-ready, local processing.
 
 ### 4. Frontend visualization
 
@@ -222,6 +232,8 @@ When the watcher is running:
 5. The frontend worker detects the refreshed data on its next poll.
 6. The dashboard data-point count, anomaly count, hazard layers, and map nodes update automatically.
 
+The same prediction JSON is also a stable handoff contract for a future central analytics service, emergency-management API, mobile notification gateway, or policy reporting job. The current repository does not contain an external cloud service or SMS/push provider, so external notification dispatch remains an integration point rather than an active network dependency.
+
 To remove a live record, delete its JSON line from `sensor_data.log`. The next model cycle rebuilds the combined dataset without that record.
 
 ## Sensor Field Reference
@@ -328,7 +340,7 @@ npm run dev:server -- --host 0.0.0.0 --port 5174
 
 ## Current Status
 
-ERMS is an actively developed prototype. The core live-data pipeline, anomaly scoring, geographic filtering, interactive dashboard, and one-command Windows launcher are implemented. Production deployment, authenticated sensor ingestion, a persistent database service, automated tests, and operational monitoring are not included yet.
+ERMS is an actively developed prototype. Edge-oriented live-data ingestion, multi-hazard scoring, geographic filtering, prioritized dashboard alerts, affected-zone mapping, risk trends, and the one-command Windows launcher are implemented. External mobile push/SMS delivery, authenticated sensor ingestion, a persistent cloud database, automated tests, and production operational monitoring are not included yet.
 
 ## License
 

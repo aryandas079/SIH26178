@@ -71,6 +71,17 @@ ALIAS_MAP = {
     "cyclone_risk": "cyclone_risk",
 }
 
+HAZARD_RULES = {
+    "flood": {"field": "flood_risk", "label": "Flooding"},
+    "wildfire": {"field": "forest_fire_risk", "label": "Forest Fires"},
+    "pollution": {"field": "hazardous_aqi_level", "label": "Hazardous Pollution"},
+    "landslide": {"field": "landslide_risk", "label": "Landslides"},
+    "extreme_weather": {"field": "extreme_heat_risk", "label": "Extreme Weather"},
+    "industrial_safety": {"field": "industrial_emissions_level", "label": "Industrial Safety"},
+}
+WARNING_LEVELS = ((0.85, "critical"), (0.7, "high"), (0.5, "moderate"), (0.3, "watch"))
+WARNING_PRIORITY = {"critical": 4, "high": 3, "moderate": 2, "watch": 1, "normal": 0}
+
 
 def normalize_columns(frame: pd.DataFrame) -> pd.DataFrame:
     renamed = frame.copy()
@@ -159,6 +170,102 @@ def json_safe(value: object) -> object:
     return value
 
 
+def numeric_value(value: object) -> float | None:
+    try:
+        number = float(value)
+    except (TypeError, ValueError):
+        return None
+    return number if math.isfinite(number) else None
+
+
+def risk_level(score: float) -> str:
+    for threshold, level in WARNING_LEVELS:
+        if score >= threshold:
+            return level
+    return "normal"
+
+
+def field_present(row: dict, field: str) -> bool:
+    value = row.get(field)
+    return value is not None and str(value).strip().lower() not in {"", "none", "good", "excellent", "nan"}
+
+
+def calculate_hazard_scores(row: dict) -> dict[str, dict]:
+    aqi = numeric_value(row.get("aqi_value")) or 0
+    temperature = numeric_value(row.get("max_temp_c_forecast")) or 0
+    anomaly_score = numeric_value(row.get("model_anomaly_score")) or 0
+    direct_scores = {name: encode_risk(row.get(rule["field"])) / 10 for name, rule in HAZARD_RULES.items()}
+    direct_scores["pollution"] = max(direct_scores["pollution"], min(aqi / 300, 1))
+    direct_scores["wildfire"] = max(direct_scores["wildfire"], min(max(temperature - 30, 0) / 18, 1))
+    direct_scores["extreme_weather"] = max(direct_scores["extreme_weather"], min(max(temperature - 32, 0) / 15, 1))
+
+    scores = {}
+    for name, rule in HAZARD_RULES.items():
+        score = min((direct_scores[name] * 0.75) + (anomaly_score * 0.25), 1)
+        available_fields = [rule["field"], "latitude", "longitude"]
+        if name in {"pollution", "wildfire", "extreme_weather"}:
+            available_fields.append("aqi_value" if name == "pollution" else "max_temp_c_forecast")
+        completeness = sum(field_present(row, field) for field in available_fields) / len(available_fields)
+        confidence = min(1, 0.45 + (completeness * 0.4) + (0.15 if field_present(row, rule["field"]) else 0))
+        scores[name] = {
+            "name": rule["label"],
+            "score": round(score, 6),
+            "confidence": round(confidence, 6),
+            "level": risk_level(score),
+        }
+    return scores
+
+
+def build_risk_intelligence(records: list[dict]) -> tuple[list[dict], dict, list[dict], dict]:
+    alerts = []
+    hazard_summary = {}
+    trend_buckets = {}
+    zone_buckets = {}
+
+    for record in records:
+        hazard_scores = calculate_hazard_scores(record)
+        record["risk_scores"] = {name: details["score"] for name, details in hazard_scores.items()}
+        for name, details in hazard_scores.items():
+            summary = hazard_summary.setdefault(name, {"name": details["name"], "observations": 0, "alerts": 0, "maxScore": 0, "averageScore": 0})
+            summary["observations"] += 1
+            summary["maxScore"] = max(summary["maxScore"], details["score"])
+            summary["averageScore"] += details["score"]
+            if details["level"] != "normal":
+                summary["alerts"] += 1
+                alert = {
+                    "id": f"{record.get('id', 'row')}-{name}",
+                    "type": name,
+                    "hazard": details["name"],
+                    "region": record.get("region") or "Unknown zone",
+                    "latitude": json_safe(record.get("latitude")),
+                    "longitude": json_safe(record.get("longitude")),
+                    "level": details["level"],
+                    "score": details["score"],
+                    "confidence": details["confidence"],
+                    "lastUpdated": record.get("last_updated"),
+                    "audiences": ["local-authority", "citizen"],
+                }
+                alerts.append(alert)
+                zone = alert["region"]
+                zone_data = zone_buckets.setdefault(zone, {"region": zone, "alerts": 0, "maxScore": 0, "hazards": set()})
+                zone_data["alerts"] += 1
+                zone_data["maxScore"] = max(zone_data["maxScore"], details["score"])
+                zone_data["hazards"].add(details["name"])
+                date_key = str(record.get("last_updated") or "unknown")[:10]
+                trend = trend_buckets.setdefault(date_key, {"date": date_key, "alerts": 0, "maxScore": 0})
+                trend["alerts"] += 1
+                trend["maxScore"] = max(trend["maxScore"], details["score"])
+
+    for summary in hazard_summary.values():
+        summary["averageScore"] = round(summary["averageScore"] / max(summary["observations"], 1), 6)
+        summary["maxScore"] = round(summary["maxScore"], 6)
+    alerts.sort(key=lambda alert: (WARNING_PRIORITY[alert["level"]], alert["score"], alert["confidence"]), reverse=True)
+    zones = [{**zone, "maxScore": round(zone["maxScore"], 6), "hazards": sorted(zone["hazards"])} for zone in zone_buckets.values()]
+    zones.sort(key=lambda zone: (zone["maxScore"], zone["alerts"]), reverse=True)
+    trends = sorted(trend_buckets.values(), key=lambda trend: trend["date"])[-30:]
+    return alerts[:250], hazard_summary, zones[:100], trends
+
+
 def build_prediction_payload(frame: pd.DataFrame) -> dict:
     normalized = frame.copy()
     for column in NUMERIC_FIELDS:
@@ -194,6 +301,9 @@ def build_prediction_payload(frame: pd.DataFrame) -> dict:
         record["model_anomaly_score"] = round(float(score), 6)
         record["model_is_anomaly"] = bool(anomaly)
 
+    alerts, hazard_summary, affected_zones, risk_trends = build_risk_intelligence(records)
+    warning_counts = {level: sum(alert["level"] == level for alert in alerts) for level in ["critical", "high", "moderate", "watch"]}
+
     payload = {
         "model": {
             "name": "scikit-learn IsolationForest",
@@ -202,13 +312,26 @@ def build_prediction_payload(frame: pd.DataFrame) -> dict:
             "rows": len(records),
             "contamination": 0.08,
             "threshold": 0.72,
+            "execution": {
+                "mode": "edge-ready",
+                "cloudConnectivityRequired": False,
+                "source": "local CSV and JSONL sensor log",
+                "refreshSeconds": 5,
+            },
         },
         "summary": {
             "rows": len(records),
             "anomalies": int(predictions.sum()),
             "anomalyRate": round(float(predictions.mean() * 100), 2),
             "averageScore": round(float(scores.mean()), 6),
+            "alerts": len(alerts),
+            "criticalAlerts": warning_counts["critical"],
+            "highAlerts": warning_counts["high"],
         },
+        "hazards": hazard_summary,
+        "alerts": alerts,
+        "affectedZones": affected_zones,
+        "riskTrends": risk_trends,
         "rows": records,
     }
     return payload

@@ -132,6 +132,10 @@ function Dashboard({ isDark }) {
   const anomalyCount = activeLayer?.anomalyCount ?? 0
   const mapNodes = visibleNodes
   const displayedNode = activeNode?.type === activeHazard ? activeNode : visibleNodes[0]
+  const alerts = modelState?.alerts ?? []
+  const affectedZones = modelState?.affectedZones ?? []
+  const riskTrends = modelState?.riskTrends ?? []
+  const latestTrend = riskTrends[riskTrends.length - 1]
 
   return (
     <main className={`dashboard-shell min-h-screen w-full overflow-x-hidden rounded-[5px] font-instagram ${isDark ? 'bg-[#111810] text-[#edf4e5]' : 'bg-white text-[#26351b]'}`}>
@@ -162,6 +166,50 @@ function Dashboard({ isDark }) {
             <div className={`rounded-[5px] p-3 ${isDark ? 'bg-[#33221f]' : 'bg-[#f4f6f0]'}`}><p className="text-[11px] tracking-wider text-[#718257]">ANOMALIES</p><strong className="mt-1 block text-2xl text-[#c4513b]">{modelState?.summary?.anomalies ?? '...'}</strong></div>
           </div>
           <p className="mt-3 text-sm text-[#718257]">Geospatial filter: {modelState?.refinement ? `${modelState.refinement.filteredNodes.toLocaleString()} impossible ocean or invalid nodes removed` : error || 'running...'}</p>
+        </section>
+
+        <section className={`rounded-[5px] border p-5 md:p-6 ${isDark ? 'border-[#34452d] bg-[#182218]' : 'border-[#d7dfcd] bg-white'}`}>
+          <div className="flex flex-wrap items-start justify-between gap-4">
+            <div>
+              <p className="mb-2 text-[11px] font-bold tracking-[.14em] text-[#718257]">02 / EARLY WARNING INTELLIGENCE</p>
+              <h2 className="text-2xl font-medium">Prioritized environmental alerts</h2>
+              <p className="mt-2 max-w-3xl text-sm leading-relaxed text-[#7a8871]">Edge-scored warnings are ranked by severity and confidence for local authorities and citizens. The dashboard can continue showing the last generated file without a cloud connection.</p>
+            </div>
+            <div className={`rounded-[5px] border px-4 py-3 text-right ${isDark ? 'border-[#61784e] bg-[#202d1e]' : 'border-[#c5d2bd] bg-[#f7f9f5]'}`}>
+              <p className="text-[10px] font-bold uppercase tracking-wider text-[#718257]">PROCESSING MODE</p>
+              <strong className="mt-1 block text-sm">{modelState?.execution?.mode || 'loading...'}</strong>
+              <span className="text-xs text-[#7a8871]">{modelState?.execution?.cloudConnectivityRequired === false ? 'Cloud connection not required' : 'Checking connectivity'}</span>
+            </div>
+          </div>
+          <div className="mt-5 grid gap-3 sm:grid-cols-3">
+            <div className={`rounded-[5px] p-3 ${isDark ? 'bg-[#33221f]' : 'bg-[#f4f6f0]'}`}><p className="text-[11px] tracking-wider text-[#718257]">ALERTS</p><strong className="mt-1 block text-2xl text-[#c4513b]">{modelState?.summary?.alerts ?? '...'}</strong></div>
+            <div className={`rounded-[5px] p-3 ${isDark ? 'bg-[#33221f]' : 'bg-[#f4f6f0]'}`}><p className="text-[11px] tracking-wider text-[#718257]">CRITICAL</p><strong className="mt-1 block text-2xl text-[#c4513b]">{modelState?.summary?.criticalAlerts ?? '...'}</strong></div>
+            <div className={`rounded-[5px] p-3 ${isDark ? 'bg-[#243220]' : 'bg-[#f4f6f0]'}`}><p className="text-[11px] tracking-wider text-[#718257]">AFFECTED ZONES</p><strong className={`mt-1 block text-2xl ${isDark ? 'text-[#edf4e5]' : 'text-[#35451f]'}`}>{affectedZones.length || '...'}</strong></div>
+          </div>
+          <div className="mt-5 grid gap-5 lg:grid-cols-[1.35fr_1fr]">
+            <div>
+              <p className="mb-3 text-[11px] font-bold tracking-[.1em] text-[#718257]">TOP WARNINGS</p>
+              <div className="space-y-2">
+                {alerts.slice(0, 6).map((alert) => (
+                  <div className={`flex flex-wrap items-center justify-between gap-3 rounded-[5px] border px-3 py-3 ${isDark ? 'border-[#34452d] bg-[#202d1e]' : 'border-[#edf0e9] bg-[#fbfcfa]'}`} key={alert.id}>
+                    <div><strong className="block text-sm">{alert.hazard}</strong><span className="text-xs text-[#7a8871]">{alert.region} · {alert.audiences.join(' + ')}</span></div>
+                    <div className="text-right"><strong className="block text-xs uppercase tracking-wider text-[#c4513b]">{alert.level}</strong><span className="text-xs text-[#7a8871]">{Math.round(alert.score * 100)}% score · {Math.round(alert.confidence * 100)}% confidence</span></div>
+                  </div>
+                ))}
+                {!alerts.length && <p className="text-sm text-[#7a8871]">No active warning is available.</p>}
+              </div>
+            </div>
+            <div>
+              <p className="mb-3 text-[11px] font-bold tracking-[.1em] text-[#718257]">RISK TREND AND HOTSPOTS</p>
+              <div className={`rounded-[5px] p-4 ${isDark ? 'bg-[#202d1e]' : 'bg-[#f7f9f5]'}`}>
+                <p className="text-sm">Latest trend: <strong>{latestTrend?.date || '...'}</strong></p>
+                <p className="mt-1 text-sm text-[#7a8871]">{latestTrend ? `${latestTrend.alerts} warnings, peak score ${Math.round(latestTrend.maxScore * 100)}%` : 'Waiting for trend data'}</p>
+                <div className="mt-4 space-y-2">
+                  {affectedZones.slice(0, 4).map((zone) => <div className="flex items-center justify-between gap-3 text-sm" key={zone.region}><span className="truncate">{zone.region}</span><span className="font-mono text-[#c4513b]">{Math.round(zone.maxScore * 100)}%</span></div>)}
+                </div>
+              </div>
+            </div>
+          </div>
         </section>
 
         <section className={`rounded-[5px] border p-4 md:p-5 ${isDark ? 'border-[#34452d] bg-[#182218]' : 'border-[#d7dfcd] bg-white'}`}>

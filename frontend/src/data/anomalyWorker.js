@@ -23,7 +23,18 @@ const loadPredictions = async (predictionsUrl, hazardNames) => {
   const retainedNodes = Object.values(layers).reduce((total, layer) => total + layer.count, 0)
   const totalPossibleNodes = rows.length * hazardNames.length
   const refinement = { totalPossibleNodes, retainedNodes, filteredNodes: totalPossibleNodes - retainedNodes }
-  self.postMessage({ type: 'ready', summary, refinement, layers, trainedRows: rows.length })
+  self.postMessage({
+    type: 'ready',
+    summary,
+    refinement,
+    layers,
+    trainedRows: rows.length,
+    execution: payload.model?.execution,
+    hazards: payload.hazards,
+    alerts: payload.alerts,
+    affectedZones: payload.affectedZones,
+    riskTrends: payload.riskTrends,
+  })
 }
 
 self.onmessage = async ({ data }) => {
