@@ -1,0 +1,79 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: 'Instagram Sans';
+  src: url('./assets/Instagram-Sans-Font-Family/InstagramSans-Regular.woff2') format('woff2');
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Instagram Sans';
+  src: url('./assets/Instagram-Sans-Font-Family/InstagramSans-Medium.woff2') format('woff2');
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Instagram Sans';
+  src: url('./assets/Instagram-Sans-Font-Family/InstagramSans-Bold.woff2') format('woff2');
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+}
+
+@theme {
+  --font-instagram: 'Instagram Sans', sans-serif;
+}
+
+@utility animate-leaf-drift {
+  animation: leaf-drift 1.8s ease-out forwards;
+}
+
+@keyframes leaf-drift {
+  0% { opacity: .9; transform: translate(-50%, -50%) rotate(-35deg) scale(.7); }
+  25% { opacity: .85; }
+  100% { opacity: 0; transform: translate(calc(-50% + var(--drift-x)), calc(-50% + var(--drift-y))) rotate(var(--rotation)) scale(1); }
+}
+
+@layer base {
+  :root { font-family: 'Instagram Sans', sans-serif; color: #35451f; background: #fff; font-synthesis: none; text-rendering: optimizeLegibility; -webkit-font-smoothing: antialiased; }
+  * { box-sizing: border-box; }
+  html, body, #root { width: 100%; min-height: 100%; overflow-x: hidden; overflow-y: auto; scrollbar-width: none; scroll-behavior: smooth; }
+  html::-webkit-scrollbar, body::-webkit-scrollbar, #root::-webkit-scrollbar { display: none; width: 0; height: 0; }
+  body { margin: 0; min-width: 320px; }
+  button { font: inherit; }
+}
+
+@layer components {
+  .dashboard-shell {
+    font-size: 16px;
+  }
+
+  .dashboard-shell p,
+  .dashboard-shell h1,
+  .dashboard-shell h2,
+  .dashboard-shell h3,
+  .dashboard-shell label,
+  .dashboard-shell input,
+  .dashboard-shell button,
+  .dashboard-shell a,
+  .dashboard-shell strong {
+    font-size: 1.05em;
+    line-height: 1.5;
+  }
+
+  .dashboard-shell h1 { font-size: 1.8em; }
+  .dashboard-shell h2 { font-size: 1.5em; }
+  .dashboard-shell h3 { font-size: 1.25em; }
+
+  .dashboard-shell .leaflet-container {
+    background: #ffffff;
+  }
+
+  .dashboard-shell:has(.bg-\[\#111810\]) .leaflet-container {
+    background: #111810;
+  }
+}

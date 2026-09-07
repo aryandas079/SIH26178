@@ -4,14 +4,16 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "predev": "python ml/train_model.py",
-    "dev": "vite",
-    "prebuild": "python ml/train_model.py",
-    "build": "vite build",
+    "start": "powershell -NoProfile -ExecutionPolicy Bypass -File .\\run_erms.ps1",
+    "predev": "python backend/ml/train_model.py --input database/logs/sensor_data.log --output frontend/public/ml_predictions.json",
+    "dev": "vite --config frontend/vite.config.js --host 0.0.0.0",
+    "dev:server": "vite --config frontend/vite.config.js",
+    "prebuild": "python backend/ml/train_model.py --input database/logs/sensor_data.log --output frontend/public/ml_predictions.json",
+    "build": "vite build --config frontend/vite.config.js",
     "lint": "oxlint",
-    "ml:train": "python ml/train_model.py",
-    "ml:watch": "python ml/train_model.py --input sensor_data.log --output public/ml_predictions.json --watch --poll-seconds 5",
-    "preview": "vite preview"
+    "ml:train": "python backend/ml/train_model.py --input database/logs/sensor_data.log --output frontend/public/ml_predictions.json",
+    "ml:watch": "python backend/ml/train_model.py --input database/logs/sensor_data.log --output frontend/public/ml_predictions.json --watch --poll-seconds 5",
+    "preview": "vite preview --config frontend/vite.config.js --host 0.0.0.0"
   },
   "dependencies": {
     "@turf/boolean-point-in-polygon": "^7.4.0",
