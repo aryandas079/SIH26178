@@ -1,4 +1,4 @@
-# 🌐 ERMS: Environmental Risk Management System
+#  ERMS: Environmental Risk Management System
 ### Sovereign All-India Multi-Hazard Early Warning & AI Disaster Command System
 **Smart India Hackathon 2026 (SIH 2026) | Problem Statement: SIH2026-26178**
 
@@ -12,7 +12,7 @@
 
 ---
 
-## 📌 Executive Summary
+##  Executive Summary
 
 **ERMS (Environmental Risk Management System)** is an enterprise-grade, sovereign disaster management cockpit and predictive early-warning platform engineered for the Republic of India. Calibrated on **552,912 real historical disaster records** across 12 calamity channels from India's apex scientific authorities (**CPCB, IMD, CWC, NDMA, GSI, INCOIS, and SAC-ISRO**), ERMS bridges the critical operational gap between field IoT telemetry and rapid emergency response mobilization.
 
@@ -29,14 +29,14 @@ The system integrates:
 
 ---
 
-## 🗺️ System Overview & Primary Visual Tour
+##  System Overview & Primary Visual Tour
 
 ![Sovereign Geo-Intelligence Map](docs/screenshots/25_desktop_map_perfect_layout.png)
 *Figure 1: ERMS Sovereign Cockpit featuring the All-India Leaflet Geodetic Map with topological river corridors, active hazard overlays, GPS hook pins, and zero-clutter detailing docks.*
 
 ---
 
-## 📑 Table of Contents
+##  Table of Contents
 
 - [Executive Summary](#-executive-summary)
 - [System Architecture Flowcharts](#-system-architecture-flowcharts)
@@ -64,7 +64,7 @@ The system integrates:
 
 ---
 
-## 🔄 System Architecture Flowcharts
+##  System Architecture Flowcharts
 
 ### 1. High-Level System Architecture
 
@@ -201,7 +201,7 @@ sequenceDiagram
 
 ---
 
-## 🛡️ The 12 Sovereign Hazard Channels
+##  The 12 Sovereign Hazard Channels
 
 ERMS covers all twelve natural and anthropogenic calamity classifications recognized under national civil protection protocols:
 
@@ -222,7 +222,7 @@ ERMS covers all twelve natural and anthropogenic calamity classifications recogn
 
 ---
 
-## 📊 Empirical ML Validation & Precision Metrics
+##  Empirical ML Validation & Precision Metrics
 
 The machine learning subsystem was trained on **552,912 authentic Indian environmental disaster observations** using Stratified 5-Fold Cross-Validation. Below are the verified empirical performance benchmarks on held-out validation partitions:
 
@@ -244,7 +244,7 @@ The machine learning subsystem was trained on **552,912 authentic Indian environ
 
 ---
 
-## 🧮 Physics-Informed Formulations
+##  Physics-Informed Formulations
 
 ### 1. Terzaghi-Coulomb Factor of Safety ($FS$) for Hillslope Stability
 In hilly and transboundary mountainous tracts (e.g. Nepal-Himalayan Arc, Western Ghats), rainfall saturation induces positive pore-water pressure, collapsing effective shear strength. The Factor of Safety is evaluated continuously:
@@ -274,7 +274,7 @@ where:
 
 ---
 
-## 🖼️ Comprehensive Visual Tour & Screenshots
+##  Comprehensive Visual Tour & Screenshots
 
 ### 1. Sovereign Disaster Cockpit Overview
 ![Dashboard Hero](docs/screenshots/14_dashboard_hero_clean_icons.png)
@@ -345,7 +345,7 @@ where:
 
 ---
 
-## 🔐 Authentication & Sovereign Access Control
+##  Authentication & Sovereign Access Control
 
 ERMS incorporates a zero-trust, multi-provider sovereign access control architecture powered by **Firebase Authentication** (`firebase/auth`), supporting live Google OAuth 2.0, mobile phone SMS OTP verification, and emergency field credentials.
 
@@ -373,10 +373,10 @@ ERMS incorporates a zero-trust, multi-provider sovereign access control architec
 
 ### 3. Dynamic Time-of-Day Greetings
 Upon authentication, the top command navigation bar automatically computes a context-aware greeting referencing the local system clock:
-- **05:00 – 11:59**: `🌅 Good morning, [FirstName]`
-- **12:00 – 16:59**: `☀️ Good afternoon, [FirstName]`
-- **17:00 – 20:59**: `🌇 Good evening, [FirstName]`
-- **21:00 – 04:59**: `🌙 Good night, [FirstName]`
+- **05:00 – 11:59**: ` Good morning, [FirstName]`
+- **12:00 – 16:59**: ` Good afternoon, [FirstName]`
+- **17:00 – 20:59**: ` Good evening, [FirstName]`
+- **21:00 – 04:59**: ` Good night, [FirstName]`
 
 ![Dynamic Time of Day Greeting](docs/screenshots/70_header_greeting_good_evening_aryan.png)
 *Figure: Top navigation command bar displaying the live time-of-day greeting ("Good evening, Aryan") alongside the Google profile avatar and pulsating green online beacon.*
@@ -391,7 +391,7 @@ Clicking the profile picture in the top command bar opens an executive profile p
 *Figure: Interactive Profile Popover menu revealing Google authentication telemetry, National Disaster Commander role, and the red Sign Out action.*
 
 ---
-## 💻 Prerequisites & System Requirements
+##  Prerequisites & System Requirements
 
 | Component | Minimum Specification | Recommended Specification |
 | :--- | :--- | :--- |
@@ -404,7 +404,7 @@ Clicking the profile picture in the top command bar opens an executive profile p
 
 ---
 
-## 🚀 Installation & Quick Start
+##  Installation & Quick Start
 
 ### 1. Clone the Repository
 ```bash
@@ -445,7 +445,7 @@ npm run preview
 
 ---
 
-## 📖 How to Use the Platform (Walkthrough)
+##  How to Use the Platform (Walkthrough)
 
 ### 1. Navigating the Sovereign Map
 - **Inspect Pre-Loaded Calamities**: Use the top **Hazard Toggles** (e.g. `FLOOD`, `HEAT`, `AQI`, `CYCLONE`) to display calibrated geo-spatial layers including river centerlines, IMD heatwave gradients, seismic faults, and cyclone tracks.
@@ -477,7 +477,7 @@ Click `+ VIEW MODES` on the `04 SIMULATION` block, or select a scenario from the
 
 ---
 
-## 📡 Real-Time IoT Hardware Telemetry Streaming
+##  Real-Time IoT Hardware Telemetry Streaming
 
 ERMS features a native hardware ingestion pipeline that monitors `sensor_logs/` in real time.
 
@@ -515,7 +515,7 @@ node scripts/sensor_logger_stream.js --scenario=glacial
 
 ---
 
-## 🧠 Offline Machine Learning Training Pipeline
+##  Offline Machine Learning Training Pipeline
 
 To re-train the Dual Ensemble machine learning models on the raw 552,912 records:
 
@@ -539,7 +539,7 @@ The script:
 
 ---
 
-## 🔌 REST & Server-Sent Events (SSE) API Reference
+##  REST & Server-Sent Events (SSE) API Reference
 
 The Vite dev server plugin exposes live HTTP endpoints for external hardware sensors, edge devices, and field loggers:
 
@@ -569,7 +569,7 @@ curl -X POST http://localhost:5173/api/sensor-logs/append \
 
 ---
 
-## 📁 Enterprise 5-Tier Production Repository Architecture
+##  Enterprise 5-Tier Production Repository Architecture
 
 ```
 SIH26178_new/
@@ -628,7 +628,7 @@ SIH26178_new/
 
 ---
 
-## 🏆 Hackathon Attribution & License
+##  Hackathon Attribution & License
 
 - **Initiative**: Developed for **Smart India Hackathon 2026 (SIH 2026)**.
 - **Problem Statement ID**: `SIH2026-26178` — *Comprehensive Multi-Hazard Early Warning & AI Emergency Risk Management System*.
@@ -643,4 +643,4 @@ SIH26178_new/
 - **License**: Released under the [MIT License](LICENSE). Open-source for academic, humanitarian, and civil defense applications.
 
 ---
-*Developed with dedication for the protection of human life, national infrastructure, and environmental ecosystems across Bharat.* 🇮🇳
+*Developed with dedication for the protection of human life, national infrastructure, and environmental ecosystems across Bharat.* 
