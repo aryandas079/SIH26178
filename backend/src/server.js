@@ -63,12 +63,16 @@ app.use(globalErrorHandler);
 
 fileWatcherService.init();
 
-const server = app.listen(PORT, () => {
-  console.log('====================================================');
-  console.log(`  ERMS ENTERPRISE BACKEND API RUNNING ON PORT ${PORT}`);
-  console.log(`  Health Check: http://localhost:${PORT}/api/health`);
-  console.log(`  Sensor Stream: http://localhost:${PORT}/api/sensor-logs/stream`);
-  console.log('====================================================');
-});
+let server;
+if (!process.env.VERCEL) {
+  server = app.listen(PORT, () => {
+    console.log('====================================================');
+    console.log(`  ERMS ENTERPRISE BACKEND API RUNNING ON PORT ${PORT}`);
+    console.log(`  Health Check: http://localhost:${PORT}/api/health`);
+    console.log(`  Sensor Stream: http://localhost:${PORT}/api/sensor-logs/stream`);
+    console.log('====================================================');
+  });
+}
 
-export default server;
+export { app, server };
+export default app;
