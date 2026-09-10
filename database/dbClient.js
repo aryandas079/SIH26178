@@ -1,16 +1,4 @@
-/**
- * dbClient.js
- * ERMS Unified Database Access Object (DAO) & Persistence Adapter.
- * 
- * Provides unified interface for:
- * 1. Station metadata queries
- * 2. High-frequency telemetry time-series
- * 3. Anomaly alerts tracking
- * 4. User session audit logging
- * 
- * Features automatic file-backed JSON/SQLite storage for standalone zero-dependency
- * operation with connection hooks ready for PostgreSQL, MySQL, and MongoDB.
- */
+/** Unified database access adapter for stations, telemetry, alerts, and audit logs. */
 
 import fs from 'fs';
 import path from 'path';
@@ -18,7 +6,6 @@ import path from 'path';
 const DB_DIR = path.resolve(process.cwd(), 'database', 'data');
 const SEEDS_PATH = path.resolve(process.cwd(), 'database', 'seeds', 'stations_seed.json');
 
-// Ensure database directory exists
 if (!fs.existsSync(DB_DIR)) {
   fs.mkdirSync(DB_DIR, { recursive: true });
 }
@@ -54,7 +41,6 @@ class DatabaseClient {
     this.connectionType = process.env.DATABASE_URL ? 'External Relational (URL)' : 'Embedded Zero-Dependency Persistence Engine';
   }
 
-  // 1. Stations Operations
   getStations() {
     return this.stations;
   }
@@ -63,7 +49,6 @@ class DatabaseClient {
     return this.stations.find((s) => s.station_id === id) || null;
   }
 
-  // 2. Telemetry Time-Series Operations
   insertTelemetry(row) {
     const record = {
       id: 'tel-' + Date.now() + '-' + Math.random().toString(36).substring(2, 7),
@@ -91,7 +76,6 @@ class DatabaseClient {
     return pool.slice(-limit);
   }
 
-  // 3. Hazard Alert Operations
   createAlert(alertData) {
     const alert = {
       id: 'alt-' + Date.now(),
@@ -118,7 +102,6 @@ class DatabaseClient {
     return found;
   }
 
-  // 4. Audit Trail Operations
   logAudit({ userId, userName, userRole, action, resource, status, ipAddress, metadata }) {
     const entry = {
       id: 'aud-' + Date.now(),

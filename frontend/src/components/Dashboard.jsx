@@ -226,18 +226,15 @@ export default function Dashboard({
   });
 
   const activeDetailCount = ['nodeTelemetry', 'sensorChannels', 'topicAnalytics', 'stressTestBar', 'anomalyCards', 'cascadingForecast'].filter((k) => viewDetails[k]).length;
-  // Search state
   const [searchQuery, setSearchQuery] = useState('');
   const [suggestions, setSuggestions] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [searchFeedback, setSearchFeedback] = useState(null);
 
-  // Live actual data state
   const [liveData, setLiveData] = useState(null);
   const [isWeatherExpanded, setIsWeatherExpanded] = useState(false);
 
-  // Map state
   const [isMapExpanded, setIsMapExpanded] = useState(true);
   const [selectedHazards, setSelectedHazards] = useState(['FLOOD']);
   const [activeAnalyticsTopic, setActiveAnalyticsTopic] = useState('emissions');
@@ -257,7 +254,7 @@ export default function Dashboard({
   const [currentFrameIndex, setCurrentFrameIndex] = useState(0);
   const liveOverlayGroupRef = useRef(null);
 
-  // Clickable Map Option Overlays (User Requested: Toggleable icons for clean map viewing)
+  // Map Option Overlays
   const [showHazardLegends, setShowHazardLegends] = useState(false);
   const [showHazardTimePanel, setShowHazardTimePanel] = useState(false);
   const [showPrecipitationScale, setShowPrecipitationScale] = useState(false);
@@ -290,12 +287,10 @@ export default function Dashboard({
   const [allIndiaHotspots] = useState(getAllIndiaAnomalyHotspots());
   const [showHotspotsOverlay, setShowHotspotsOverlay] = useState(false);
 
-  // Sensor Dataset Upload State
   const [showUploadModal, setShowUploadModal] = useState(false);
   const [uploadedSensorInfo, setUploadedSensorInfo] = useState(null);
   const [uploadError, setUploadError] = useState(null);
 
-  // GenAI Explainer & Remediation State
   const [genAiData, setGenAiData] = useState(null);
   const [isGenAiLoading, setIsGenAiLoading] = useState(false);
   const [genAiCustomQuestion, setGenAiCustomQuestion] = useState('');
@@ -313,7 +308,6 @@ export default function Dashboard({
   const qaTimerRef = useRef(null);
   const [copiedAnswerId, setCopiedAnswerId] = useState(null);
 
-  // Real-Time Sensor Logs Stream State (sensor_logs/)
   const [liveSensorStreamInfo, setLiveSensorStreamInfo] = useState(null);
   const [isSensorBannerExpanded, setIsSensorBannerExpanded] = useState(false);
   const [showStreamDrawer, setShowStreamDrawer] = useState(false);
@@ -559,7 +553,6 @@ export default function Dashboard({
     if (!pkg || !pkg.readings) return;
     const { readings, metadata, sourceFile } = pkg;
 
-    // 1. Dynamic Ingestion into Spatial ML Prediction Engine
     uploadedTelemetryStore.registerPoints([
       {
         lat: metadata.lat,
@@ -569,11 +562,9 @@ export default function Dashboard({
       },
     ]);
 
-    // 2. Multi-Hazard Machine Learning Anomaly Detection
     const evalResult = evaluateMultiSensorAnomaly(readings, selectedHazards);
     setAnomalyEval(evalResult);
 
-    // 3. Traversal of Downstream Hydrological & Proximity Impact Propagation
     const prediction = predictNearbyImpacts(
       metadata.stationName,
       evalResult.primaryAnomaly,
@@ -584,7 +575,6 @@ export default function Dashboard({
     setCascadingPrediction(prediction);
     setSensorReadings(readings);
 
-    // 4. Instant Statistics Cockpit Synchronization
     const aqiVal = readings.aqi || 85;
     const aqiColor =
       aqiVal <= 50 ? '#22c55e' : aqiVal <= 100 ? '#10b981' : aqiVal <= 200 ? '#f59e0b' : '#ef4444';
@@ -618,7 +608,6 @@ export default function Dashboard({
       time: new Date().toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true }),
     });
 
-    // 5. Update Active Station Node Telemetry Card
     setActiveNode({
       id: metadata.stationId,
       name: `${metadata.stationName} SENSOR NODE`,
@@ -632,7 +621,6 @@ export default function Dashboard({
       status: `LIVE STREAM SYNCED // ${sourceFile}`,
     });
 
-    // 6. Update Real-Time Live Sync Notification State
     const streamMeta = {
       sourceFile,
       filename: pkg.filename,
@@ -648,8 +636,8 @@ export default function Dashboard({
     };
     setLiveSensorStreamInfo(streamMeta);
 
-    // Keep cascading forecast collapsed by default per user mandate ("whatever is hidden should be hidden by default")
-    // User can expand forecast on-demand via '+ VIEW FORECAST' or 'EXPAND FORECAST' button
+    
+    
 
     // Show temporary live sync indicator toast
     setStreamToast(`LIVE SENSOR SYNC: ${sourceFile} // ${metadata.stationId}`);
@@ -1271,7 +1259,7 @@ export default function Dashboard({
 
     const bounds = L.latLngBounds(REGIONAL_MAP_BOUNDS);
 
-    // Initialized focused tightly on sovereign India matching exact user framing
+    // Initialized focused on sovereign India
     const map = L.map(mapContainerRef.current, {
       center: [22.4, 82.5],
       zoom: 4.5,
@@ -1324,7 +1312,7 @@ export default function Dashboard({
       interactive: false,
     }).addTo(map);
 
-    // 2. Authoritative Blue Sovereign Boundary Line (exact replica of user requirement)
+    // 2. Sovereign Boundary Line
     L.geoJSON(indiaGeoJson, {
       style: {
         color: '#1d4ed8',
@@ -1512,8 +1500,7 @@ export default function Dashboard({
       try {
         hazardOverlayGroupRef.current.clearLayers();
       } catch (e) {
-        // ignore
-      }
+          }
       hazardOverlayGroupRef.current = null;
     }
 
@@ -1536,8 +1523,7 @@ export default function Dashboard({
         try {
           hazardOverlayGroupRef.current.clearLayers();
         } catch (e) {
-          // ignore
-        }
+              }
         hazardOverlayGroupRef.current = null;
       }
     };
@@ -1962,7 +1948,7 @@ export default function Dashboard({
                 </div>
               </div>
 
-              {/* Main Temperature & RealFeel Row (exact replica of photo) */}
+              {/* Main Temperature & RealFeel Row */}
               <div className="actual-main-temp-row">
                 <div className="actual-temp-group">
                   <span className="actual-time-stamp">{liveData.time}</span>
@@ -1983,9 +1969,8 @@ export default function Dashboard({
               {/* Condition label */}
               <div className="actual-condition-title">{liveData.condition}</div>
 
-              {/* 2-Column Exact Data Table (matching uploaded screenshot) */}
+              {/* 2-Column Data Table */}
               <div className="actual-metrics-table">
-                {/* Row 1 */}
                 <div className="actual-row">
                   <div className="actual-col">
                     <span className="actual-label">RealFeel Shade™</span>
@@ -1997,7 +1982,6 @@ export default function Dashboard({
                   </div>
                 </div>
 
-                {/* Row 2 */}
                 <div className="actual-row">
                   <div className="actual-col">
                     <span className="actual-label">Heat Index</span>
@@ -2011,7 +1995,6 @@ export default function Dashboard({
                   </div>
                 </div>
 
-                {/* Row 3 */}
                 <div className="actual-row">
                   <div className="actual-col">
                     <span className="actual-label">Max UV Index</span>
@@ -2023,7 +2006,6 @@ export default function Dashboard({
                   </div>
                 </div>
 
-                {/* Row 4 */}
                 <div className="actual-row">
                   <div className="actual-col">
                     <span className="actual-label">Wind Gusts</span>
@@ -2035,7 +2017,6 @@ export default function Dashboard({
                   </div>
                 </div>
 
-                {/* Row 5 */}
                 <div className="actual-row">
                   <div className="actual-col">
                     <span className="actual-label">Humidity</span>
@@ -2047,7 +2028,6 @@ export default function Dashboard({
                   </div>
                 </div>
 
-                {/* Row 6 */}
                 <div className="actual-row">
                   <div className="actual-col">
                     <span className="actual-label">Indoor Humidity</span>
@@ -2059,7 +2039,6 @@ export default function Dashboard({
                   </div>
                 </div>
 
-                {/* Row 7 */}
                 <div className="actual-row">
                   <div className="actual-col">
                     <span className="actual-label">Dew Point</span>
@@ -2743,7 +2722,7 @@ export default function Dashboard({
                     </button>
                   </div>
                   <div className="mfld-content">
-                    {/* 1. NIH Roorkee Flood Prone Basins & River Corridor Legend (Image 5 Replica) */}
+                    {/* 1. NIH Roorkee Flood Prone Basins & River Corridor Legend */}
                     <div className="hazard-floating-legend-card nih-flood-legend in-drawer">
                       <div className="hfl-header">
                         <span className="hfl-title">FLOOD PRONE BASINS OF INDIA</span>
@@ -2779,7 +2758,7 @@ export default function Dashboard({
                     </div>
 
 
-              {/* 2. BIS Seismic Zone Legend Box (Image 2 Replica) */}
+              {/* 2. BIS Seismic Zone Legend Box */}
               {selectedHazards.includes('EARTHQUAKES') && (
                 <div className="hazard-floating-legend-card bis-seismic-legend">
                   <div className="hfl-header">
@@ -2833,7 +2812,7 @@ export default function Dashboard({
                 </div>
               )}
 
-              {/* 4. State-Wise AQI Legend & Top Gradient Bar (Image 3 Replica) */}
+              {/* 4. State-Wise AQI Legend & Top Gradient Bar */}
               {selectedHazards.includes('HAZARDOUS AQI') && (
                 <div className="hazard-floating-legend-card aqi-state-legend">
                   <div className="hfl-header">
@@ -2856,7 +2835,7 @@ export default function Dashboard({
                 </div>
               )}
 
-              {/* 5. IMD Maximum Temperature Legend (Image 4 Replica) */}
+              {/* 5. IMD Maximum Temperature Legend */}
               {selectedHazards.includes('EXTREME HEAT') && (
                 <div className="hazard-floating-legend-card imd-heat-legend">
                   <div className="hfl-header">
@@ -5004,11 +4983,7 @@ export default function Dashboard({
           </div>
         )}
 
-        {/* =====================================================================
-           7. REAL-TIME SENSOR LOGS STREAMING SYSTEM (sensor_logs/) - BOTTOM DOCK
-           Placed at the bottom of the dashboard as requested by user.
-           Collapsible / hidden by default per user requirement ("whatever is hidden should be hidden by default")
-           ===================================================================== */}
+        {/* Real-Time Sensor Logs Streaming System */}
         {liveSensorStreamInfo && (
           !isSensorBannerExpanded ? (
             <div
@@ -5103,14 +5078,14 @@ export default function Dashboard({
                   className="sldp-close-btn"
                   onClick={() => setShowStreamDrawer(false)}
                 >
-                  ✕
+                  &times;
                 </button>
               </div>
             </div>
 
             {/* Quick Test Simulator Controls */}
             <div className="sldp-sim-controls">
-              <span className="sldp-sim-label">⚡ QUICK TELEMETRY INJECTION (TRIGGER INSTANT ML & MAP SYNC):</span>
+              <span className="sldp-sim-label">QUICK TELEMETRY INJECTION (TRIGGER INSTANT ML & MAP SYNC):</span>
               <div className="sldp-sim-buttons">
                 <button
                   type="button"

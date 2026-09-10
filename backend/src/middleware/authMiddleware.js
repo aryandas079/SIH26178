@@ -1,7 +1,4 @@
-/**
- * authMiddleware.js
- * Authorization verification middleware for sensitive disaster commands and administration.
- */
+/** Authorization middleware for administrative routes. */
 
 const EXPECTED_ADMIN_ID = process.env.ADMIN_ID || 'abc123';
 const EXPECTED_ADMIN_PW = process.env.ADMIN_PASSWORD || 'ERer00*#';

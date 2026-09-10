@@ -1,13 +1,7 @@
 import React from 'react';
 import anomalyModel from '../data/hazardAnomalyModel.json';
 
-/**
- * TopicAnalyticsRadar - Comprehensive Real-Time Environmental Analytics & ML Diagnostics
- * Dedicated analytical barometers, CPCB/IMD/INCOIS thresholds, and predictive forecasting
- * for all 12 hazard topics:
- * 07 INDUSTRIAL EMISSIONS | 08 WATER QUALITY | 09 GLACIAL LIQUEFACTION | 10 TSUNAMI | 11 CYCLONE | 12 OTHER HAZARDS
- * and 01 FLOOD | 02 AQI | 03 FOREST FIRES | 04 EARTHQUAKES | 05 LANDSLIDES | 06 EXTREME HEAT
- */
+/** Environmental analytics and ML diagnostics radar across hazard topics. */
 
 export default function TopicAnalyticsRadar({
   activeHazardId,
@@ -224,7 +218,6 @@ export default function TopicAnalyticsRadar({
 
   return (
     <section className="dash-topic-analytics-section" style={{ '--topic-theme-color': config.color }}>
-      {/* 1. Header Bar with Tabs for quick switching across topics */}
       <div className="topic-analytics-header">
         <div className="tah-left">
           <div className="tah-badge-row">
@@ -302,7 +295,6 @@ export default function TopicAnalyticsRadar({
         </div>
       )}
 
-      {/* 2. Four Specialized Real-Time Sensor Gauge Cards */}
       <div className="topic-sensor-gauges-grid">
         {/* TOPIC 07: INDUSTRIAL EMISSIONS */}
         {currentHazard === 'emissions' && (
@@ -785,7 +777,6 @@ export default function TopicAnalyticsRadar({
         )}
       </div>
 
-      {/* 3. Continuous Intensity Barometer with Live Needle */}
       <div className="topic-intensity-barometer">
         <div className="tib-header">
           <div className="tib-label-wrap">
@@ -814,7 +805,6 @@ export default function TopicAnalyticsRadar({
         </div>
       </div>
 
-      {/* 4. Bottom Analytics Intelligence Row */}
       <div className="topic-intel-row">
         <div className="ti-box shade-pistachio">
           <span className="ti-lbl">HISTORICAL RECORD TALLY</span>

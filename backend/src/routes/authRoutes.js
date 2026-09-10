@@ -1,7 +1,4 @@
-/**
- * authRoutes.js
- * Endpoints for administrative access verification and security audit trails.
- */
+/** Endpoints for administrative access verification and security audit trails. */
 
 import { Router } from 'express';
 import { verifyAdmin, getAuditLogs, logAuthAccess } from '../controllers/authController.js';

@@ -1,10 +1,4 @@
-/**
- * vitePluginSensorLogs.js
- * High-performance real-time filesystem watcher plugin for Vite.
- * Monitors the `sensor_logs/` directory for incoming telemetry logs (CSV/JSON),
- * parses observations, pushes updates over Vite's HMR WebSocket and SSE streams,
- * and enables instantaneous synchronization with the ERMS Machine Learning model and UI.
- */
+/** Real-time sensor logs filesystem watcher plugin for Vite. */
 
 import fs from 'fs';
 import path from 'path';
@@ -125,14 +119,13 @@ export default function sensorLogWatcherPlugin() {
       function broadcastUpdate(payload) {
         latestPayload = payload;
 
-        // 1. Broadcast via Vite's HMR WebSocket directly to all connected browsers
         server.ws.send({
           type: 'custom',
           event: 'sensor-log-stream-update',
           data: payload,
         });
 
-        // 2. Broadcast via Server-Sent Events (SSE)
+        // Broadcast via Server-Sent Events (SSE)
         const sseData = `data: ${JSON.stringify(payload)}\n\n`;
         for (const client of sseClients) {
           try {
@@ -164,7 +157,6 @@ export default function sensorLogWatcherPlugin() {
         broadcastUpdate(payload);
       }
 
-      // Start fs.watch on sensor_logs directory
       try {
         fs.watch(logsDir, (eventType, filename) => {
           if (!filename) return;
@@ -182,7 +174,6 @@ export default function sensorLogWatcherPlugin() {
       server.middlewares.use((req, res, next) => {
         const url = req.url || '';
 
-        // 1. Server-Sent Events (SSE) Real-Time Stream
         if (url === '/api/sensor-logs/stream') {
           res.writeHead(200, {
             'Content-Type': 'text/event-stream',
@@ -192,7 +183,6 @@ export default function sensorLogWatcherPlugin() {
           });
           res.write(': connected\n\n');
 
-          // Send current state immediately on connect
           if (latestPayload) {
             res.write(`data: ${JSON.stringify(latestPayload)}\n\n`);
           }
@@ -205,7 +195,6 @@ export default function sensorLogWatcherPlugin() {
           return;
         }
 
-        // 2. Get Latest Sensor Telemetry
         if (url === '/api/sensor-logs/latest') {
           res.writeHead(200, {
             'Content-Type': 'application/json',
@@ -215,7 +204,6 @@ export default function sensorLogWatcherPlugin() {
           return;
         }
 
-        // 3. List All Files in sensor_logs/
         if (url === '/api/sensor-logs/files') {
           try {
             const files = fs.readdirSync(logsDir).filter((f) => {
@@ -243,7 +231,6 @@ export default function sensorLogWatcherPlugin() {
           return;
         }
 
-        // 4. Append / Post Real-Time Sensor Telemetry
         if (url === '/api/sensor-logs/append' && req.method === 'POST') {
           let body = '';
           req.on('data', (chunk) => {

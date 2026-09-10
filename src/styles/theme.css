@@ -1,7 +1,7 @@
 /* ERMS THEME & GLOBAL DESIGN SYSTEM */
 
 :root {
-  /* Exact Velvet Botanical Palette Tokens from Swatch Board (Image 5) */
+  /* Palette Tokens */
   --pal-mint: #dce4dc;
   --pal-sage: #bcc6b8;
   --pal-pistachio: #c5cca2;
@@ -13,7 +13,6 @@
   --pal-pine: #122319;
   --pal-evergreen: #0b1610;
 
-  /* Aliases mapped to Image 5 */
   --olive-deep: var(--pal-forest);
   --olive-title: var(--pal-pine);
   --olive-sub: var(--pal-fern);
@@ -21,46 +20,42 @@
   --whitesmoke-bg: #eef3ed;
   --whitesmoke-text: #f5f8f5;
 
-  /* Universal Font - strictly Instagram Sans */
   --font-primary: 'Instagram Sans', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-headline: 'Instagram Sans', sans-serif;
   --font-condensed: 'Instagram Sans', sans-serif;
   --font-mono: 'Instagram Sans', monospace;
 
-  /* Refined Corner Curvature */
   --radius-main: 10px;
   --radius-sm: 6px;
   --radius-pill: 9999px;
 }
 
-/* 1. LIGHT MODE (Faded organic tones with intense velvet botanical accents - Default Root) */
+/* Light Mode (Default) */
 :root,
 [data-theme='light'] {
-  --bg-primary: #eef3ed; /* Soft faded Mint wash */
-  --bg-surface: #f9fbf8; /* Crisp organic botanical surface */
+  --bg-primary: #eef3ed;
+  --bg-surface: #f9fbf8;
   --bg-surface-elevated: #ffffff;
   --bg-card: #ffffff;
 
-  --text-title: #122319; /* Deep nocturnal Pine */
-  --text-sub: #586b4f;   /* Velvet Fern */
-  --text-primary: #183022; /* Rich Forest */
-  --text-secondary: #284f38; /* Intense Emerald */
-  --text-muted: #7f875e; /* Olive */
+  --text-title: #122319;
+  --text-sub: #586b4f;
+  --text-primary: #183022;
+  --text-secondary: #284f38;
+  --text-muted: #7f875e;
 
-  --btn-border: #284f38; /* Intense Emerald */
+  --btn-border: #284f38;
   --btn-text: #122319;
   --btn-hover-bg: rgba(40, 79, 56, 0.08);
 
-  --footer-bg: #0b1610;   /* Velvet Evergreen */
-  --footer-text: #dce4dc; /* Soft Mint */
+  --footer-bg: #0b1610;
+  --footer-text: #dce4dc;
 
   --border-subtle: rgba(88, 107, 79, 0.22);
   --border-medium: rgba(88, 107, 79, 0.38);
   --border-strong: #7f875e;
   --card-shadow: 0 4px 20px -2px rgba(18, 35, 25, 0.06);
 
-  /* Botanical Natural Shades Calibrated to Image 5 */
-  /* 1. Pistachio */
   --shade-pistachio-bg: #f3f6ea;
   --shade-pistachio-surface: #e5ecd3;
   --shade-pistachio-border: #9aa475;
@@ -69,7 +64,6 @@
   --shade-pistachio-glow: rgba(127, 135, 94, 0.20);
   --shade-pistachio-pill-bg: #ffffff;
 
-  /* 2. Sage */
   --shade-sage-bg: #edf2eb;
   --shade-sage-surface: #dce4dc;
   --shade-sage-border: #bcc6b8;
@@ -78,7 +72,6 @@
   --shade-sage-glow: rgba(188, 198, 184, 0.25);
   --shade-sage-pill-bg: #ffffff;
 
-  /* 3. Emerald */
   --shade-emerald-bg: #e2eee6;
   --shade-emerald-surface: #c7ded0;
   --shade-emerald-border: #284f38;
@@ -87,7 +80,6 @@
   --shade-emerald-glow: rgba(40, 79, 56, 0.24);
   --shade-emerald-pill-bg: #ffffff;
 
-  /* 4. Forest */
   --shade-forest-bg: #e7ede8;
   --shade-forest-surface: #cfded2;
   --shade-forest-border: #586b4f;
@@ -97,32 +89,31 @@
   --shade-forest-pill-bg: #ffffff;
 }
 
-/* 2. DARK MODE (Executive Shades of Black & Storm Grey) */
+/* Dark Mode */
 [data-theme='dark'] {
-  --bg-primary: #0a0b0e; /* Deep Nocturnal Black */
-  --bg-surface: #12141a; /* Storm Charcoal Surface */
-  --bg-surface-elevated: #1a1d24; /* Elevated Storm Slate */
-  --bg-card: #151820; /* Refined Storm Grey Card */
+  --bg-primary: #0a0b0e;
+  --bg-surface: #12141a;
+  --bg-surface-elevated: #1a1d24;
+  --bg-card: #151820;
 
-  --text-title: #f8fafc; /* Crisp Pure Silver / Ice White */
-  --text-sub: #94a3b8; /* Storm Grey Slate */
-  --text-primary: #e2e8f0; /* Crisp Neutral Light Grey */
-  --text-secondary: #cbd5e1; /* Storm Mist */
-  --text-muted: #64748b; /* Medium Storm Grey */
+  --text-title: #f8fafc;
+  --text-sub: #94a3b8;
+  --text-primary: #e2e8f0;
+  --text-secondary: #cbd5e1;
+  --text-muted: #64748b;
 
-  --btn-border: #333a48; /* Storm Grey Border */
+  --btn-border: #333a48;
   --btn-text: #f1f5f9;
   --btn-hover-bg: rgba(148, 163, 184, 0.12);
 
-  --footer-bg: #060709; /* Deep Obsidian Black */
-  --footer-text: #94a3b8; /* Storm Grey */
+  --footer-bg: #060709;
+  --footer-text: #94a3b8;
 
   --border-subtle: rgba(148, 163, 184, 0.15);
-  --border-medium: #282f3d; /* Storm Grey Medium Border */
-  --border-strong: #3b4455; /* Solid Storm Grey */
+  --border-medium: #282f3d;
+  --border-strong: #3b4455;
   --card-shadow: 0 4px 25px -2px rgba(0, 0, 0, 0.75);
 
-  /* Dark Storm Black & Slate Natural Shades */
   --shade-pistachio-bg: #101217;
   --shade-pistachio-surface: #171b23;
   --shade-pistachio-border: #28303e;
@@ -156,7 +147,7 @@
   --shade-forest-pill-bg: rgba(0, 0, 0, 0.55);
 }
 
-/* 3. TINTED MODE (Storm Grey Tinted Obsidian) */
+/* Tinted Mode */
 [data-theme='tinted'] {
   --bg-primary: #0d0f14;
   --bg-surface: #151820;
@@ -181,7 +172,6 @@
   --border-strong: #3d475a;
   --card-shadow: 0 4px 25px -2px rgba(0, 0, 0, 0.7);
 
-  /* Tinted Storm Shades */
   --shade-pistachio-bg: #12151c;
   --shade-pistachio-surface: #1a1e28;
   --shade-pistachio-border: #2c3545;
@@ -215,7 +205,7 @@
   --shade-forest-pill-bg: rgba(0, 0, 0, 0.55);
 }
 
-/* Global Reset, Custom Cursor & Font Enforcement */
+/* Global Reset */
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;

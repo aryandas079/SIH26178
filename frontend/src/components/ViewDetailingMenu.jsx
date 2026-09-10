@@ -1,10 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 
-/**
- * ViewDetailingMenu - Top Hamburger Menu & Drawer for Dashboard Detailing Toggles
- * Clean, non-AI professional engineering design with precision SVG line-art
- * and granular control over heavy telemetry, ML stress testing, and cascading models.
- */
+/** Dashboard detailing toggles and menu drawer. */
 
 export const DEFAULT_VIEW_DETAILS = {
   nodeTelemetry: false,     // 01-04 Node ID, GPS Coordinates, Topographical Zone, Status
@@ -15,7 +11,6 @@ export const DEFAULT_VIEW_DETAILS = {
   cascadingForecast: false, // Downstream Cascading Risk & Proximity Impact Forecast (collapsed drawer bar by default)
 };
 
-/* --- Precision Technical SVG Icons (Clean, Monochromatic, Zero Emojis) --- */
 const IconCleanLayout = () => (
   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
     <rect x="3" y="3" width="18" height="18" rx="2" />
@@ -174,7 +169,6 @@ export default function ViewDetailingMenu({
 
   return (
     <div className="view-detailing-menu-wrapper" ref={menuRef}>
-      {/* Hamburger Toggle Button */}
       <button
         type="button"
         className={`detailing-hamburger-btn ${isOpen ? 'active' : ''} ${isAllClean ? 'btn-clean-mode' : ''}`}
@@ -195,10 +189,8 @@ export default function ViewDetailingMenu({
         </span>
       </button>
 
-      {/* Floating Modal / Slide-Out Drawer Panel */}
       {isOpen && (
         <div className="detailing-drawer-panel">
-          {/* Drawer Header */}
           <div className="dd-header">
             <div className="dd-header-left">
               <div className="dd-badge-row">
@@ -226,7 +218,6 @@ export default function ViewDetailingMenu({
             </button>
           </div>
 
-          {/* Quick Presets Bar */}
           <div className="dd-presets-row">
             <button
               type="button"
@@ -259,7 +250,6 @@ export default function ViewDetailingMenu({
             </button>
           </div>
 
-          {/* Individual Section Toggles List */}
           <div className="dd-sections-list">
             <div className="dd-list-label">INDIVIDUAL SECTION CONTROLS:</div>
             {SECTION_CONFIGS.map((sec) => {
@@ -305,7 +295,6 @@ export default function ViewDetailingMenu({
             })}
           </div>
 
-          {/* Drawer Footer */}
           <div className="dd-footer">
             <div className="dd-footer-note">
               Configuration persists automatically across browser reloads and syncs on mobile & desktop.

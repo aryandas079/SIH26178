@@ -1,7 +1,4 @@
-/**
- * telemetryRoutes.js
- * Endpoints for live SSE sensor stream, latest observations, and telemetry ingestion.
- */
+/** Routes for live SSE telemetry stream, observations, and data ingestion. */
 
 import { Router } from 'express';
 import {

@@ -1,7 +1,4 @@
-/**
- * hazardController.js
- * Controller handling CWC monitoring station registry, river basins, and spatial risk calculations.
- */
+/** Controller handling station registry and spatial risk calculations. */
 
 import { dbClient } from '../../../database/dbClient.js';
 

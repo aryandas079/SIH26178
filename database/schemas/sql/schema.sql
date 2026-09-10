@@ -1,9 +1,6 @@
--- =====================================================================
--- ERMS (Environmental Risk Monitoring System) - Database Schema
--- Compatible with PostgreSQL, SQLite, and MySQL
--- =====================================================================
+-- ERMS Database Schema (PostgreSQL, SQLite, MySQL)
 
--- 1. Monitoring Stations Table
+-- Monitoring Stations
 CREATE TABLE IF NOT EXISTS monitoring_stations (
     station_id VARCHAR(64) PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
@@ -21,7 +18,7 @@ CREATE TABLE IF NOT EXISTS monitoring_stations (
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- 2. Sensor Telemetry Readings Table
+-- Sensor Telemetry Readings
 CREATE TABLE IF NOT EXISTS sensor_telemetry (
     id VARCHAR(64) PRIMARY KEY,
     station_id VARCHAR(64) NOT NULL,
@@ -55,11 +52,11 @@ CREATE TABLE IF NOT EXISTS sensor_telemetry (
     FOREIGN KEY (station_id) REFERENCES monitoring_stations(station_id) ON DELETE CASCADE
 );
 
--- Indexing for high-frequency time-series queries
+-- Indexing for time-series queries
 CREATE INDEX IF NOT EXISTS idx_telemetry_station_time ON sensor_telemetry (station_id, timestamp DESC);
 CREATE INDEX IF NOT EXISTS idx_telemetry_timestamp ON sensor_telemetry (timestamp DESC);
 
--- 3. Hazard Anomaly Alerts Table
+-- Hazard Anomaly Alerts
 CREATE TABLE IF NOT EXISTS hazard_alerts (
     id VARCHAR(64) PRIMARY KEY,
     station_id VARCHAR(64) NOT NULL,
@@ -78,7 +75,7 @@ CREATE TABLE IF NOT EXISTS hazard_alerts (
 
 CREATE INDEX IF NOT EXISTS idx_alerts_status_time ON hazard_alerts (status, timestamp DESC);
 
--- 4. User Session & Audit Trail Table
+-- User Session & Audit Trail
 CREATE TABLE IF NOT EXISTS audit_logs (
     id VARCHAR(64) PRIMARY KEY,
     timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,

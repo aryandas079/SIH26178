@@ -1,7 +1,4 @@
-/**
- * sseBroadcaster.js
- * Manages active Server-Sent Events (SSE) connections with browsers and operational consoles.
- */
+/** Manages active Server-Sent Events (SSE) client connections. */
 
 class SSEBroadcaster {
   constructor() {

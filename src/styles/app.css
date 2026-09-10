@@ -1,4 +1,4 @@
-/* ERMS APPLICATION STYLES - EXACT REPLICA OF USER DESIGN */
+/* ERMS APPLICATION STYLES */
 
 /* Leaf canvas background particle system */
 .leaf-canvas {
@@ -125,7 +125,7 @@
   }
 }
 
-/* Clean rectangular buttons matching screenshot */
+/* Clean rectangular buttons */
 .clean-box-btn {
   background: transparent;
   border: 1px solid var(--btn-border);
@@ -202,7 +202,7 @@
   border-radius: var(--radius-main, 5px);
 }
 
-/* Footer Section - Exact design from photo 2 */
+/* Footer Section - Exact design from */
 .exact-footer {
   width: 100%;
   background-color: var(--footer-bg);
@@ -411,9 +411,7 @@
   margin-bottom: 0.5rem;
 }
 
-/* =======================================================
-   DASHBOARD PAGE STYLING - MATCHING HOME PAGE DESIGN
-   ======================================================= */
+/* DASHBOARD PAGE STYLING - MATCHING HOME PAGE DESIGN */
 
 .dashboard-page-container {
   min-height: 100vh;
@@ -787,9 +785,7 @@
   box-shadow: 0 0 6px var(--shade-emerald-accent);
 }
 
-/* =======================================================
-   AT-A-GLANCE STATION COCKPIT (BOTANICAL COLOR-GRADED CARDS)
-   ======================================================= */
+/* AT-A-GLANCE STATION COCKPIT (BOTANICAL COLOR-GRADED CARDS) */
 .cockpit-summary-container {
   background: linear-gradient(180deg, var(--bg-surface) 0%, var(--shade-pistachio-bg) 100%);
   border: 1.5px solid var(--shade-sage-border);
@@ -970,10 +966,7 @@
   text-transform: uppercase;
 }
 
-/* =======================================================
-   INDIVIDUAL BOTANICAL SHADE GRADES:
-   Pistachio, Emerald, Forest, Sage
-   ======================================================= */
+/* INDIVIDUAL BOTANICAL SHADE GRADES - Pistachio, Emerald, Forest, Sage */
 
 /* 1. Pistachio Grade (Fresh, warm, rich nut-green - 1.35x darker contrast) */
 .cockpit-metric-card.shade-pistachio,
@@ -1131,9 +1124,7 @@
   font-weight: 800;
 }
 
-/* =======================================================
-   EXACT ACTUAL DATA WEATHER CARD (MATCHING USER PHOTO)
-   ======================================================= */
+/* Detailed Weather Card */
 .weather-drawer-container {
   width: 100%;
   display: flex;
@@ -1609,9 +1600,7 @@
   animation: fadeIn 0.25s ease;
 }
 
-/* =======================================================
-   EXECUTIVE GEOSPATIAL LAYER STUDIO (UNIFIED & DE-CONGESTED)
-   ======================================================= */
+/* EXECUTIVE GEOSPATIAL LAYER STUDIO (UNIFIED & DE-CONGESTED) */
 .executive-layer-studio {
   background: var(--bg-surface);
   border: 1px solid var(--border-subtle);
@@ -3142,9 +3131,7 @@
   }
 }
 
-/* =======================================================
-   FULLSCREEN ADMIN AUTHENTICATION PROMPT (SECURE GATEWAY)
-   ======================================================= */
+/* FULLSCREEN ADMIN AUTHENTICATION PROMPT (SECURE GATEWAY) */
 .auth-fullscreen-overlay {
   position: fixed;
   inset: 0;
@@ -3380,9 +3367,7 @@
   }
 }
 
-/* ==========================================================================
-   ML MULTI-HAZARD ANOMALY DETECTION, RIVER FLOOD CORRIDORS & TELEMETRY
-   ========================================================================== */
+/* ML MULTI-HAZARD ANOMALY DETECTION, RIVER FLOOD CORRIDORS & TELEMETRY */
 
 /* 1. Dynamic Heat Intensity Bar / Scale */
 .heat-floating-scale-card {
@@ -4410,9 +4395,7 @@
   color: var(--text-sub);
 }
 
-/* ==========================================================================
-   AUTHENTIC FLOATING HAZARD LEGENDS (BIS SEISMIC, GSI, AQI, IMD, NIH)
-   ========================================================================== */
+/* AUTHENTIC FLOATING HAZARD LEGENDS (BIS SEISMIC, GSI, AQI, IMD, NIH) */
 
 .hazard-floating-legend-card {
   position: absolute;
@@ -4559,7 +4542,7 @@
   color: #a855f7;
 }
 
-/* State AQI Pin Marker on Map (Image 3 Replica) */
+/* State AQI Pin Marker on Map */
 .aqi-state-data-pin-wrapper {
   background: transparent !important;
   border: none !important;
@@ -4611,7 +4594,7 @@
   line-height: 1;
 }
 
-/* IMD Maximum Temperature Legend Grid (Image 4 Replica) */
+/* IMD Maximum Temperature Legend Grid */
 .imd-swatches-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -4649,9 +4632,7 @@
 
 
 
-/* ==========================================================================
-   TOPIC ANALYTICS RADAR & REGULATORY DIAGNOSTICS (TOPICS 07 TO 12 & FULL SUITE)
-   ========================================================================== */
+/* TOPIC ANALYTICS RADAR & REGULATORY DIAGNOSTICS (TOPICS 07 TO 12 & FULL SUITE) */
 
 .dash-topic-analytics-section {
   margin-top: 1.25rem;
@@ -5096,9 +5077,7 @@
   transform: translateY(-1px);
 }
 
-/* ==========================================================================
-   POPUP CARDS & MAP OVERLAYS FOR HAZARDS 07 TO 12
-   ========================================================================== */
+/* POPUP CARDS & MAP OVERLAYS FOR HAZARDS 07 TO 12 */
 
 /* Industrial Stack Marker */
 .industrial-pin-badge {
@@ -5214,9 +5193,7 @@
   right: 1.25rem;
 }
 
-/* ==========================================================================
-   VIEW DETAILING MENU, HAMBURGER CONTROLS & CLEAN ONE-LOOK DASHBOARD SYSTEM
-   ========================================================================== */
+/* VIEW DETAILING MENU, HAMBURGER CONTROLS & CLEAN ONE-LOOK DASHBOARD SYSTEM */
 
 /* 1. Hamburger Toggle Button in Top Navigation Header */
 .view-detailing-menu-wrapper {
@@ -6092,9 +6069,7 @@
   }
 }
 
-/* =======================================================
-   HORIZONTAL COMPACT RECTANGULAR BLOCKS FOR UNSELECTED SECTIONS
-   ======================================================= */
+/* HORIZONTAL COMPACT RECTANGULAR BLOCKS FOR UNSELECTED SECTIONS */
 .collapsed-blocks-row {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -6214,9 +6189,7 @@
   line-height: 1.35;
 }
 
-/* ==========================================================================
-   LIVE METEOROLOGICAL TELEMETRY & API CONFIGURATION STYLING
-   ========================================================================== */
+/* LIVE METEOROLOGICAL TELEMETRY & API CONFIGURATION STYLING */
 
 /* Live Met Header & Action Controls */
 .live-met-section-header {
@@ -6785,9 +6758,7 @@
   opacity: 0.9;
 }
 
-/* ==========================================================================
-   ALL-INDIA ANOMALY HOTSPOTS BANNER STRIP
-   ========================================================================== */
+/* ALL-INDIA ANOMALY HOTSPOTS BANNER STRIP */
 .hotspots-banner-strip {
   background: var(--bg-card);
   border: 1px solid var(--border-medium);
@@ -7042,9 +7013,7 @@
   line-height: 1.35;
 }
 
-/* ==========================================================================
-   SECTION 3: UPLOAD SENSOR BUTTON & INDICATORS
-   ========================================================================== */
+/* SECTION 3: UPLOAD SENSOR BUTTON & INDICATORS */
 .tgh-uploaded-indicator {
   color: #10b981;
   font-weight: 800;
@@ -7070,9 +7039,7 @@
   color: var(--btn-border);
 }
 
-/* ==========================================================================
-   SECTION 6: EXTENDED ESTIMATIONS & RESOURCE DEPLOYMENTS
-   ========================================================================== */
+/* SECTION 6: EXTENDED ESTIMATIONS & RESOURCE DEPLOYMENTS */
 .cp-resource-deployments-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -7122,9 +7089,7 @@
   margin-top: 0.15rem;
 }
 
-/* ==========================================================================
-   SECTION 6: SPECIFIC REMEDIATION MEASURES & ENGINEERING CURES
-   ========================================================================== */
+/* SECTION 6: SPECIFIC REMEDIATION MEASURES & ENGINEERING CURES */
 .cp-remediation-cures-section {
   margin-top: 1.25rem;
   padding-top: 1.1rem;
@@ -7252,9 +7217,7 @@
   margin-top: 1px;
 }
 
-/* ==========================================================================
-   SECTION 6: GENAI DISASTER MODEL EXPLAINER & INTERROGATION
-   ========================================================================== */
+/* SECTION 6: GENAI DISASTER MODEL EXPLAINER & INTERROGATION */
 .genai-explainer-card {
   margin-top: 1.25rem;
   padding-top: 1.1rem;
@@ -7387,9 +7350,7 @@
   color: var(--text-sub);
 }
 
-/* ==========================================================================
-   INTERACTIVE GENAI DISASTER MODEL (COMMAND CONSOLE Q&A)
-   ========================================================================== */
+/* INTERACTIVE GENAI DISASTER MODEL (COMMAND CONSOLE Q&A) */
 
 /* Top Toolbar Quick Jump Button */
 .ai-quick-jump-btn {
@@ -8190,9 +8151,7 @@
 }
 
 
-/* ==========================================================================
-   MODALS: SENSOR UPLOAD & API KEYS
-   ========================================================================== */
+/* MODALS: SENSOR UPLOAD & API KEYS */
 .sensor-upload-modal-overlay,
 .api-key-modal-overlay {
   position: fixed;
@@ -8558,9 +8517,7 @@
   padding: 0.65rem 0.85rem;
 }
 
-/* ==========================================================================
-   HISTORICAL PRECEDENT BANNER INTERACTIVE BUTTON & HOVER
-   ========================================================================== */
+/* HISTORICAL PRECEDENT BANNER INTERACTIVE BUTTON & HOVER */
 .clickable-historical-banner {
   cursor: pointer;
   transition: all 0.2s ease;
@@ -8601,9 +8558,7 @@
 
 
 
-/* ==========================================================================
-   HISTORICAL DATASET EXPLORER & INFOGRAPHICS MODAL (CLEAN & MODERN OVERHAUL)
-   ========================================================================== */
+/* HISTORICAL DATASET EXPLORER & INFOGRAPHICS MODAL (CLEAN & MODERN OVERHAUL) */
 .hde-modal-overlay {
   position: fixed;
   top: 0;
@@ -8874,9 +8829,7 @@
   background: var(--bg-primary, #eef3ed);
 }
 
-/* ==========================================================================
-   VIEW 1: OVERVIEW & INFOGRAPHICS STYLES
-   ========================================================================== */
+/* VIEW 1: OVERVIEW & INFOGRAPHICS STYLES */
 .hde-overview-container {
   display: flex;
   flex-direction: column;
@@ -9334,9 +9287,7 @@
   background: var(--border-subtle, rgba(88, 107, 79, 0.22));
 }
 
-/* ==========================================================================
-   VIEW 2: DATA RECORDS & FORENSICS TABLE STYLES
-   ========================================================================== */
+/* VIEW 2: DATA RECORDS & FORENSICS TABLE STYLES */
 .hde-records-container {
   display: flex;
   flex-direction: column;
@@ -9910,9 +9861,7 @@
 
 
 
-/* ==========================================================================
-   MSN / BING WEATHER INSPIRED TELEMETRY & MAP DESIGN SYSTEM
-   ========================================================================== */
+/* MSN / BING WEATHER INSPIRED TELEMETRY & MAP DESIGN SYSTEM */
 
 /* 1. Telemetry Section Header */
 .msn-weather-header {
@@ -10117,8 +10066,7 @@
   line-height: 1.25;
 }
 
-/* Specific Micro-Widgets:
-   1. Temperature Horizontal Track Slider */
+/* Specific Micro-Widgets - 1. Temperature Horizontal Track Slider */
 .msn-slider-widget {
   flex: 1;
   display: flex;
@@ -10332,11 +10280,7 @@
   border: 2px solid #000000;
 }
 
-/* ==========================================================================
-   MSN / BING WEATHER MAP FLOATING OVERLAYS (Image 2 Replica)
-/* ==========================================================================
-   MSN / BING WEATHER MAP FLOATING OVERLAYS (Arrow Marked & Clickable Icons)
-   ========================================================================== */
+/* MSN / BING WEATHER MAP FLOATING OVERLAYS - MSN / BING WEATHER MAP FLOATING OVERLAYS (Arrow Marked & Clickable Icons) */
 
 /* 1. Official Sovereign Boundary Compliance Badge (Top-Left) */
 .map-compliance-badge {
@@ -11177,9 +11121,7 @@
   display: none !important;
 }
 
-/* =======================================================
-   ACTIVE NODE TELEMETRY IN MAP SECTION (01-04 GPS REAL DATA)
-   ======================================================= */
+/* ACTIVE NODE TELEMETRY IN MAP SECTION (01-04 GPS REAL DATA) */
 .map-active-node-section {
   background: var(--bg-surface);
   border: 1px solid var(--border-subtle);
@@ -11373,9 +11315,7 @@
 }
 
 
-/* ==========================================================================
-   DARK MODE OVERRIDES: SHADES OF BLACK & STORM GREY
-   ========================================================================== */
+/* DARK MODE OVERRIDES: SHADES OF BLACK & STORM GREY */
 [data-theme='dark'] .top-nav-bar.dashboard-nav-bar {
   background-color: var(--bg-surface);
   border-bottom: 1px solid var(--border-subtle);
@@ -11556,10 +11496,7 @@
   border-color: #2c3444;
 }
 
-/* =======================================================
-   MULTI-DEVICE RESPONSIVE SUITE:
-   MOBILE, TABLETS, LAPTOPS, TV/BIG SCREENS & CAR DASHBOARD
-   ======================================================= */
+/* MULTI-DEVICE RESPONSIVE SUITE - MOBILE, TABLETS, LAPTOPS, TV/BIG SCREENS & CAR DASHBOARD */
 
 /* 1. Universal Zero-Overflow Enforcers */
 .dashboard-page-container,
@@ -11573,8 +11510,7 @@
   box-sizing: border-box !important;
 }
 
-/* 2. Automotive / Car Dashboard In-Vehicle Infotainment (IVI) Displays
-   Typically 800x480, 1024x600, 1280x720 in landscape with constrained vertical height */
+/* 2. Automotive / Car Dashboard In-Vehicle Infotainment (IVI) Displays - Typically 800x480, 1024x600, 1280x720 in landscape with constrained vertical height */
 @media (max-height: 650px) and (orientation: landscape) {
   .dashboard-page-container {
     padding: 0.75rem 1.25rem 3.5rem !important;
@@ -11727,9 +11663,7 @@
   }
 }
 
-/* =======================================================
-   REAL-TIME SENSOR LOGS STREAMING SYSTEM (sensor_logs/)
-   ======================================================= */
+/* REAL-TIME SENSOR LOGS STREAMING SYSTEM (sensor_logs/) */
 
 /* 1. Floating Stream Sync Toast */
 .stream-sync-toast {
@@ -12166,10 +12100,7 @@
   font-weight: 800 !important;
 }
 
-/* =======================================================
-   DARK MODE OVERRIDES FOR SENSOR STREAMING SYSTEM
-   (Shades of Black & Storm Grey)
-   ======================================================= */
+/* DARK MODE OVERRIDES FOR SENSOR STREAMING SYSTEM - (Shades of Black & Storm Grey) */
 [data-theme='dark'] .stream-sync-toast {
   background: #151820;
   border-color: #3b4455;
@@ -12298,9 +12229,7 @@
   }
 }
 
-/* ==========================================================================
-   TRANSBOUNDARY HIMALAYAN MOUNTAIN SLOPE & SOIL QUALITY DEGRADATION STYLES
-   ========================================================================== */
+/* TRANSBOUNDARY HIMALAYAN MOUNTAIN SLOPE & SOIL QUALITY DEGRADATION STYLES */
 
 .transboundary-soil-card {
   background: #fdfbf7;
@@ -12592,15 +12521,9 @@
   }
 }
 
-/* ==========================================================================
-   MOBILE-ONLY VIEW REFINEMENTS (IMAGE 1 & IMAGE 2 STRICTLY SCOPED <= 640px)
-   Does not alter desktop, laptop, tablet, TV, or car dashboard views.
-   ========================================================================== */
+/* MOBILE-ONLY VIEW REFINEMENTS&STRICTLY SCOPED <= 640px) - Does not alter desktop, laptop, tablet, TV, or car dashboard views. */
 @media (max-width: 640px) {
-  /* ------------------------------------------------------------------------
-     IMAGE 1: Re-orient Active Node Telemetry Strip (.map-node-collapsed-strip)
-     Replaces horizontal collision with an ergonomic thumb-friendly vertical column.
-     ------------------------------------------------------------------------ */
+  /* Re-orient Active Node Telemetry Strip (.map-node-collapsed-strip) - Replaces horizontal collision with an ergonomic thumb-friendly vertical column. */
   .map-node-collapsed-strip {
     display: flex !important;
     flex-direction: column !important;
@@ -12655,9 +12578,7 @@
     display: flex !important;
   }
 
-  /* ------------------------------------------------------------------------
-     IMAGE 2: Map Viewport & Overlays Scaling & Centering
-     ------------------------------------------------------------------------ */
+  /* Map Viewport & Overlays Scaling & Centering */
   .map-viewport-frame {
     height: 480px !important;
     position: relative !important;
@@ -12902,9 +12823,7 @@
 
 
 
-/* ==========================================================================
-   ERMS LIVE AUTHENTICATION, TIME-OF-DAY GREETING & PROFILE POPOVER
-   ========================================================================== */
+/* ERMS LIVE AUTHENTICATION, TIME-OF-DAY GREETING & PROFILE POPOVER */
 
 /* 1. Header Greeting Pill */
 .user-greeting-pill {

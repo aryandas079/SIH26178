@@ -179,7 +179,6 @@ export default function HistoricalDatasetExplorerModal({
   return (
     <div className="hde-modal-overlay" onClick={onClose}>
       <div className="hde-modal-card" onClick={(e) => e.stopPropagation()}>
-        {/* Top Header Bar */}
         <div className="hde-header">
           <div className="hde-title-block">
             <div className="hde-tag-row">
@@ -196,8 +195,7 @@ export default function HistoricalDatasetExplorerModal({
           </div>
 
           <div className="hde-header-right-actions">
-            {/* View Mode Toggle: Clean Overview vs Raw Records */}
-            <div className="hde-view-toggle-bar">
+                <div className="hde-view-toggle-bar">
               <button
                 type="button"
                 className={`hde-view-btn ${viewMode === 'overview' ? 'active' : ''}`}
@@ -230,10 +228,8 @@ export default function HistoricalDatasetExplorerModal({
           </div>
         </div>
 
-        {/* Streamlined Dataset Selector & Category Navigation */}
         <div className="hde-nav-control-bar">
-          {/* Category Filter Pills */}
-          <div className="hde-category-pills">
+            <div className="hde-category-pills">
             {CATEGORIES.map((cat) => (
               <button
                 key={cat.id}
@@ -246,8 +242,7 @@ export default function HistoricalDatasetExplorerModal({
             ))}
           </div>
 
-          {/* Dataset Switcher Strip */}
-          <div className="hde-datasets-pills-strip">
+            <div className="hde-datasets-pills-strip">
             {visibleDatasets.map((d) => {
               const isActive = d.id === activeDatasetId;
               const recCount = historicalData[d.id]?.totalRecords
@@ -271,14 +266,9 @@ export default function HistoricalDatasetExplorerModal({
           </div>
         </div>
 
-        {/* Modal Body: Switchable between Clean Overview & Raw Records */}
         <div className="hde-body-content">
           {viewMode === 'overview' ? (
-            /* ==========================================================
-               VIEW 1: CLEAN EXECUTIVE OVERVIEW & INFOGRAPHICS (DEFAULT)
-               ========================================================== */
             <div className="hde-overview-container">
-              {/* Dataset Banner Card */}
               <div className="hde-dataset-hero-banner">
                 <div className="hde-dhb-info">
                   <span className="hde-dhb-badge" style={{ backgroundColor: `${dataset.severityBreakdown?.[2]?.color || '#2563eb'}22`, color: dataset.severityBreakdown?.[2]?.color || '#2563eb' }}>
@@ -301,7 +291,6 @@ export default function HistoricalDatasetExplorerModal({
                 </div>
               </div>
 
-              {/* 4 Clean Refined KPI Cards */}
               <div className="hde-kpi-grid">
                 <div className="hde-kpi-card">
                   <div className="hde-kpi-top">
@@ -344,10 +333,8 @@ export default function HistoricalDatasetExplorerModal({
                 </div>
               </div>
 
-              {/* Infographics Grid: Severity Spectrum & Hotspot Rankings */}
               <div className="hde-charts-grid">
-                {/* Severity Distribution Spectrum Card */}
-                <div className="hde-panel-card">
+                  <div className="hde-panel-card">
                   <div className="hde-panel-header">
                     <div className="hde-panel-title-wrap">
                       <h4 className="hde-panel-title">Severity Distribution Spectrum</h4>
@@ -384,14 +371,12 @@ export default function HistoricalDatasetExplorerModal({
                     ))}
                   </div>
 
-                  {/* Context Note */}
                   <div className="hde-spectrum-note">
                     <strong>Operational Insight:</strong> Records exceeding the 95th percentile benchmark trigger the Isolation Forest high-hazard alert pipeline in real-time.
                   </div>
                 </div>
 
-                {/* Top Recurring Hazard Hotspots Card */}
-                <div className="hde-panel-card">
+                  <div className="hde-panel-card">
                   <div className="hde-panel-header">
                     <div className="hde-panel-title-wrap">
                       <h4 className="hde-panel-title">Top Recurring Hazard Hotspots</h4>
@@ -435,7 +420,6 @@ export default function HistoricalDatasetExplorerModal({
                 </div>
               </div>
 
-              {/* Bottom Explainer / Data Governance Card */}
               <div className="hde-explainer-card">
                 <div className="hde-exp-col">
                   <h5 className="hde-exp-heading">WHAT THIS DATASET MEASURES</h5>
@@ -460,11 +444,7 @@ export default function HistoricalDatasetExplorerModal({
               </div>
             </div>
           ) : (
-            /* ==========================================================
-               VIEW 2: DATA RECORDS & FORENSICS TABLE (UNCLUTTERED ON DEMAND)
-               ========================================================== */
             <div className="hde-records-container">
-              {/* Search & Status Filter Controls */}
               <div className="hde-search-controls-bar">
                 <div className="hde-search-input-wrap">
                   <IconSearch />
@@ -490,8 +470,7 @@ export default function HistoricalDatasetExplorerModal({
                   )}
                 </div>
 
-                {/* Filter Chips */}
-                <div className="hde-filter-chips">
+                  <div className="hde-filter-chips">
                   <button
                     type="button"
                     className={`hde-fchip ${filterMode === 'all' ? 'active' : ''}`}
@@ -516,7 +495,6 @@ export default function HistoricalDatasetExplorerModal({
                 </div>
               </div>
 
-              {/* Status Header Bar */}
               <div className="hde-results-header">
                 <span className="hde-results-count">
                   Showing <strong>{filteredRecords.length}</strong> matching data points in <code>{dataset.filename}</code>
@@ -535,7 +513,6 @@ export default function HistoricalDatasetExplorerModal({
                 </span>
               </div>
 
-              {/* Selected Data Point Inspector Card */}
               {selectedPoint && (
                 <div className="hde-point-inspector-card">
                   <div className="hpi-header">
@@ -584,7 +561,6 @@ export default function HistoricalDatasetExplorerModal({
                     </div>
                   </div>
 
-                  {/* Point Telemetry Metrics */}
                   <div className="hpi-metrics-grid">
                     <div className="hpi-m-card">
                       <span className="hpi-m-lbl">MEASURED SENSOR VALUE</span>
@@ -623,7 +599,6 @@ export default function HistoricalDatasetExplorerModal({
                     )}
                   </div>
 
-                  {/* Additional CSV Details Grid */}
                   {selectedPoint.details && Object.keys(selectedPoint.details).length > 0 && (
                     <div className="hpi-raw-attributes">
                       <div className="hpi-raw-title">ADDITIONAL SENSOR ATTRIBUTES (FROM CSV):</div>
@@ -640,7 +615,6 @@ export default function HistoricalDatasetExplorerModal({
                 </div>
               )}
 
-              {/* Data Table */}
               <div className="hde-table-wrapper">
                 <table className="hde-records-table">
                   <thead>
@@ -721,7 +695,6 @@ export default function HistoricalDatasetExplorerModal({
                 </table>
               </div>
 
-              {/* Pagination Controls */}
               {totalPages > 1 && (
                 <div className="hde-pagination-row">
                   <button
@@ -750,7 +723,6 @@ export default function HistoricalDatasetExplorerModal({
           )}
         </div>
 
-        {/* Modal Footer */}
         <div className="hde-footer">
           <div className="hde-footer-left">
             <span className="hde-footer-legend">

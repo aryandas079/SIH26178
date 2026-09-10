@@ -24,17 +24,14 @@ class RealtimeSensorStreamService {
     if (this.isInitialized || typeof window === 'undefined') return;
     this.isInitialized = true;
 
-    // 1. Listen to Vite HMR WebSocket custom events (instantaneous zero-latency push)
     if (import.meta && import.meta.hot) {
       import.meta.hot.on('sensor-log-stream-update', (data) => {
         this.handleIncomingTelemetry(data, 'vite-hmr-ws');
       });
     }
 
-    // 2. Connect to Server-Sent Events (SSE) stream endpoint
     this.connectSSE();
 
-    // 3. Initial fetch of latest sensor log state
     this.fetchLatest();
   }
 

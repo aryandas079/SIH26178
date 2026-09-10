@@ -1,16 +1,6 @@
 #!/usr/bin/env node
 /**
- * sensor_logger_stream.js
- * Hardware & Field IoT Sensor Telemetry Simulator.
- * Appends live observation frames to `sensor_logs/live_active_stream.csv` to demonstrate
- * real-time synchronization with the ERMS Machine Learning Model, Map, and UI.
- *
- * Usage:
- *   node scripts/sensor_logger_stream.js                    # Stream continuously every 4 seconds
- *   node scripts/sensor_logger_stream.js --scenario=flood    # Inject single Silchar flood surge
- *   node scripts/sensor_logger_stream.js --scenario=aqi      # Inject single Delhi AQI spike
- *   node scripts/sensor_logger_stream.js --scenario=heat     # Inject single Churu Thar heat surge
- *   node scripts/sensor_logger_stream.js --scenario=emissions # Inject single Ankleshwar CEMS plume
+ * Telemetry simulator. Appends live observation frames to sensor_logs/live_active_stream.csv.
  */
 
 import fs from 'fs';
@@ -263,7 +253,7 @@ function writeObservation(scenario) {
   fs.appendFileSync(targetFile, `${line}\n`, 'utf-8');
 
   const timeStr = new Date().toLocaleTimeString();
-  console.log(`[${timeStr}] ⚡ Telemetry Written to sensor_logs/live_active_stream.csv`);
+  console.log(`[${timeStr}] Telemetry Written to sensor_logs/live_active_stream.csv`);
   console.log(`       Node: ${scenario.data.station_id} // ${scenario.label}`);
   console.log(`       GPS:  ${scenario.data.latitude}° N, ${scenario.data.longitude}° E`);
   console.log(`       Temp: ${scenario.data.surface_temp_c}°C | AQI: ${scenario.data.aqi} | Rainfall: ${scenario.data.rainfall_24h_mm}mm`);
@@ -273,7 +263,6 @@ function writeObservation(scenario) {
   console.log('------------------------------------------------------------');
 }
 
-// Check arguments
 const args = process.argv.slice(2);
 const scenarioArg = args.find((a) => a.startsWith('--scenario='));
 const intervalArg = args.find((a) => a.startsWith('--interval='));
@@ -289,7 +278,6 @@ if (scenarioArg) {
   process.exit(0);
 }
 
-// Continuous streaming loop
 const intervalMs = intervalArg ? parseInt(intervalArg.split('=')[1], 10) : 4000;
 let step = 0;
 
@@ -299,7 +287,6 @@ console.log(`  Writing continuous updates to: ${targetFile}`);
 console.log(`  Interval: ${intervalMs} ms (Press Ctrl+C to terminate)`);
 console.log('============================================================\n');
 
-// Initial write
 writeObservation(SCENARIOS[0]);
 
 setInterval(() => {

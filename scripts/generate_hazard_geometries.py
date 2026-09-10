@@ -17,9 +17,7 @@ def generate():
         "type": "HazardGeometriesBundle",
         "version": "2.1.0",
         
-        # -------------------------------------------------------------
-        # 1. NIH ROORKEE FLOOD PRONE CORRIDORS (Image 5)
-        # -------------------------------------------------------------
+        # NIH Roorkee flood prone corridors
         "flood_prone_zones_nih": [
             {
                 "id": "brahmaputra_valley",
@@ -125,9 +123,7 @@ def generate():
             }
         ],
 
-        # -------------------------------------------------------------
-        # 2. BIS SEISMIC ZONES OF INDIA (Image 2)
-        # -------------------------------------------------------------
+        # BIS seismic zones of India
         "seismic_zones_bis": [
             {
                 "zone": "Zone - V (Highest)",
@@ -258,9 +254,7 @@ def generate():
             }
         ],
 
-        # -------------------------------------------------------------
-        # 3. GSI / NDMA LANDSLIDE SUSCEPTIBILITY ZONES
-        # -------------------------------------------------------------
+        # GSI / NDMA landslide susceptibility zones
         "landslide_zones_gsi": [
             {
                 "class": "Very High / Critical Hazard",
@@ -327,9 +321,7 @@ def generate():
             }
         ],
 
-        # -------------------------------------------------------------
-        # 4. STATE-WISE AQI TELEMETRY (Image 3: Diwali 2025 India Data Map)
-        # -------------------------------------------------------------
+        # State-wise AQI telemetry
         "state_aqi_diwali2025": [
             # Purple / Dark Maroon (300 - 402)
             {"state": "Haryana", "aqi": 402, "category": "Severe / Hazardous", "color": "#581c87", "lat": 29.0588, "lng": 76.0856},
@@ -376,9 +368,7 @@ def generate():
             {"state": "Lakshadweep", "aqi": 10, "category": "Good", "color": "#166534", "lat": 10.5667, "lng": 72.6417}
         ],
 
-        # -------------------------------------------------------------
-        # 5. IMD MAXIMUM TEMPERATURE ISOTHERMS (Image 4)
-        # -------------------------------------------------------------
+        # IMD maximum temperature isotherms
         "imd_max_temperature_isotherms": [
             # Extreme Thermal Core (> 44°C, 46-48°C, >48°C) - Dark Crimson / Deep Wine
             {

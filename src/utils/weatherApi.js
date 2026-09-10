@@ -92,24 +92,15 @@ export async function fetchLiveWeatherData(lat, lng, locationName = 'LOCAL REGIO
     const rawVis = weatherData.hourly?.visibility?.[0] ?? 8000;
     const visibilityKm = Math.max(1, Math.round(rawVis / 1000));
 
-    // AQI
     const usAqi = aqiCurrent.us_aqi ?? 85;
     const aqiInfo = getAQILabel(usAqi);
 
-    // Calculated fields matching real photo
     const realFeelShade = Math.round(apparent - 2);
     const heatIndex = Math.max(temp, Math.round(temp + 0.3 * (humidity / 100) * (temp - 12)));
-
-    // Brightness index
     const brightnessLevel = cloudCover > 70 ? '4 (Dull)' : (cloudCover > 40 ? '6 (Moderate)' : '9 (Bright)');
-
-    // Indoor humidity description
     const indoorHumDesc = humidity > 85 ? 'Extremely Humid' : (humidity > 65 ? 'Humid' : 'Comfortable');
-
-    // Cloud ceiling estimate
     const cloudCeiling = cloudCover > 10 ? `${Math.round(2000 + (100 - cloudCover) * 80)} m` : 'Clear (>12,000 m)';
 
-    // Formatted time (e.g. "8 AM")
     const now = new Date();
     const formattedTime = now.toLocaleTimeString('en-US', {
       hour: 'numeric',

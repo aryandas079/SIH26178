@@ -1,7 +1,4 @@
-/**
- * errorHandler.js
- * Standardized JSON error response middleware.
- */
+/** JSON error response middleware. */
 
 export function notFoundHandler(req, res, next) {
   res.status(404).json({

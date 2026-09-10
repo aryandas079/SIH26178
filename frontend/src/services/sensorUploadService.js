@@ -1,9 +1,4 @@
-/**
- * ERMS Sensor Dataset Upload & Real-Time Parser Service
- * Allows field engineers and sensors to upload custom CSV / JSON telemetry files.
- * Automatically extracts geodetic GPS hook, hardware metadata, and maps readings
- * across all 12 physical telemetry channels for instant ML anomaly detection.
- */
+/** Sensor dataset upload and parser service. */
 
 import { uploadedTelemetryStore } from '../utils/spatialMlPredictionEngine';
 

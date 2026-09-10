@@ -14,7 +14,7 @@ const AuthContext = createContext(null);
 
 const STORAGE_KEY = 'erms-auth-user-v2';
 
-// Fallback high-res avatar generator using initials
+// Fallback avatar generator using initials
 export function getInitialsAvatar(name, bg = '0ea5e9') {
   const initials = (name || 'Commander')
     .split(' ')
@@ -25,7 +25,6 @@ export function getInitialsAvatar(name, bg = '0ea5e9') {
   return `https://ui-avatars.com/api/?name=${encodeURIComponent(initials)}&background=${bg}&color=ffffff&bold=true&size=128`;
 }
 
-// Compute time-of-day greeting
 export function computeGreeting(user) {
   const hour = new Date().getHours();
   let timeGreeting = 'Good morning';
@@ -56,7 +55,6 @@ export function computeGreeting(user) {
     rawName = 'Commander';
   }
 
-  // Capitalize first token
   const firstName = rawName.split(' ')[0].replace(/[^a-zA-Z0-9+]/g, '');
   const cleanName = firstName.length > 0 ? (firstName.charAt(0).toUpperCase() + firstName.slice(1)) : 'Commander';
 
@@ -90,7 +88,6 @@ async function transmitAuthLog(userData) {
 }
 
 export function AuthProvider({ children }) {
-  // Load persisted session
   const [user, setUser] = useState(() => {
     try {
       const saved = localStorage.getItem(STORAGE_KEY);
@@ -108,7 +105,6 @@ export function AuthProvider({ children }) {
   // Phone auth confirmation result
   const [phoneConfirmation, setPhoneConfirmation] = useState(null);
 
-  // Synchronize with localStorage
   useEffect(() => {
     try {
       if (user) {
@@ -150,10 +146,9 @@ export function AuthProvider({ children }) {
     return () => unsubscribe();
   }, []);
 
-  // Compute live greeting info
   const greetingInfo = useMemo(() => computeGreeting(user), [user]);
 
-  // 1. Google Login Handler (Real Firebase Google OAuth)
+  // Google login handler
   const loginWithGoogle = useCallback(async () => {
     setAuthLoading(true);
     setAuthError(null);
@@ -233,7 +228,7 @@ export function AuthProvider({ children }) {
     }
   }, []);
 
-  // 2. Send Phone OTP Handler (Real Firebase SMS Dispatch)
+  // Phone OTP send handler
   const sendPhoneOtp = useCallback(async (phoneNumber) => {
     setAuthLoading(true);
     setAuthError(null);
@@ -286,7 +281,7 @@ export function AuthProvider({ children }) {
     }
   }, [setupRecaptcha]);
 
-  // 3. Verify Phone OTP Handler (Real Firebase Confirmation)
+  // Phone OTP verify handler
   const verifyPhoneOtp = useCallback(async (otpCode, customDisplayName = '') => {
     setAuthLoading(true);
     setAuthError(null);
@@ -333,7 +328,7 @@ export function AuthProvider({ children }) {
     }
   }, [phoneConfirmation]);
 
-  // 4. Admin Access Login
+  // Admin login handler
   const loginWithAdmin = useCallback(async (adminId = 'abc123', password = '') => {
     try {
       const res = await fetch('/api/auth/verify-admin', {
@@ -381,7 +376,6 @@ export function AuthProvider({ children }) {
     }
   }, []);
 
-  // Sign Out Handler
   const logout = useCallback(async () => {
     setAuthLoading(true);
     if (isFirebaseConfigured && auth) {

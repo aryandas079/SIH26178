@@ -1,7 +1,4 @@
-/**
- * hazardRoutes.js
- * Endpoints for station registry and spatial risk calculation.
- */
+/** Endpoints for station registry and spatial risk calculation. */
 
 import { Router } from 'express';
 import {

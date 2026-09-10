@@ -1,14 +1,7 @@
-/**
- * liveTelemetryService.js
- * High-precision institutional real-time meteorological ingestion engine.
- * Fetches actual live ground & satellite observation telemetry across 75 synoptic
- * observation stations spanning Sovereign India, the Middle East, Southeast Asia,
- * China, Northern / Central Asia, and maritime oceanic basins.
- */
+/** Ingestion engine for pan-Asian and maritime synoptic observation stations. */
 
-// 75 Authoritative Pan-Asian & Maritime Synoptic Stations
 export const OBSERVATION_STATIONS = [
-  // --- SOVEREIGN INDIA SYNOPTIC HUBS (30) ---
+  // India Synoptic Hubs
   { id: 'delhi', name: 'New Delhi', region: 'National Capital Region', country: 'India', lat: 28.6139, lng: 77.2090, isCoastal: false },
   { id: 'mumbai', name: 'Mumbai', region: 'Maharashtra Coast', country: 'India', lat: 19.0760, lng: 72.8777, isCoastal: true },
   { id: 'kolkata', name: 'Kolkata', region: 'Bengal Delta', country: 'India', lat: 22.5726, lng: 88.3639, isCoastal: true },
@@ -40,7 +33,7 @@ export const OBSERVATION_STATIONS = [
   { id: 'dibrugarh', name: 'Dibrugarh', region: 'Upper Brahmaputra', country: 'India', lat: 27.4728, lng: 94.9120, isCoastal: false },
   { id: 'madurai', name: 'Madurai', region: 'Southern Tamil Nadu', country: 'India', lat: 9.9252, lng: 78.1198, isCoastal: false },
 
-  // --- MIDDLE EAST & WEST ASIA (10) ---
+  // Middle East & West Asia
   { id: 'dubai', name: 'Dubai', region: 'Persian Gulf', country: 'UAE', lat: 25.2048, lng: 55.2708, isCoastal: true },
   { id: 'riyadh', name: 'Riyadh', region: 'Najd Plateau', country: 'Saudi Arabia', lat: 24.7136, lng: 46.6753, isCoastal: false },
   { id: 'muscat', name: 'Muscat', region: 'Gulf of Oman', country: 'Oman', lat: 23.5880, lng: 58.3829, isCoastal: true },
@@ -52,7 +45,7 @@ export const OBSERVATION_STATIONS = [
   { id: 'karachi', name: 'Karachi', region: 'Sindh Coast', country: 'Pakistan', lat: 24.8607, lng: 67.0011, isCoastal: true },
   { id: 'kabul', name: 'Kabul', region: 'Hindu Kush Basin', country: 'Afghanistan', lat: 34.5553, lng: 69.2075, isCoastal: false },
 
-  // --- SOUTHEAST ASIA (SEA) (10) ---
+  // Southeast Asia
   { id: 'bangkok', name: 'Bangkok', region: 'Chao Phraya Basin', country: 'Thailand', lat: 13.7563, lng: 100.5018, isCoastal: true },
   { id: 'singapore', name: 'Singapore', region: 'Malacca Strait', country: 'Singapore', lat: 1.3521, lng: 103.8198, isCoastal: true },
   { id: 'kualalumpur', name: 'Kuala Lumpur', region: 'Peninsular Malaysia', country: 'Malaysia', lat: 3.1390, lng: 101.6869, isCoastal: false },
@@ -64,7 +57,7 @@ export const OBSERVATION_STATIONS = [
   { id: 'phnompenh', name: 'Phnom Penh', region: 'Tonle Sap Basin', country: 'Cambodia', lat: 11.5564, lng: 104.9282, isCoastal: false },
   { id: 'vientiane', name: 'Vientiane', region: 'Upper Mekong', country: 'Laos', lat: 17.9757, lng: 102.6331, isCoastal: false },
 
-  // --- CHINA & TIBETAN PLATEAU (10) ---
+  // China & Tibetan Plateau
   { id: 'lhasa', name: 'Lhasa', region: 'Tibetan Plateau', country: 'China', lat: 29.6525, lng: 91.1378, isCoastal: false },
   { id: 'chengdu', name: 'Chengdu', region: 'Sichuan Basin', country: 'China', lat: 30.5728, lng: 104.0668, isCoastal: false },
   { id: 'kunming', name: 'Kunming', region: 'Yunnan Plateau', country: 'China', lat: 24.8801, lng: 102.8329, isCoastal: false },
@@ -76,7 +69,7 @@ export const OBSERVATION_STATIONS = [
   { id: 'wuhan', name: 'Wuhan', region: 'Central Yangtze', country: 'China', lat: 30.5928, lng: 114.3055, isCoastal: false },
   { id: 'harbin', name: 'Harbin', region: 'Songhua Basin', country: 'China', lat: 45.8038, lng: 126.5350, isCoastal: false },
 
-  // --- NORTHERN ASIA & CENTRAL ASIA (10) ---
+  // Northern & Central Asia
   { id: 'tashkent', name: 'Tashkent', region: 'Chirchiq Basin', country: 'Uzbekistan', lat: 41.2995, lng: 69.2401, isCoastal: false },
   { id: 'almaty', name: 'Almaty', region: 'Tian Shan Foothills', country: 'Kazakhstan', lat: 43.2220, lng: 76.8512, isCoastal: false },
   { id: 'astana', name: 'Astana', region: 'Kazakh Steppe', country: 'Kazakhstan', lat: 51.1694, lng: 71.4491, isCoastal: false },
@@ -88,7 +81,7 @@ export const OBSERVATION_STATIONS = [
   { id: 'irkutsk', name: 'Irkutsk', region: 'Lake Baikal Region', country: 'Russia', lat: 52.2870, lng: 104.3050, isCoastal: false },
   { id: 'vladivostok', name: 'Vladivostok', region: 'Golden Horn Bay', country: 'Russia', lat: 43.1155, lng: 131.8855, isCoastal: true },
 
-  // --- MARITIME INDIAN OCEAN & OCEANIC BASINS (5) ---
+  // Maritime Oceanic Basins
   { id: 'maldives', name: 'Male', region: 'North Malé Atoll', country: 'Maldives', lat: 4.1755, lng: 73.5093, isCoastal: true },
   { id: 'arabian_sea', name: 'Central Arabian Sea', region: 'Arabian Deepwater Basin', country: 'Maritime', lat: 15.0000, lng: 65.0000, isCoastal: true },
   { id: 'bay_of_bengal', name: 'Central Bay of Bengal', region: 'Bengal Pelagic Basin', country: 'Maritime', lat: 14.0000, lng: 88.0000, isCoastal: true },

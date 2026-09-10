@@ -1,10 +1,4 @@
-/**
- * ERMS Multi-Hazard Machine Learning Anomaly Detection & Proximity Cascading Engine
- * Fine-tuned and calibrated on Indian Environmental Disaster Datasets
- * Covering all 12 Sovereign Hazard Channels:
- * 01 Flood | 02 Hazardous AQI | 03 Forest Fires | 04 Earthquakes | 05 Landslides | 06 Extreme Heat
- * 07 Industrial Emissions | 08 Water Quality | 09 Glacial Liquefaction | 10 Tsunami | 11 Cyclone | 12 Other Hazards
- */
+/** Multi-hazard ML anomaly detection and proximity cascading engine. */
 
 import anomalyModel from '../data/hazardAnomalyModel.json';
 import riversGeoJson from '../data/indianRiversGeo.json';

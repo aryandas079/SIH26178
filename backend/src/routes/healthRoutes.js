@@ -1,7 +1,4 @@
-/**
- * healthRoutes.js
- * Endpoints for health, readiness, and monitoring probes.
- */
+/** Health, readiness, and monitoring probe routes. */
 
 import { Router } from 'express';
 import { dbClient } from '../../../database/dbClient.js';

@@ -30,10 +30,7 @@ export function getHaversineDistanceKm(lat1, lon1, lat2, lon2) {
   return R * c;
 }
 
-// ---------------------------------------------------------------------------
-// 1. ALL-INDIA TOPOLOGICAL RIVER BASIN REACH GRAPH
-// Calibrated with CWC 59 gauge stations & OSM hydrographic vectors
-// ---------------------------------------------------------------------------
+// All-India topological river basin reach graph (calibrated with CWC stations)
 export const RIVER_TOPOLOGY_NETWORK = [
   {
     id: 'narmada',
@@ -457,10 +454,7 @@ export const RIVER_TOPOLOGY_NETWORK = [
   },
 ];
 
-// ---------------------------------------------------------------------------
-// 2. COMPREHENSIVE ALL-INDIA DISTRICT & REGIONAL SETTLEMENT DATABASE
-// 75+ strategic regional hubs covering all 36 States/UTs
-// ---------------------------------------------------------------------------
+// All-India district and regional settlement database
 export const ALL_INDIA_SETTLEMENTS = [
   // Madhya Pradesh / Central
   { name: 'Jabalpur', district: 'Jabalpur', state: 'Madhya Pradesh', lat: 23.1815, lng: 79.9864, elevM: 411, pop: 1450000, river: 'Narmada', zone: 'DECCAN CENTRAL BASIN' },
@@ -574,10 +568,7 @@ export const ALL_INDIA_SETTLEMENTS = [
   { name: 'Dehradun', district: 'Dehradun', state: 'Uttarakhand', lat: 30.3165, lng: 78.0322, elevM: 450, pop: 574000, river: 'Rispana / Bindal / Ganga', zone: 'DOON VALLEY' },
 ];
 
-// ---------------------------------------------------------------------------
-// 3. IN-MEMORY UPLOADED DATASET TELEMETRY STORE (INCREMENTAL LEARNING)
-// Ingests any user-uploaded CSV / JSON datasets for spatial k-NN interpolation
-// ---------------------------------------------------------------------------
+// In-memory uploaded dataset telemetry store
 class UploadedDatasetTelemetryStore {
   constructor() {
     this.points = [];
@@ -615,9 +606,7 @@ class UploadedDatasetTelemetryStore {
 
 export const uploadedTelemetryStore = new UploadedDatasetTelemetryStore();
 
-// ---------------------------------------------------------------------------
-// 4. SPATIAL RESOLVER: Reverse Geocodes Any Coordinate to Settlement & Basin
-// ---------------------------------------------------------------------------
+// Reverse geocodes coordinates to settlement and river basin
 export function resolveGeodeticFix(lat, lng) {
   let closestSettlement = ALL_INDIA_SETTLEMENTS[0];
   let minSettlementDist = Infinity;
@@ -655,11 +644,7 @@ export function resolveGeodeticFix(lat, lng) {
   };
 }
 
-// ---------------------------------------------------------------------------
-// 5. TOPOLOGICAL DOWNSTREAM CASCADE PROPAGATION MODEL & MANNING'S HYDRAULICS
-// Solves Image 3: Computes downstream adjacent settlements, arrival time,
-// spillover probabilities %, and damage projections for ANY click in India.
-// ---------------------------------------------------------------------------
+// Downstream cascade propagation model and Manning hydraulics
 
 /**
  * Computes hydraulic surge wave velocity using Manning's open-channel formula:
@@ -907,7 +892,7 @@ export function evaluateDownstreamCascade({
     rootCauseText = `Compound multi-hazard environmental exceedance across physical telemetry channels in the ${geoFix.nearestSettlement.name} regional corridor.`;
   }
 
-  // Tailor Critical Infrastructure & Emergency Mobilization (Solves Image 4)
+  // Critical Infrastructure & Emergency Mobilization
   const criticalInfra = riverSystem?.criticalInfrastructure || `${geoFix.nearestSettlement.name.toUpperCase()} HIGHWAY ARTERIAL & 220KV GRID SUBSTATION`;
   const ndrfUnits = Math.min(8, Math.max(2, Math.round(totalDisplaced / 6000)));
   const sdrfUnits = Math.min(16, Math.max(4, ndrfUnits * 2));
@@ -951,10 +936,7 @@ export function evaluateDownstreamCascade({
   };
 }
 
-// ---------------------------------------------------------------------------
-// 6. OPERATIONAL COUNTERMEASURES GENERATOR (Solves Image 4 Phase 1/2/3)
-// NDMA & CWC standard operating procedures dynamically tailored
-// ---------------------------------------------------------------------------
+// Operational countermeasures generator
 function generateTailoredCountermeasures({ hazardId, riverName, settlementName, stateName, isNearRiver }) {
   const riverRef = riverName || 'regional riverbed';
 

@@ -1,7 +1,4 @@
-/**
- * rateLimiter.js
- * In-memory sliding window rate limiter for public telemetry endpoints.
- */
+/** Sliding window rate limiter for public endpoints. */
 
 const requestCounts = new Map();
 const WINDOW_MS = 60 * 1000; // 1 minute

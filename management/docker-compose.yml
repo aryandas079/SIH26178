@@ -1,7 +1,7 @@
 version: '3.8'
 
 services:
-  # 1. Backend REST & SSE Service
+  # Backend API
   backend:
     build:
       context: ..
@@ -21,7 +21,7 @@ services:
     networks:
       - erms-network
 
-  # 2. Frontend Nginx Web Server
+  # Frontend Web
   frontend:
     build:
       context: ..

@@ -1,14 +1,8 @@
-/**
- * meteorologicalLayers.js
- * Comprehensive Institutional Meteorological Telemetry Layer Engine.
- * 100% Real-Time Live Ground Observation & Satellite Telemetry Integration.
- * Zero hardcoded mock constants - dynamically driven by live observation telemetry.
- */
+/** Real-time meteorological telemetry and Leaflet layer overlays. */
 
 import L from 'leaflet';
 import { getLiveWindVectorAt, OBSERVATION_STATIONS } from '../services/liveTelemetryService';
 
-// 12 Live Meteorological Telemetry Layers (MSN Weather style real-time parameters)
 export const LIVE_MET_LAYERS = [
   {
     id: 'rain',

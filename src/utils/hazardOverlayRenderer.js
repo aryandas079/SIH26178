@@ -25,8 +25,7 @@ export function renderHazardAnomalyOverlays(map, selectedHazards, anomalyEval, m
   const activeHazards = selectedHazards.map((h) => h.toUpperCase());
   const anomalies = anomalyEval.anomalies || [];
 
-  // Helper check if a hazard category is active: strictly requires selection in activeHazards.
-  // When a user deselects a hazard (e.g. FLOOD), it MUST be removed immediately from the map!
+  // Check if hazard category is selected
   const isHazardActive = (hazardId, hazardNames = []) => {
     const isSelected = hazardNames.some((name) => activeHazards.includes(name.toUpperCase()));
     if (!isSelected) {
@@ -35,10 +34,8 @@ export function renderHazardAnomalyOverlays(map, selectedHazards, anomalyEval, m
     return true;
   };
 
-  // -------------------------------------------------------------
-  // 1. FLOOD: 99% HIGH-PRECISION RIVERBED COURSE (Exact OSM alignment)
-  // -------------------------------------------------------------
-  if (isHazardActive('flood', ['FLOOD'])) {
+    // 1. Riverbed flood course
+    if (isHazardActive('flood', ['FLOOD'])) {
     riversGeoJson.features.forEach((feature) => {
       const riverProps = feature.properties;
       const coordsList = feature.geometry.type === 'MultiLineString' 
@@ -125,10 +122,8 @@ export function renderHazardAnomalyOverlays(map, selectedHazards, anomalyEval, m
     });
   }
 
-  // -------------------------------------------------------------
-  // 2. EARTHQUAKES: BIS SEISMIC ZONES OF INDIA
-  // -------------------------------------------------------------
-  if (isHazardActive('earthquake', ['EARTHQUAKES', 'EARTHQUAKE'])) {
+    // 2. EARTHQUAKES: BIS SEISMIC ZONES OF INDIA
+    if (isHazardActive('earthquake', ['EARTHQUAKES', 'EARTHQUAKE'])) {
     (hazardGeometries.seismic_zones_bis || []).forEach((zone) => {
       zone.regions.forEach((polygonCoords) => {
         const poly = L.polygon(polygonCoords, {
@@ -154,10 +149,8 @@ export function renderHazardAnomalyOverlays(map, selectedHazards, anomalyEval, m
     });
   }
 
-  // -------------------------------------------------------------
-  // 3. LANDSLIDES: GSI / NDMA LANDSLIDE SUSCEPTIBILITY ZONES
-  // -------------------------------------------------------------
-  if (isHazardActive('landslide', ['LANDSLIDES', 'LANDSLIDE'])) {
+    // 3. LANDSLIDES: GSI / NDMA LANDSLIDE SUSCEPTIBILITY ZONES
+    if (isHazardActive('landslide', ['LANDSLIDES', 'LANDSLIDE'])) {
     (hazardGeometries.landslide_zones_gsi || []).forEach((zone) => {
       zone.regions.forEach((polygonCoords) => {
         const poly = L.polygon(polygonCoords, {
@@ -260,10 +253,8 @@ export function renderHazardAnomalyOverlays(map, selectedHazards, anomalyEval, m
     });
   }
 
-  // -------------------------------------------------------------
-  // 4. HAZARDOUS AQI: STATE-WISE CHOROPLETH & PINS
-  // -------------------------------------------------------------
-  if (isHazardActive('aqi', ['HAZARDOUS AQI', 'AQI'])) {
+    // 4. HAZARDOUS AQI: STATE-WISE CHOROPLETH & PINS
+    if (isHazardActive('aqi', ['HAZARDOUS AQI', 'AQI'])) {
     (hazardGeometries.state_aqi_diwali2025 || []).forEach((item) => {
       const stateRadius = item.state === 'Rajasthan' || item.state === 'Madhya Pradesh' || item.state === 'Maharashtra' ? 170000 : 100000;
       const circle = L.circle([item.lat, item.lng], {
@@ -301,10 +292,8 @@ export function renderHazardAnomalyOverlays(map, selectedHazards, anomalyEval, m
     });
   }
 
-  // -------------------------------------------------------------
-  // 5. EXTREME HEAT: IMD OFFICIAL MAXIMUM TEMPERATURE MAP
-  // -------------------------------------------------------------
-  if (isHazardActive('heat', ['EXTREME HEAT', 'HEAT'])) {
+    // 5. EXTREME HEAT: IMD OFFICIAL MAXIMUM TEMPERATURE MAP
+    if (isHazardActive('heat', ['EXTREME HEAT', 'HEAT'])) {
     (hazardGeometries.imd_max_temperature_isotherms || []).forEach((isotherm) => {
       isotherm.regions.forEach((coords) => {
         const poly = L.polygon(coords, {
@@ -329,10 +318,8 @@ export function renderHazardAnomalyOverlays(map, selectedHazards, anomalyEval, m
     });
   }
 
-  // -------------------------------------------------------------
-  // 07. INDUSTRIAL EMISSIONS: CPCB INDUSTRIAL CLUSTERS & STACK PLUMES
-  // -------------------------------------------------------------
-  if (isHazardActive('emissions', ['INDUSTRIAL EMISSIONS', 'EMISSIONS'])) {
+    // 07. INDUSTRIAL EMISSIONS: CPCB INDUSTRIAL CLUSTERS & STACK PLUMES
+    if (isHazardActive('emissions', ['INDUSTRIAL EMISSIONS', 'EMISSIONS'])) {
     (hazardGeometries.industrial_emissions_clusters || []).forEach((cluster) => {
       // 1. Plume dispersion buffer circle
       const plumeHalo = L.circle([cluster.lat, cluster.lng], {
@@ -380,10 +367,8 @@ export function renderHazardAnomalyOverlays(map, selectedHazards, anomalyEval, m
     });
   }
 
-  // -------------------------------------------------------------
-  // 08. WATER QUALITY: CPCB NWMP RIVER MONITORING REACHES
-  // -------------------------------------------------------------
-  if (isHazardActive('water', ['WATER QUALITY', 'WATER'])) {
+    // 08. WATER QUALITY: CPCB NWMP RIVER MONITORING REACHES
+    if (isHazardActive('water', ['WATER QUALITY', 'WATER'])) {
     (hazardGeometries.water_quality_river_reaches || []).forEach((reach) => {
       // 1. Water buffer glow
       const glow = L.polyline(reach.coordinates, {
@@ -419,10 +404,8 @@ export function renderHazardAnomalyOverlays(map, selectedHazards, anomalyEval, m
     });
   }
 
-  // -------------------------------------------------------------
-  // 09. GLACIAL LIQUEFACTION: SAC-ISRO HIMALAYAN GLOF BASINS
-  // -------------------------------------------------------------
-  if (isHazardActive('glacial', ['GLACIAL LIQUEFACTION', 'GLACIAL'])) {
+    // 09. GLACIAL LIQUEFACTION: SAC-ISRO HIMALAYAN GLOF BASINS
+    if (isHazardActive('glacial', ['GLACIAL LIQUEFACTION', 'GLACIAL'])) {
     (hazardGeometries.glacial_glof_zones || []).forEach((glof) => {
       // 1. Moraine Lake Polygon
       const lakePoly = L.polygon(glof.coordinates, {
@@ -461,10 +444,8 @@ export function renderHazardAnomalyOverlays(map, selectedHazards, anomalyEval, m
     });
   }
 
-  // -------------------------------------------------------------
-  // 10. TSUNAMI: INCOIS ITEWS COASTAL INUNDATION & DART BUOYS
-  // -------------------------------------------------------------
-  if (isHazardActive('tsunami', ['TSUNAMI'])) {
+    // 10. TSUNAMI: INCOIS ITEWS COASTAL INUNDATION & DART BUOYS
+    if (isHazardActive('tsunami', ['TSUNAMI'])) {
     (hazardGeometries.tsunami_inundation_zones || []).forEach((tsu) => {
       const zonePoly = L.polygon(tsu.coordinates, {
         color: tsu.color,
@@ -492,10 +473,8 @@ export function renderHazardAnomalyOverlays(map, selectedHazards, anomalyEval, m
     });
   }
 
-  // -------------------------------------------------------------
-  // 11. CYCLONE: IMD RSMC TROPICAL VORTICES, ISOBARS & SURGE
-  // -------------------------------------------------------------
-  if (isHazardActive('cyclone', ['CYCLONE'])) {
+    // 11. CYCLONE: IMD RSMC TROPICAL VORTICES, ISOBARS & SURGE
+    if (isHazardActive('cyclone', ['CYCLONE'])) {
     (hazardGeometries.cyclone_tracks_and_isobars || []).forEach((cyc) => {
       // 1. Concentric Isobar wind rings
       (cyc.isobar_rings || []).forEach((ring) => {
@@ -565,10 +544,8 @@ export function renderHazardAnomalyOverlays(map, selectedHazards, anomalyEval, m
     });
   }
 
-  // -------------------------------------------------------------
-  // 12. OTHER HAZARDS: NDMA MULTI-HAZARD COMPOUND RISK BELTS
-  // -------------------------------------------------------------
-  if (isHazardActive('other', ['OTHER HAZARDS', 'OTHER'])) {
+    // 12. OTHER HAZARDS: NDMA MULTI-HAZARD COMPOUND RISK BELTS
+    if (isHazardActive('other', ['OTHER HAZARDS', 'OTHER'])) {
     (hazardGeometries.multi_hazard_hotspots || []).forEach((spot) => {
       const poly = L.polygon(spot.coordinates, {
         color: spot.color,

@@ -8,19 +8,19 @@ This tier houses the analytical models, spatial indexing pipelines, and training
 
 ```
 Physical Telemetry & Open-Meteo API
-              │
-              ▼
+              |
+              v
    [ Feature Normalization ]
  (12-Channel Standard Matrix)
-              │
-              ▼
- [ Spatial k-NN Drainage Index ] ──► (11 River Basins, 59 CWC Gauges)
-              │
-              ▼
- [ Scikit-Learn Anomaly Model ] ──► (Isolation Forest + Severity Calibrator)
-              │
-              ▼
-[ Topological Propagation Engine ] ──► (Surge Arrival Hours, Spillover %, Loss Estimate)
+              |
+              v
+  [ Spatial k-NN Drainage Index ] --> (11 River Basins, 59 CWC Gauges)
+              |
+              v
+ [ Scikit-Learn Anomaly Model ]  --> (Isolation Forest + Severity Calibrator)
+              |
+              v
+[ Topological Propagation Engine ] --> (Surge Arrival Hours, Spillover %, Loss Estimate)
 ```
 
 ---

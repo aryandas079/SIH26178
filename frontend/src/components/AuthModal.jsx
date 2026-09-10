@@ -14,7 +14,6 @@ export default function AuthModal({ isOpen, onClose }) {
 
   const [activeTab, setActiveTab] = useState('google'); // 'google' | 'phone' | 'admin'
 
-  // Phone states
   const [phoneNumber, setPhoneNumber] = useState('');
   const [countryCode, setCountryCode] = useState('+91');
   const [otpSent, setOtpSent] = useState(false);
@@ -23,7 +22,6 @@ export default function AuthModal({ isOpen, onClose }) {
   const [otpMessage, setOtpMessage] = useState('');
   const [localError, setLocalError] = useState('');
 
-  // Admin states
   const [adminId, setAdminId] = useState('');
   const [adminPassword, setAdminPassword] = useState('');
 
@@ -31,7 +29,6 @@ export default function AuthModal({ isOpen, onClose }) {
   const otpInputRef = useRef(null);
   const adminInputRef = useRef(null);
 
-  // Reset form when modal opens
   useEffect(() => {
     if (isOpen) {
       setLocalError('');
@@ -45,7 +42,6 @@ export default function AuthModal({ isOpen, onClose }) {
     }
   }, [isOpen]);
 
-  // Handle escape key
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === 'Escape' && isOpen) {
@@ -64,7 +60,6 @@ export default function AuthModal({ isOpen, onClose }) {
 
   if (!isOpen) return null;
 
-  // 1. Google Authentication Trigger
   const handleGoogleSignIn = async () => {
     setLocalError('');
     const result = await loginWithGoogle();
@@ -73,7 +68,6 @@ export default function AuthModal({ isOpen, onClose }) {
     }
   };
 
-  // 2. Phone OTP Send Trigger
   const handleSendOtp = async (e) => {
     e.preventDefault();
     setLocalError('');
@@ -99,7 +93,6 @@ export default function AuthModal({ isOpen, onClose }) {
     }
   };
 
-  // 3. Phone OTP Verify Trigger
   const handleVerifyOtp = async (e) => {
     e.preventDefault();
     setLocalError('');
@@ -116,7 +109,6 @@ export default function AuthModal({ isOpen, onClose }) {
     }
   };
 
-  // 4. Admin ID Passcode Trigger
   const handleAdminSubmit = async (e) => {
     e.preventDefault();
     setLocalError('');
@@ -139,7 +131,6 @@ export default function AuthModal({ isOpen, onClose }) {
         {/* Invisible reCAPTCHA container for live Firebase Phone Auth */}
         <div id="recaptcha-container" style={{ display: 'none' }} />
 
-        {/* Top Header Bar */}
         <div className="auth-card-header">
           <div className="auth-header-left">
             <span className="auth-gateway-tag">SOVEREIGN ACCESS PORTAL</span>
@@ -160,7 +151,6 @@ export default function AuthModal({ isOpen, onClose }) {
           </button>
         </div>
 
-        {/* Provider Tabs Switcher */}
         <div className="auth-tabs-nav" role="tablist">
           <button
             type="button"
@@ -215,7 +205,6 @@ export default function AuthModal({ isOpen, onClose }) {
           </button>
         </div>
 
-        {/* ================= TAB 1: GOOGLE AUTH ================= */}
         {activeTab === 'google' && (
           <div className="auth-tab-pane">
             <div className="auth-provider-hero">
@@ -252,7 +241,6 @@ export default function AuthModal({ isOpen, onClose }) {
           </div>
         )}
 
-        {/* ================= TAB 2: PHONE OTP ================= */}
         {activeTab === 'phone' && (
           <div className="auth-tab-pane">
             {!otpSent ? (
@@ -374,7 +362,6 @@ export default function AuthModal({ isOpen, onClose }) {
           </div>
         )}
 
-        {/* ================= TAB 3: ADMIN ID ================= */}
         {activeTab === 'admin' && (
           <form onSubmit={handleAdminSubmit} className="auth-form auth-tab-pane">
             <div className="auth-form-group">
@@ -429,7 +416,6 @@ export default function AuthModal({ isOpen, onClose }) {
           </form>
         )}
 
-        {/* Error Alert Box */}
         {(localError || authError) && (
           <div className="auth-error-alert" role="alert">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">

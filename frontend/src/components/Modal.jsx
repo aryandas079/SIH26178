@@ -45,8 +45,7 @@ export default function Modal({ isOpen, type, onClose }) {
         <div className="modal-body">
           {type === 'team' ? (
             <div className="modal-team-list">
-              {/* Aryan Das - Lead Developer */}
-              <div className="modal-team-member">
+                <div className="modal-team-member">
                 <span className="member-role">LEAD DEVELOPER</span>
                 <h4 className="member-name">ARYAN DAS</h4>
                 <div style={{ marginTop: '0.45rem' }}>
@@ -74,40 +73,34 @@ export default function Modal({ isOpen, type, onClose }) {
                 </div>
               </div>
 
-              {/* Firujur Rahman Barbhuiya */}
-              <div className="modal-team-member">
+                <div className="modal-team-member">
                 <span className="member-role">HARDWARE & EMBEDDED</span>
                 <h4 className="member-name">FIRUJUR RAHMAN BARBHUIYA</h4>
               </div>
 
-              {/* Jeet Sarkar */}
-              <div className="modal-team-member">
+                <div className="modal-team-member">
                 <span className="member-role">PRESENTATION & DESIGN</span>
                 <h4 className="member-name">JEET SARKAR</h4>
               </div>
 
-              {/* Sudarshan Sarkar */}
-              <div className="modal-team-member">
+                <div className="modal-team-member">
                 <span className="member-role">IDEA MODULATOR & PRESENTATION</span>
                 <h4 className="member-name">SUDARSHAN SARKAR</h4>
               </div>
 
-              {/* Yeahyea Choudhary */}
-              <div className="modal-team-member">
+                <div className="modal-team-member">
                 <span className="member-role">LEAD PRESENTATION</span>
                 <h4 className="member-name">YEAHYEA CHOUDHARY</h4>
               </div>
 
-              {/* Susmita */}
-              <div className="modal-team-member">
+                <div className="modal-team-member">
                 <span className="member-role">PRESENTATION</span>
                 <h4 className="member-name">SUSMITA</h4>
               </div>
             </div>
           ) : (
             <div className="modal-terms-content">
-              {/* Primary Sensor Advisory Section */}
-              <div className="terms-section">
+                    <div className="terms-section">
                 <h4 className="terms-heading">01 // SENSOR DATA ADVISORY & CROSS-VERIFICATION</h4>
                 <p>
                   The Environmental Risk Monitoring System (ERMS) synthesizes real-time metrics primarily

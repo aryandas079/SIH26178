@@ -121,7 +121,6 @@ export default function Header({
           </div>
         )}
 
-        {/* Home navigation & Dashboard button */}
         {currentView === 'dashboard' ? (
           <>
             <ViewDetailingMenu
@@ -148,7 +147,6 @@ export default function Header({
           </button>
         )}
 
-        {/* Theme Toggle */}
         <button
           type="button"
           className="clean-box-btn theme-toggle-btn"
@@ -157,7 +155,6 @@ export default function Header({
           {getThemeButtonLabel()}
         </button>
 
-        {/* Authentication Section: Profile Avatar with Sign Out OR Sign In Button */}
         {isAuthenticated && user ? (
           <div className="header-profile-menu-container" ref={profileRef}>
             <button
@@ -179,11 +176,9 @@ export default function Header({
               <span className="avatar-live-beacon" title="Session Authenticated" />
             </button>
 
-            {/* Profile Dropdown Popover */}
             {isProfileOpen && (
               <div className="profile-popover-panel" role="dialog" aria-label="User Session Details">
-                {/* Header Card */}
-                <div className="profile-popover-card">
+                  <div className="profile-popover-card">
                   <div className="profile-popover-avatar-wrap">
                     <img
                       src={user.photoURL || getInitialsAvatar(user.displayName || 'Commander')}
@@ -238,8 +233,7 @@ export default function Header({
                   </div>
                 </div>
 
-                {/* Sign Out Action Button */}
-                <div className="profile-popover-actions">
+                  <div className="profile-popover-actions">
                   <button
                     type="button"
                     className="clean-box-btn profile-logout-btn"

@@ -18,7 +18,6 @@ function MainApp() {
 
   const { isAuthenticated, authModalOpen, openAuthModal, closeAuthModal } = useAuth();
 
-  // Strict default: Always open at 'home'
   const [view, setView] = useState('home');
   const [pendingDashboardRedirect, setPendingDashboardRedirect] = useState(false);
 
@@ -29,7 +28,6 @@ function MainApp() {
     localStorage.setItem('erms-theme', theme);
   }, [theme]);
 
-  // Protected Dashboard Navigation
   const handleOpenDashboard = () => {
     if (!isAuthenticated) {
       setPendingDashboardRedirect(true);
@@ -41,7 +39,6 @@ function MainApp() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  // Safe Navigation Handler for Header & Hash
   const handleViewChange = (newView) => {
     if (newView === 'dashboard') {
       handleOpenDashboard();

@@ -1,8 +1,4 @@
-/**
- * fileWatcherService.js
- * Watches the database/sensor_logs directory for incoming hardware telemetry
- * and parses observations into standardized 12-channel records.
- */
+/** Watches the sensor logs directory for incoming hardware telemetry. */
 
 import fs from 'fs';
 import path from 'path';

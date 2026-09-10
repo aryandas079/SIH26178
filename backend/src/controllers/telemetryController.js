@@ -1,7 +1,4 @@
-/**
- * telemetryController.js
- * Controller handling telemetry streams, latest observations, file archives, and row appending.
- */
+/** Controller handling telemetry streams, observations, and data ingestion. */
 
 import fs from 'fs';
 import path from 'path';
