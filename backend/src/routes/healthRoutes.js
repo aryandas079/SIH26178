@@ -1,7 +1,7 @@
 /** Health, readiness, and monitoring probe routes. */
 
 import { Router } from 'express';
-import { dbClient } from '../../../database/dbClient.js';
+import { dbClient } from '../dbClient.js';
 import { sseBroadcaster } from '../services/sseBroadcaster.js';
 
 const router = Router();

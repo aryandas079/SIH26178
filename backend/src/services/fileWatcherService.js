@@ -2,7 +2,11 @@
 
 import fs from 'fs';
 import path from 'path';
+import { fileURLToPath } from 'url';
 import { sseBroadcaster } from './sseBroadcaster.js';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 function parseCSVLine(line) {
   const result = [];
@@ -89,18 +93,23 @@ export function parseSensorFile(filePath, filename) {
 
 class FileWatcherService {
   constructor() {
-    // Check primary database/sensor_logs directory, with fallback to root sensor_logs
-    const primaryDir = path.resolve(process.cwd(), 'database', 'sensor_logs');
-    const fallbackDir = path.resolve(process.cwd(), 'sensor_logs');
-    this.logsDir = fs.existsSync(primaryDir) ? primaryDir : fallbackDir;
+    const candidates = [
+      path.resolve(__dirname, '../../database/sensor_logs'),
+      path.resolve(__dirname, '../../sensor_logs'),
+      path.resolve(process.cwd(), 'database', 'sensor_logs'),
+      path.resolve(process.cwd(), 'sensor_logs'),
+    ];
+    this.logsDir = candidates.find((d) => fs.existsSync(d)) || candidates[0];
     this.latestPayload = null;
     this.debounceTimer = null;
   }
 
   init() {
-    if (!fs.existsSync(this.logsDir)) {
-      fs.mkdirSync(this.logsDir, { recursive: true });
-    }
+    try {
+      if (!fs.existsSync(this.logsDir)) {
+        fs.mkdirSync(this.logsDir, { recursive: true });
+      }
+    } catch (e) {}
 
     // Pre-load default stream
     const defaultFile = path.join(this.logsDir, 'live_active_stream.csv');

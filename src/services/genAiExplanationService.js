@@ -6,11 +6,10 @@
  */
 
 const GEMINI_MODELS = [
-  'gemini-flash-lite-latest',
-  'gemini-flash-latest',
-  'gemini-2.5-flash',
+  'gemini-1.5-flash',
+  'gemini-2.0-flash',
+  'gemini-1.5-pro',
 ];
-const DEFAULT_ENV_KEY = 'AQ.Ab8RN6L-0tHhsik9pQr7rab4bEchUDIZAgtupg3oM-6LCvobXg';
 
 /**
  * Retrieves the active Gemini API key from environment or localStorage
@@ -18,10 +17,13 @@ const DEFAULT_ENV_KEY = 'AQ.Ab8RN6L-0tHhsik9pQr7rab4bEchUDIZAgtupg3oM-6LCvobXg';
 export function getStoredGeminiApiKey() {
   if (typeof window !== 'undefined') {
     const local = localStorage.getItem('ERMS_GEMINI_API_KEY');
-    if (local && local.trim()) return local.trim();
+    if (local && local.trim() && local.startsWith('AIzaSy')) return local.trim();
   }
   const envKey = (typeof import.meta !== 'undefined' && import.meta.env && import.meta.env.VITE_GEMINI_API_KEY) || '';
-  return envKey.trim() || DEFAULT_ENV_KEY;
+  if (envKey && envKey.trim() && envKey.startsWith('AIzaSy')) {
+    return envKey.trim();
+  }
+  return '';
 }
 
 /**
@@ -51,9 +53,10 @@ export async function askGenAiDisasterQuestion({
 }) {
   const activeKey = apiKey || getStoredGeminiApiKey();
   const t0 = (typeof performance !== 'undefined' && performance.now) ? performance.now() : Date.now();
+  const isLiveKey = Boolean(activeKey && activeKey.trim() && activeKey.startsWith('AIzaSy'));
 
-  // Try Google Gemini Live API if key is present
-  if (activeKey && activeKey.trim()) {
+  // Try Google Gemini Live API if valid Google key is present
+  if (isLiveKey) {
     try {
       const riverInfo = sensorReadings?.river
         ? `River: ${sensorReadings.river.riverName || 'Barak'}, Stage: ${sensorReadings.river.waterLevelM} m (Danger: ${sensorReadings.river.dangerLevelM} m, Exceedance: +${sensorReadings.river.levelAboveDangerM} m, Discharge: ${sensorReadings.river.dischargeCumecs} cumecs)`
@@ -629,8 +632,10 @@ export async function generateGenAiExplanation({
     });
   }
 
+  const isLiveKey = Boolean(activeKey && activeKey.trim() && activeKey.startsWith('AIzaSy'));
+
   // If a live Gemini API Key is provided, call Google Gemini 1.5 Flash for complete root cause report
-  if (activeKey && activeKey.trim()) {
+  if (isLiveKey) {
     try {
       const promptText = `
 You are the Chief Scientific Officer of the Emergency Risk Management System (ERMS) Government of India.

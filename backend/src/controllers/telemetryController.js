@@ -4,7 +4,7 @@ import fs from 'fs';
 import path from 'path';
 import { sseBroadcaster } from '../services/sseBroadcaster.js';
 import { fileWatcherService } from '../services/fileWatcherService.js';
-import { dbClient } from '../../../database/dbClient.js';
+import { dbClient } from '../dbClient.js';
 
 export function streamTelemetry(req, res) {
   res.writeHead(200, {

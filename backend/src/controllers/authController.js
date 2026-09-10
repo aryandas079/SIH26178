@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { dbClient } from '../../../database/dbClient.js';
+import { dbClient } from '../dbClient.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -9,10 +9,9 @@ const __dirname = path.dirname(__filename);
 const EXPECTED_ADMIN_ID = process.env.ADMIN_ID || 'abc123';
 const EXPECTED_ADMIN_PW = process.env.ADMIN_PASSWORD || 'ERer00*#';
 
-// Ensure dedicated logs directory exists at workspace root
-const ROOT_DIR = path.resolve(__dirname, '../../../');
-const ROOT_LOGS_DIR = path.join(ROOT_DIR, 'logs');
-const LOCAL_LOGS_DIR = path.resolve(process.cwd(), 'logs');
+// Ensure dedicated logs directory exists
+const LOCAL_LOGS_DIR = process.env.VERCEL ? path.join('/tmp', 'logs') : path.resolve(process.cwd(), 'logs');
+const ROOT_LOGS_DIR = path.resolve(__dirname, '../../logs');
 
 for (const dir of [ROOT_LOGS_DIR, LOCAL_LOGS_DIR]) {
   try {

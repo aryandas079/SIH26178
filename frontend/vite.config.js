@@ -3,7 +3,7 @@ import react from '@vitejs/plugin-react';
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '');
-  const geminiKey = env.VITE_GEMINI_API_KEY || env.GEMINI_API_KEY || 'AQ.Ab8RN6L-0tHhsik9pQr7rab4bEchUDIZAgtupg3oM-6LCvobXg';
+  const geminiKey = env.VITE_GEMINI_API_KEY || env.GEMINI_API_KEY || '';
 
   return {
     plugins: [react()],

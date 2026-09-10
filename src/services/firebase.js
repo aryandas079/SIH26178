@@ -13,12 +13,12 @@ import {
 
 // Firebase configuration from environment variables
 const firebaseConfig = {
-  apiKey: import.meta.env.VITE_FIREBASE_API_KEY || '',
-  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN || '',
-  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID || '',
-  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET || '',
-  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID || '',
-  appId: import.meta.env.VITE_FIREBASE_APP_ID || '',
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY || 'AIzaSyBeTKyc_YDyxuj-kYItY7iZYk3lrIj6IkQ',
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN || 'assistant-94938.firebaseapp.com',
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID || 'assistant-94938',
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET || 'assistant-94938.firebasestorage.app',
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID || '50904866356',
+  appId: import.meta.env.VITE_FIREBASE_APP_ID || '1:50904866356:web:fd81f0b7e0bd4a7a05f461',
 };
 
 export const isFirebaseConfigured = Boolean(

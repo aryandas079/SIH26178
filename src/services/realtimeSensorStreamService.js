@@ -7,7 +7,7 @@
  * ready for the Machine Learning Anomaly Detection & Proximity Cascading Engine.
  */
 
-import { mapRowToSensorReadings } from './sensorUploadService';
+import { mapRowToSensorReadings, SAMPLE_SENSOR_DATASETS, parseCSV } from './sensorUploadService';
 
 class RealtimeSensorStreamService {
   constructor() {
@@ -77,15 +77,34 @@ class RealtimeSensorStreamService {
   async fetchLatest() {
     try {
       const res = await fetch('/api/sensor-logs/latest');
-      if (!res.ok) return null;
-      const json = await res.json();
-      if (json && json.payload) {
-        this.handleIncomingTelemetry(json.payload, 'rest-poll');
-        return json.payload;
+      if (res.ok) {
+        const json = await res.json();
+        if (json && json.payload) {
+          this.handleIncomingTelemetry(json.payload, 'rest-poll');
+          return json.payload;
+        }
       }
     } catch {
       // Server may be starting or offline
     }
+
+    if (!this.latestTelemetry && SAMPLE_SENSOR_DATASETS && SAMPLE_SENSOR_DATASETS.length > 0) {
+      try {
+        const sample = SAMPLE_SENSOR_DATASETS[0];
+        const rows = parseCSV(sample.content);
+        if (rows && rows.length > 0) {
+          const payload = {
+            filename: sample.filename || 'silchar_barak_gauge_telemetry.csv',
+            timestamp: new Date().toISOString(),
+            recordCount: rows.length,
+            latestRow: rows[rows.length - 1],
+            allRows: rows,
+          };
+          this.handleIncomingTelemetry(payload, 'client-fallback');
+        }
+      } catch (e) {}
+    }
+
     return null;
   }
 

@@ -1,6 +1,6 @@
 /** Controller handling station registry and spatial risk calculations. */
 
-import { dbClient } from '../../../database/dbClient.js';
+import { dbClient } from '../dbClient.js';
 
 export function getStations(req, res) {
   const stations = dbClient.getStations();
