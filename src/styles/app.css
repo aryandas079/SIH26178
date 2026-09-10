@@ -13307,16 +13307,693 @@
 /* Responsive adjustment for Mobile Header */
 @media (max-width: 640px) {
   .user-greeting-pill {
-    padding: 0.3rem 0.6rem;
-    font-size: 0.72rem;
-  }
-  .user-greeting-pill .greeting-text-content {
-    max-width: 110px;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    display: none !important;
   }
   .profile-popover-panel {
     right: -10px;
     width: 275px;
   }
 }
+
+/* ==========================================================================
+   PRECISION MOBILE TOUCH & ADAPTIVE VIEWPORT OVERHAUL (DESKTOP LOCKED)
+   Targeting: max-width: 768px (Mobile & Small Tablet)
+   Desktop layout (min-width: 769px) is strictly preserved and locked.
+   ========================================================================== */
+
+@media (min-width: 769px) {
+  .mobile-bottom-dock {
+    display: none !important;
+  }
+}
+
+@media (max-width: 768px) {
+  /* 1. Global Viewport, HTML & Body Zero-Overflow Discipline */
+  html {
+    scroll-padding-top: 64px !important;
+    scroll-behavior: smooth !important;
+  }
+
+  html, body, #root {
+    overflow-x: hidden !important;
+    max-width: 100vw !important;
+    width: 100% !important;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .dashboard-page-container {
+    padding: 0.75rem 0.65rem 6.5rem !important;
+    gap: 1.15rem !important;
+    max-width: 100vw !important;
+    overflow-x: hidden !important;
+    box-sizing: border-box !important;
+  }
+
+  /* 2. Sleek Sticky Mobile Navigation Header */
+  .top-nav-bar.dashboard-nav-bar {
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 1050 !important;
+    padding: 0.55rem 0.75rem !important;
+    background: var(--bg-surface-elevated, #ffffff) !important;
+    backdrop-filter: blur(16px) !important;
+    border-bottom: 1px solid var(--border-medium, rgba(88, 107, 79, 0.22)) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    height: 56px !important;
+    box-sizing: border-box !important;
+    width: 100% !important;
+    max-width: 100vw !important;
+  }
+
+  .dashboard-nav-left {
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.4rem !important;
+  }
+
+  .dashboard-nav-brand {
+    font-size: 0.95rem !important;
+    font-weight: 900 !important;
+    letter-spacing: 0.12em !important;
+  }
+
+  .dashboard-nav-title,
+  .dashboard-nav-divider {
+    display: none !important;
+  }
+
+  .dashboard-nav-live-pill {
+    padding: 0.2rem 0.45rem !important;
+    font-size: 0.55rem !important;
+    letter-spacing: 0.04em !important;
+    border-radius: 9999px !important;
+  }
+
+  .top-nav-right {
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.35rem !important;
+  }
+
+  .top-nav-right .clean-box-btn {
+    min-height: 38px !important;
+    padding: 0.35rem 0.55rem !important;
+    font-size: 0.65rem !important;
+    font-weight: 700 !important;
+    border-radius: 6px !important;
+    touch-action: manipulation !important;
+  }
+
+  .user-greeting-pill {
+    display: none !important;
+  }
+
+  .header-profile-avatar-btn {
+    width: 36px !important;
+    height: 36px !important;
+    min-width: 36px !important;
+    touch-action: manipulation !important;
+  }
+
+  .header-avatar-image {
+    width: 34px !important;
+    height: 34px !important;
+  }
+
+  .profile-popover-panel {
+    position: fixed !important;
+    top: 60px !important;
+    left: 10px !important;
+    right: 10px !important;
+    width: calc(100vw - 20px) !important;
+    max-width: 360px !important;
+    margin: 0 auto !important;
+    z-index: 2000 !important;
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.3) !important;
+  }
+
+  /* 3. Mobile Precision Bottom Navigation Dock */
+  .mobile-bottom-dock {
+    display: flex !important;
+    position: fixed !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    z-index: 1040 !important;
+    background: var(--bg-surface-elevated, #ffffff) !important;
+    backdrop-filter: blur(20px) !important;
+    border-top: 1px solid var(--border-medium, rgba(88, 107, 79, 0.25)) !important;
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.12) !important;
+    padding: 0.35rem 0.5rem calc(0.35rem + env(safe-area-inset-bottom, 8px)) !important;
+    justify-content: space-around !important;
+    align-items: center !important;
+  }
+
+  .mobile-bottom-dock .mbd-item {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 3px !important;
+    background: transparent !important;
+    border: none !important;
+    outline: none !important;
+    color: var(--text-muted, #7f875e) !important;
+    padding: 0.35rem 0.5rem !important;
+    border-radius: 8px !important;
+    cursor: pointer !important;
+    min-width: 56px !important;
+    transition: all 0.2s ease !important;
+    touch-action: manipulation !important;
+  }
+
+  .mobile-bottom-dock .mbd-item svg {
+    stroke-width: 2.2 !important;
+    transition: transform 0.2s ease, stroke 0.2s ease !important;
+  }
+
+  .mobile-bottom-dock .mbd-item span {
+    font-family: 'Instagram Sans', sans-serif !important;
+    font-size: 0.6rem !important;
+    font-weight: 800 !important;
+    letter-spacing: 0.05em !important;
+    text-transform: uppercase !important;
+    line-height: 1 !important;
+  }
+
+  .mobile-bottom-dock .mbd-item:active {
+    transform: scale(0.92) !important;
+  }
+
+  .mobile-bottom-dock .mbd-item.active {
+    color: var(--pal-forest, #183022) !important;
+    background: rgba(40, 79, 56, 0.08) !important;
+  }
+
+  [data-theme='dark'] .mobile-bottom-dock .mbd-item.active {
+    color: #4ade80 !important;
+    background: rgba(74, 222, 128, 0.12) !important;
+  }
+
+  .mobile-bottom-dock .mbd-item.active svg {
+    stroke: currentColor !important;
+    transform: translateY(-1px) !important;
+  }
+
+  /* 4. Touch-Adaptive Search Bar */
+  .dash-search-section {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .elongated-search-form.modern-search-form {
+    width: 100% !important;
+  }
+
+  .search-input-wrapper {
+    display: flex !important;
+    flex-direction: column !important;
+    border-radius: 12px !important;
+    overflow: hidden !important;
+    border: 1px solid var(--border-medium) !important;
+    background: var(--bg-surface-elevated, #ffffff) !important;
+  }
+
+  .search-input-prefix {
+    display: flex !important;
+    align-items: center !important;
+    padding: 0.6rem 0.85rem !important;
+    background: var(--bg-surface, #f9fbf8) !important;
+    border-right: none !important;
+    border-bottom: 1px solid var(--border-subtle) !important;
+    gap: 0.5rem !important;
+  }
+
+  .search-scope-tag {
+    font-size: 0.65rem !important;
+    font-weight: 800 !important;
+  }
+
+  .elongated-search-input {
+    font-size: 16px !important;
+    padding: 0.85rem 0.95rem !important;
+    height: auto !important;
+    line-height: 1.35 !important;
+  }
+
+  .search-submit-btn {
+    border-left: none !important;
+    border-top: 1px solid var(--border-medium) !important;
+    width: 100% !important;
+    padding: 0.85rem 1rem !important;
+    font-size: 0.72rem !important;
+    font-weight: 800 !important;
+    min-height: 46px !important;
+    letter-spacing: 0.08em !important;
+    justify-content: center !important;
+    border-radius: 0 !important;
+    touch-action: manipulation !important;
+  }
+
+  .search-suggestions-box {
+    position: absolute !important;
+    top: calc(100% + 4px) !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    max-height: 280px !important;
+    border-radius: 10px !important;
+    z-index: 1060 !important;
+  }
+
+  .search-suggestion-item {
+    padding: 0.75rem 1rem !important;
+    min-height: 48px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    gap: 2px !important;
+    touch-action: manipulation !important;
+  }
+
+  .sugg-name {
+    font-size: 0.78rem !important;
+    font-weight: 800 !important;
+  }
+
+  .sugg-region {
+    font-size: 0.65rem !important;
+  }
+
+  /* 5. Horizontal Momentum Preset Hubs */
+  .quick-presets-row {
+    margin-top: 0.65rem !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 0.4rem !important;
+    width: 100% !important;
+    overflow: hidden !important;
+  }
+
+  .presets-label-wrap {
+    font-size: 0.62rem !important;
+    letter-spacing: 0.06em !important;
+  }
+
+  .presets-chips {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none !important;
+    width: 100% !important;
+    padding: 0.25rem 0.1rem 0.5rem !important;
+    gap: 0.5rem !important;
+  }
+
+  .presets-chips::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  .preset-chip-btn {
+    flex-shrink: 0 !important;
+    padding: 0.45rem 0.85rem !important;
+    font-size: 0.68rem !important;
+    min-height: 36px !important;
+    border-radius: 9999px !important;
+    white-space: nowrap !important;
+    touch-action: manipulation !important;
+  }
+
+  /* 6. At-A-Glance Station Cockpit Cards on Mobile */
+  .cockpit-summary-container {
+    padding: 0.85rem !important;
+    border-radius: 14px !important;
+  }
+
+  .cockpit-top-bar {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 0.5rem !important;
+  }
+
+  .cockpit-station-name {
+    font-size: 1.2rem !important;
+    line-height: 1.2 !important;
+  }
+
+  .cockpit-station-sub {
+    font-size: 0.66rem !important;
+    line-height: 1.35 !important;
+  }
+
+  .cockpit-sync-badge {
+    width: 100% !important;
+    font-size: 0.58rem !important;
+    padding: 0.35rem 0.6rem !important;
+    border-radius: 6px !important;
+  }
+
+  .cockpit-metrics-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 0.55rem !important;
+  }
+
+  @media (max-width: 390px) {
+    .cockpit-metrics-grid {
+      grid-template-columns: 1fr !important;
+    }
+  }
+
+  .cockpit-metric-card {
+    padding: 0.7rem !important;
+    min-height: 100px !important;
+    border-radius: 10px !important;
+  }
+
+  .cockpit-card-num {
+    font-size: 0.58rem !important;
+  }
+
+  .cockpit-card-label {
+    font-size: 0.6rem !important;
+    letter-spacing: 0.05em !important;
+  }
+
+  .cockpit-primary-val {
+    font-size: clamp(1.3rem, 4.5vw, 1.75rem) !important;
+    letter-spacing: -0.02em !important;
+    margin: 0.2rem 0 !important;
+  }
+
+  .cockpit-secondary-val {
+    font-size: 0.62rem !important;
+    line-height: 1.2 !important;
+  }
+
+  .cockpit-sub-pill {
+    font-size: 0.58rem !important;
+    padding: 0.2rem 0.45rem !important;
+    max-width: 100% !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+  }
+
+  /* 7. Detailed Weather Drawer */
+  .elongated-drawer-bar {
+    padding: 0.75rem 0.85rem !important;
+    min-height: 48px !important;
+    border-radius: 10px !important;
+    touch-action: manipulation !important;
+  }
+
+  .drawer-bar-title {
+    font-size: 0.7rem !important;
+    line-height: 1.2 !important;
+  }
+
+  .drawer-bar-sublocation {
+    display: none !important;
+  }
+
+  .drawer-data-badge {
+    display: none !important;
+  }
+
+  .drawer-preview-snippet {
+    display: none !important;
+  }
+
+  /* 8. Geospatial Map & Studio Controls */
+  .dash-map-section {
+    width: 100% !important;
+  }
+
+  .expanded-map-container {
+    padding: 0.55rem !important;
+    border-radius: 14px !important;
+  }
+
+  .executive-layer-studio {
+    padding: 0.55rem !important;
+    border-radius: 10px !important;
+  }
+
+  .els-tabs-group {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    width: 100% !important;
+    gap: 0.35rem !important;
+  }
+
+  .els-tab-btn {
+    padding: 0.45rem 0.35rem !important;
+    min-height: 44px !important;
+    font-size: 0.62rem !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    gap: 2px !important;
+    touch-action: manipulation !important;
+  }
+
+  .els-tab-icon {
+    display: inline-flex !important;
+  }
+
+  .els-tab-title {
+    font-size: 0.58rem !important;
+    letter-spacing: 0.04em !important;
+    line-height: 1 !important;
+  }
+
+  .els-tab-count {
+    display: none !important;
+  }
+
+  .els-actions-group {
+    margin-top: 0.5rem !important;
+    flex-wrap: wrap !important;
+    gap: 0.35rem !important;
+  }
+
+  .els-action-btn {
+    min-height: 38px !important;
+    padding: 0.35rem 0.65rem !important;
+    font-size: 0.62rem !important;
+    touch-action: manipulation !important;
+  }
+
+  .els-hazard-chips-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 0.45rem !important;
+  }
+
+  .hazard-square-tile {
+    min-height: 52px !important;
+    padding: 0.45rem !important;
+    touch-action: manipulation !important;
+  }
+
+  .hazard-square-name {
+    font-size: 0.62rem !important;
+    line-height: 1.15 !important;
+  }
+
+  .live-met-toolbar {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none !important;
+    gap: 0.4rem !important;
+    padding: 0.25rem 0 !important;
+  }
+
+  .live-met-toolbar::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  .live-met-chip {
+    flex-shrink: 0 !important;
+    min-height: 38px !important;
+    padding: 0.35rem 0.65rem !important;
+    font-size: 0.62rem !important;
+    border-radius: 9999px !important;
+    white-space: nowrap !important;
+    touch-action: manipulation !important;
+  }
+
+  /* Map Container & Floating Buttons */
+  .map-viewport-frame {
+    height: 360px !important;
+    border-radius: 12px !important;
+    overflow: hidden !important;
+  }
+
+  .map-compliance-badge {
+    top: 0.4rem !important;
+    left: 0.4rem !important;
+    font-size: 0.5rem !important;
+    padding: 0.25rem 0.45rem !important;
+    max-width: 170px !important;
+    line-height: 1.2 !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+  }
+
+  .map-reset-bounds-btn {
+    top: 0.4rem !important;
+    right: 0.4rem !important;
+    min-height: 32px !important;
+    font-size: 0.55rem !important;
+    padding: 0.25rem 0.5rem !important;
+    touch-action: manipulation !important;
+  }
+
+  .map-guidance-pill {
+    bottom: 0.75rem !important;
+    font-size: 0.54rem !important;
+    padding: 0.3rem 0.6rem !important;
+    max-width: 88% !important;
+  }
+
+  /* 9. Telemetry Grid & Stream Rows on Mobile */
+  .sensor-channels-grid {
+    grid-template-columns: 1fr !important;
+    gap: 0.65rem !important;
+  }
+
+  .sensor-channel-row {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 0.4rem !important;
+    padding: 0.75rem !important;
+  }
+
+  .scr-left {
+    width: 100% !important;
+  }
+
+  .scr-right {
+    width: 100% !important;
+    justify-content: space-between !important;
+  }
+
+  /* 10. AI Copilot & Q&A Console */
+  .gec-interactive-qa.modern-ai-console {
+    padding: 0.85rem !important;
+    border-radius: 12px !important;
+  }
+
+  .gec-qa-headline {
+    font-size: 0.82rem !important;
+  }
+
+  .gec-qa-sub {
+    font-size: 0.65rem !important;
+    line-height: 1.3 !important;
+  }
+
+  .gec-qa-chips {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none !important;
+    padding: 0.25rem 0 0.5rem !important;
+    gap: 0.45rem !important;
+  }
+
+  .gec-qa-chips::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  .gec-qa-chip-btn {
+    flex-shrink: 0 !important;
+    padding: 0.45rem 0.75rem !important;
+    font-size: 0.65rem !important;
+    min-height: 38px !important;
+    white-space: nowrap !important;
+    touch-action: manipulation !important;
+  }
+
+  .gec-qa-input-bar {
+    flex-direction: column !important;
+    gap: 0.5rem !important;
+  }
+
+  .gec-qa-input {
+    font-size: 16px !important;
+    padding: 0.75rem 0.85rem !important;
+    width: 100% !important;
+    min-height: 44px !important;
+  }
+
+  .gec-qa-submit-btn {
+    width: 100% !important;
+    min-height: 44px !important;
+    justify-content: center !important;
+    touch-action: manipulation !important;
+  }
+
+  /* 11. Auth Modal Touch Sheet on Mobile */
+  .auth-fullscreen-overlay {
+    align-items: flex-end !important;
+    padding: 0 !important;
+  }
+
+  .auth-prompt-card.auth-prompt-card-wide {
+    width: 100vw !important;
+    max-width: 100vw !important;
+    max-height: 92vh !important;
+    border-radius: 20px 20px 0 0 !important;
+    padding: 1.15rem 1rem calc(1.15rem + env(safe-area-inset-bottom, 10px)) !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    margin: 0 !important;
+  }
+
+  .auth-card-header {
+    padding-bottom: 0.65rem !important;
+  }
+
+  .auth-header-title {
+    font-size: 0.88rem !important;
+  }
+
+  .auth-tabs-nav {
+    gap: 0.35rem !important;
+    margin-bottom: 1rem !important;
+  }
+
+  .auth-tab-btn {
+    padding: 0.55rem 0.45rem !important;
+    min-height: 44px !important;
+    font-size: 0.65rem !important;
+    touch-action: manipulation !important;
+  }
+
+  .auth-text-input {
+    font-size: 16px !important;
+    min-height: 46px !important;
+  }
+
+  .clean-box-btn.auth-primary-submit-btn,
+  .clean-box-btn.google-sign-in-btn,
+  .clean-box-btn.auth-demo-btn,
+  .clean-box-btn.auth-secondary-btn {
+    min-height: 46px !important;
+    font-size: 0.72rem !important;
+    touch-action: manipulation !important;
+  }
+}
+

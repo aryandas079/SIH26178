@@ -263,6 +263,62 @@ export default function Dashboard({
   const [activeStudioTab, setActiveStudioTab] = useState('hazards'); // 'hazards' | 'meteorology' | 'hotspots'
   const [isStudioExpanded, setIsStudioExpanded] = useState(true);
 
+  // Mobile Touch Navigation State
+  const [activeMobileTab, setActiveMobileTab] = useState('cockpit');
+
+  const handleMobileTabNav = (tabKey) => {
+    setActiveMobileTab(tabKey);
+    let targetId = 'mobile-sec-cockpit';
+    if (tabKey === 'map') {
+      setIsMapExpanded(true);
+      targetId = 'mobile-sec-map';
+    } else if (tabKey === 'sensors') {
+      if (typeof onToggleDetail === 'function' && !viewDetails.sensorChannels) {
+        onToggleDetail('sensorChannels');
+      }
+      targetId = 'mobile-sec-sensors';
+    } else if (tabKey === 'alerts') {
+      targetId = 'mobile-sec-alerts';
+    } else if (tabKey === 'copilot') {
+      targetId = 'mobile-sec-copilot';
+    }
+
+    const el = document.getElementById(targetId);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
+  useEffect(() => {
+    if (typeof window === 'undefined' || window.innerWidth > 768) return;
+    const sectionIds = ['mobile-sec-cockpit', 'mobile-sec-map', 'mobile-sec-sensors', 'mobile-sec-alerts', 'mobile-sec-copilot'];
+    const tabMap = {
+      'mobile-sec-cockpit': 'cockpit',
+      'mobile-sec-map': 'map',
+      'mobile-sec-sensors': 'sensors',
+      'mobile-sec-alerts': 'alerts',
+      'mobile-sec-copilot': 'copilot',
+    };
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && tabMap[entry.target.id]) {
+            setActiveMobileTab(tabMap[entry.target.id]);
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    sectionIds.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+
+    return () => observer.disconnect();
+  }, [isMapExpanded, viewDetails]);
+
   // Real-Time Multi-Station Meteorological Ingestion State
   const [liveTelemetry, setLiveTelemetry] = useState(null);
   const [isTelemetryLoading, setIsTelemetryLoading] = useState(false);
@@ -1735,7 +1791,7 @@ export default function Dashboard({
   return (
     <div className="dashboard-page-container">
       {/* 1. UPPER PART: LONG ELONGATED SEARCH OPTION & AT-A-GLANCE COCKPIT */}
-      <section className="dash-search-section">
+      <section id="mobile-sec-cockpit" className="dash-search-section">
         <form onSubmit={handleSearchSubmit} className="elongated-search-form modern-search-form">
           <div className="search-input-wrapper">
             <div className="search-input-prefix">
@@ -2215,7 +2271,7 @@ export default function Dashboard({
       </div>
 
       {/* 2. LOWER PART: MAP OF INDIA SECTION */}
-      <section className="dash-map-section">
+      <section id="mobile-sec-map" className="dash-map-section">
         <button
           type="button"
           className={`elongated-drawer-bar modern-drawer-bar shade-drawer-map ${isMapExpanded ? 'expanded' : ''}`}
@@ -3438,7 +3494,7 @@ export default function Dashboard({
       </section>
 
       {/* 3. PHYSICAL SENSOR READINGS & REGULATORY RADAR */}
-      <section className="dash-node-section">
+      <section id="mobile-sec-sensors" className="dash-node-section">
         {(viewDetails.sensorChannels || viewDetails.topicAnalytics) && (
           <div className="section-title-bar">
             <div className="stb-left">
@@ -3935,7 +3991,7 @@ export default function Dashboard({
       </section>
 
       {/* 4. DETECTED ANOMALIES & MAP TELEMETRY SECTION */}
-      <section className="dash-anomalies-section">
+      <section id="mobile-sec-alerts" className="dash-anomalies-section">
         <div className="section-title-bar">
           <h3 className="section-title-text">DETECTED ANOMALIES & MAP TELEMETRY</h3>
           <span className="section-title-sub">MACHINE LEARNING INFERENCE & PROXIMITY CASCADING PREDICTION</span>
@@ -4709,7 +4765,7 @@ export default function Dashboard({
                 </div>
 
                 {/* Interactive Q&A Interrogation Bar - Prominent Executive AI Console */}
-                <div id="genai-qna-console" className="gec-interactive-qa modern-ai-console">
+                <div id="mobile-sec-copilot" className="gec-interactive-qa modern-ai-console">
                   <div className="gec-qa-top">
                     <h4 className="gec-qa-headline">INTERROGATE GENAI DISASTER MODEL (COMMAND CONSOLE Q&A)</h4>
                     <p className="gec-qa-sub">
@@ -5440,6 +5496,71 @@ export default function Dashboard({
           }}
         />
       </section>
+
+      {/* MOBILE PRECISION BOTTOM DOCK (Touchscreen Navigation Bar, rendered on mobile only) */}
+      <nav className="mobile-bottom-dock" aria-label="Mobile Viewport Navigation">
+        <button
+          type="button"
+          className={`mbd-item ${activeMobileTab === 'cockpit' ? 'active' : ''}`}
+          onClick={() => handleMobileTabNav('cockpit')}
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+            <polyline points="9 22 9 12 15 12 15 22" />
+          </svg>
+          <span>COCKPIT</span>
+        </button>
+
+        <button
+          type="button"
+          className={`mbd-item ${activeMobileTab === 'map' ? 'active' : ''}`}
+          onClick={() => handleMobileTabNav('map')}
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6" />
+            <line x1="8" y1="2" x2="8" y2="18" />
+            <line x1="16" y1="6" x2="16" y2="22" />
+          </svg>
+          <span>MAP</span>
+        </button>
+
+        <button
+          type="button"
+          className={`mbd-item ${activeMobileTab === 'sensors' ? 'active' : ''}`}
+          onClick={() => handleMobileTabNav('sensors')}
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <path d="M4 11a9 9 0 0 1 9 9" />
+            <path d="M4 4a16 16 0 0 1 16 16" />
+            <circle cx="5" cy="19" r="1" />
+          </svg>
+          <span>SENSORS</span>
+        </button>
+
+        <button
+          type="button"
+          className={`mbd-item ${activeMobileTab === 'alerts' ? 'active' : ''}`}
+          onClick={() => handleMobileTabNav('alerts')}
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
+            <line x1="12" y1="9" x2="12" y2="13" />
+            <line x1="12" y1="17" x2="12.01" y2="17" />
+          </svg>
+          <span>ALERTS</span>
+        </button>
+
+        <button
+          type="button"
+          className={`mbd-item ${activeMobileTab === 'copilot' ? 'active' : ''}`}
+          onClick={() => handleMobileTabNav('copilot')}
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+          </svg>
+          <span>COPILOT</span>
+        </button>
+      </nav>
     </div>
   );
 }
