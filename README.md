@@ -1,4 +1,4 @@
-#  ERMS: Environmental Risk Management System
+# 🌐 ERMS: Environmental Risk Management System
 ### Sovereign All-India Multi-Hazard Early Warning & AI Disaster Command System
 **Smart India Hackathon 2026 (SIH 2026) | Problem Statement: SIH2026-26178**
 
@@ -12,7 +12,7 @@
 
 ---
 
-##  Executive Summary
+## 📌 Executive Summary
 
 **ERMS (Environmental Risk Management System)** is an enterprise-grade, sovereign disaster management cockpit and predictive early-warning platform engineered for the Republic of India. Calibrated on **552,912 real historical disaster records** across 12 calamity channels from India's apex scientific authorities (**CPCB, IMD, CWC, NDMA, GSI, INCOIS, and SAC-ISRO**), ERMS bridges the critical operational gap between field IoT telemetry and rapid emergency response mobilization.
 
@@ -29,14 +29,19 @@ The system integrates:
 
 ---
 
-##  System Overview & Primary Visual Tour
+## 🗺️ System Overview & Primary Visual Tour
 
-![Sovereign Geo-Intelligence Map](docs/screenshots/25_desktop_map_perfect_layout.png)
-*Figure 1: ERMS Sovereign Cockpit featuring the All-India Leaflet Geodetic Map with topological river corridors, active hazard overlays, GPS hook pins, and zero-clutter detailing docks.*
+### 1. Default Landing Portal (Distraction-Free Mission Entry)
+![Default Landing Experience](docs/screenshots/83_default_landing_home_unauth.png)
+*Figure 1A: ERMS opens by default on the clean, sovereign Home landing portal featuring the national mission title and the gated "OPEN DASHBOARD" action.*
+
+### 2. Live Sovereign Disaster Intelligence Cockpit
+![Sovereign Disaster Cockpit](docs/screenshots/85_authenticated_dashboard_after_login.png)
+*Figure 1B: The Live ERMS Operational Cockpit featuring the All-India Leaflet Geodetic Map, real-time sensor streams, instant GPS hook resolution, and dynamic time-of-day responder greeting.*
 
 ---
 
-##  Table of Contents
+## 📑 Table of Contents
 
 - [Executive Summary](#-executive-summary)
 - [System Architecture Flowcharts](#-system-architecture-flowcharts)
@@ -64,7 +69,7 @@ The system integrates:
 
 ---
 
-##  System Architecture Flowcharts
+## 🔄 System Architecture Flowcharts
 
 ### 1. High-Level System Architecture
 
@@ -201,7 +206,7 @@ sequenceDiagram
 
 ---
 
-##  The 12 Sovereign Hazard Channels
+## 🛡️ The 12 Sovereign Hazard Channels
 
 ERMS covers all twelve natural and anthropogenic calamity classifications recognized under national civil protection protocols:
 
@@ -222,7 +227,7 @@ ERMS covers all twelve natural and anthropogenic calamity classifications recogn
 
 ---
 
-##  Empirical ML Validation & Precision Metrics
+## 📊 Empirical ML Validation & Precision Metrics
 
 The machine learning subsystem was trained on **552,912 authentic Indian environmental disaster observations** using Stratified 5-Fold Cross-Validation. Below are the verified empirical performance benchmarks on held-out validation partitions:
 
@@ -244,7 +249,7 @@ The machine learning subsystem was trained on **552,912 authentic Indian environ
 
 ---
 
-##  Physics-Informed Formulations
+## 🧮 Physics-Informed Formulations
 
 ### 1. Terzaghi-Coulomb Factor of Safety ($FS$) for Hillslope Stability
 In hilly and transboundary mountainous tracts (e.g. Nepal-Himalayan Arc, Western Ghats), rainfall saturation induces positive pore-water pressure, collapsing effective shear strength. The Factor of Safety is evaluated continuously:
@@ -274,78 +279,108 @@ where:
 
 ---
 
-##  Comprehensive Visual Tour & Screenshots
+## 🖼️ Comprehensive Visual Tour & Screenshots
 
-### 1. Sovereign Disaster Cockpit Overview
-![Dashboard Hero](docs/screenshots/14_dashboard_hero_clean_icons.png)
-*Figure 2: Executive overview hero displaying live GPS geodetic fix, national threat index, armed calamity count, and quick detailing toggles with clean, SVG iconography.*
+### 1. Default Landing Experience (Pristine Home Portal)
+![Default Landing Experience](docs/screenshots/83_default_landing_home_unauth.png)
+*Figure 2: The default landing experience for any new visitor or unauthenticated responder. Displays the clean sovereign mission title, top navigation bar, and the primary "OPEN DASHBOARD" action.*
 
 ---
 
-### 2. Dual Ensemble ML Anomaly Forensics & Precision Badges
+### 2. Login-Gated Dashboard Access (Operational Authentication Prompt)
+![Login-Gated Dashboard Access](docs/screenshots/84_open_dashboard_prompts_login.png)
+*Figure 3: Clicking "OPEN DASHBOARD" while unauthenticated automatically prompts the responder with the Sovereign Operational Authentication modal before access is granted.*
+
+---
+
+### 3. Live Authenticated Sovereign Disaster Cockpit
+![Live Authenticated Dashboard](docs/screenshots/85_authenticated_dashboard_after_login.png)
+*Figure 4: The executive disaster intelligence console upon authentication, displaying live sensor telemetry, dynamic time-of-day greeting ("Good night, System"), and quick-detailing toggles.*
+
+---
+
+### 4. Sovereign Geo-Intelligence All-India Map
+![Sovereign Geo-Intelligence Map](docs/screenshots/25_desktop_map_perfect_layout.png)
+*Figure 5: High-precision geodetic Leaflet map rendered with Survey of India sovereign borders, major river drainage networks, and active disaster layer controls.*
+
+---
+
+### 5. Dual Ensemble ML Anomaly Forensics & Precision Badges
 ![Anomaly Cards Expanded](docs/screenshots/64_desktop_ml_anomaly_cards_expanded.png)
-*Figure 3: Anomaly forensics displaying empirical precision telemetry (`PRECISION: 97.42% • RECALL: 100% • F1: 0.9869 • ROC-AUC: 1 • FAR: 0.78%`), top feature attribution progress bars, and geotechnical Factor of Safety ($FS$) status.*
+*Figure 6: Anomaly forensics displaying empirical precision telemetry (`PRECISION: 97.42% • RECALL: 100% • F1: 0.9869 • ROC-AUC: 1 • FAR: 0.78%`), top feature attribution progress bars, and geotechnical Factor of Safety ($FS$) status.*
 
 ---
 
-### 3. Real-Time Topic Analytics Radar
+### 6. Real-Time Regulatory Topic Analytics Radar
 ![Topic Radar ML Precision](docs/screenshots/65_topic_radar_ml_precision.png)
-*Figure 4: Regulatory diagnostic radar showing real-time statutory limit compliance, CPCB/IMD standard needle barometers, and the Dual Ensemble model precision telemetry strip.*
+*Figure 7: Regulatory diagnostic radar showing real-time statutory limit compliance, CPCB/IMD standard needle barometers, and the Dual Ensemble model precision telemetry strip.*
 
 ---
 
-### 4. Downstream Proximity Cascading Risk Forecast
+### 7. Downstream Proximity Cascading Risk Forecast
 ![Downstream Cascading Forecast](docs/screenshots/08_ml_downstream_cascading_forecast.png)
-*Figure 5: Topological reach propagation computing downstream settlements at risk, Manning's surge wave travel arrival times in hours, spillover probabilities %, and damage projections.*
+*Figure 8: Topological reach propagation computing downstream settlements at risk, Manning's surge wave travel arrival times in hours, spillover probabilities %, and damage projections.*
 
 ---
 
-### 5. 3-Phase Operational Countermeasures & Resource Directives
+### 8. 3-Phase Operational Countermeasures & Resource Directives
 ![Operational Countermeasures](docs/screenshots/09_ml_operational_countermeasures.png)
-*Figure 6: Automated tactical response matrices detailing Phase I immediate cordoning, Phase II mass evacuation, and Phase III long-term recovery resource deployments.*
+*Figure 9: Automated tactical response matrices detailing Phase I immediate cordoning, Phase II mass evacuation, and Phase III long-term recovery resource deployments.*
 
 ---
 
-### 6. Physical 12-Channel Hardware Sensor Telemetry
+### 9. Physical 12-Channel Hardware Sensor Telemetry Grid
 ![Hardware Telemetry Grid](docs/screenshots/13_msn_weather_telemetry_cards.png)
-*Figure 7: Physical multi-sensor hardware grid displaying real-time readings across surface temperature, wet-bulb, AQI, SO₂, moraine pressure, DART ocean waves, and barometric pressure.*
+*Figure 10: Physical multi-sensor hardware grid displaying real-time readings across surface temperature, wet-bulb, AQI, SO₂, moraine pressure, DART ocean waves, and barometric pressure.*
 
 ---
 
-### 7. Real-Time Live IoT Stream Ingestion
+### 10. Real-Time Live IoT Stream Ingestion
 ![Sensor Logs Real-Time Sync](docs/screenshots/36_sensor_logs_realtime_sync_silchar.png)
-*Figure 8: Live synchronization with field hardware loggers in `sensor_logs/live_active_stream.csv` via Vite HMR WebSockets without page reload.*
+*Figure 11: Live synchronization with field hardware loggers in `sensor_logs/live_active_stream.csv` via Vite HMR WebSockets without page reload.*
 
 ---
 
-### 8. 552,000+ Record Sovereign Disaster Dataset Explorer
+### 11. 552,000+ Record Sovereign Disaster Dataset Explorer
 ![Dataset Explorer](docs/screenshots/17_dataset_explorer_overview_clean.png)
-*Figure 9: Interactive dataset explorer browsing 552,912 authentic records across CPCB, IMD, CWC, NDMA, GSI, and SAC-ISRO with deep historical forensics.*
+*Figure 12: Interactive dataset explorer browsing 552,912 authentic records across CPCB, IMD, CWC, NDMA, GSI, and SAC-ISRO with deep historical forensics.*
 
 ---
 
-### 9. Sovereign Gemini AI Disaster Commander
+### 12. Sovereign Gemini AI Disaster Commander
 ![Gemini AI Console](docs/screenshots/12_gemini_ai_console_full_view.png)
-*Figure 10: Sovereign AI Disaster Commander providing context-aware operational briefs, SOP checklists, and multi-lingual voice synthesis.*
+*Figure 13: Sovereign AI Disaster Commander providing context-aware operational briefs, SOP checklists, and multi-lingual voice synthesis.*
 
 ---
 
-### 10. High-Contrast Dark Mode (Midnight Black & Storm Grey)
+### 13. High-Contrast Dark Mode (Midnight Black & Storm Grey)
 ![Dark Mode Cockpit](docs/screenshots/27_dark_mode_black_and_storm_grey_map.png)
-*Figure 11: Optimized low-fatigue night theme engineered for 24/7 disaster emergency operations rooms.*
+*Figure 14: Optimized low-fatigue night theme engineered for 24/7 disaster emergency operations rooms.*
 
 ---
 
-### 11. Fully Responsive Mobile Cockpit View
+### 14. Fully Responsive Mobile Cockpit View
 ![Clean Mobile Bottom Banner](docs/screenshots/61_clean_mobile_bottom_banner.png)
-*Figure 12: Mobile responsive portrait view with centered India map, full-width touch buttons, and zero horizontal clipping.*
+*Figure 15: Mobile responsive portrait view with centered India map, full-width touch buttons, and zero horizontal clipping.*
+
+---
+
+### 15. Personalized Google Profile Popover & Sign Out Action
+![Google User Profile Popover](docs/screenshots/86_google_user_profile_popover.png)
+*Figure 16: Interactive Profile Popover menu displaying authenticated Google user details ("Aryan Das" / `aryan.das@gmail.com`), operational role badge, and high-contrast Sign Out action.*
+
+---
+
+### 16. Post-Sign-Out Return to Pristine Home View
+![Post Sign Out Home](docs/screenshots/87_sign_out_returns_to_home.png)
+*Figure 17: Clicking Sign Out instantly invalidates the session and securely redirects the responder back to the clean Home landing page.*
 
 ---
 
 
 ---
 
-##  Authentication & Sovereign Access Control
+## 🔐 Authentication & Sovereign Access Control
 
 ERMS incorporates a zero-trust, multi-provider sovereign access control architecture powered by **Firebase Authentication** (`firebase/auth`), supporting live Google OAuth 2.0, mobile phone SMS OTP verification, and emergency field credentials.
 
@@ -357,41 +392,81 @@ ERMS incorporates a zero-trust, multi-provider sovereign access control architec
 
 ---
 
-### 1. Google Account OAuth 2.0
-- Connects directly to Google OAuth 2.0 via Firebase Client SDK.
-- Retrieves high-resolution profile imagery and authenticated Google credentials.
-- Automatically calculates dynamic time-of-day greeting referencing the authenticated user's first name.
+### 1. Sovereign Operational Authentication Modal
+When an unauthenticated responder clicks **"OPEN DASHBOARD"** on the landing page or **"DASHBOARD"** in the top navigation bar, access is gated by the Sovereign Access Portal:
 
-### 2. Mobile Phone SMS OTP Authentication
-- Features an international telephone selector (defaulting to India `+91`).
-- Dispatches a 6-digit carrier SMS verification code via Firebase SMS infrastructure with invisible reCAPTCHA bot prevention.
-- Validates the confirmation code securely against Firebase Auth servers.
-
-### 3. Administrator Access
-- Strict administrative credentials (`abc123` / `ERer00*#`) allowing mission command operations during network isolation.
-- Completely hidden in the UI with zero visible credential leakage.
-
-### 3. Dynamic Time-of-Day Greetings
-Upon authentication, the top command navigation bar automatically computes a context-aware greeting referencing the local system clock:
-- **05:00 – 11:59**: ` Good morning, [FirstName]`
-- **12:00 – 16:59**: ` Good afternoon, [FirstName]`
-- **17:00 – 20:59**: ` Good evening, [FirstName]`
-- **21:00 – 04:59**: ` Good night, [FirstName]`
-
-![Dynamic Time of Day Greeting](docs/screenshots/70_header_greeting_good_evening_aryan.png)
-*Figure: Top navigation command bar displaying the live time-of-day greeting ("Good evening, Aryan") alongside the Google profile avatar and pulsating green online beacon.*
-
-### 4. Interactive Profile Avatar & Sign Out
-Clicking the profile picture in the top command bar opens an executive profile popover menu:
-- **High-Resolution Avatar Preview**: Renders Google account photo or high-contrast initials badge.
-- **Identity & Access Level**: Displays full user name, email/mobile number, provider tag (`Google OAuth 2.0` or `SMS Mobile OTP`), and operational role.
-- **Sign Out Action**: High-contrast destructive button that immediately terminates the active session, purges localStorage tokens, and restores the primary **SIGN IN** button.
-
-![Profile Popover & Sign Out Menu](docs/screenshots/71_profile_popover_signout_menu.png)
-*Figure: Interactive Profile Popover menu revealing Google authentication telemetry, National Disaster Commander role, and the red Sign Out action.*
+![Sovereign Operational Authentication Modal](docs/screenshots/84_open_dashboard_prompts_login.png)
+*Figure 18: The Sovereign Operational Authentication portal prompting responders with multi-provider access options.*
 
 ---
-##  Prerequisites & System Requirements
+
+### 2. Supported Authentication Providers
+
+#### A. Google Account OAuth 2.0
+- Connects directly to Google OAuth 2.0 via Firebase Client SDK.
+- Ingests verified Google display name, email, profile photo URL, and UID.
+- Automatically calculates a dynamic, personalized time-of-day greeting.
+
+![Google Authentication Tab](docs/screenshots/75_clean_auth_modal_google_tab.png)
+*Figure 19: Clean Google OAuth 2.0 single-click authentication tab.*
+
+#### B. Mobile Phone SMS OTP Authentication
+- Features an international telephone selector with pre-selected India (`+91`) dialing code.
+- Dispatches a 6-digit carrier SMS verification code via Firebase SMS infrastructure with invisible reCAPTCHA bot defense.
+- Supports responder name input for personalized operational greetings.
+
+![Phone OTP Authentication Tab](docs/screenshots/76_clean_auth_modal_phone_tab.png)
+*Figure 20: Mobile Phone SMS OTP verification interface with reCAPTCHA protection.*
+
+#### C. Emergency Administrator Access
+- Strict administrative credentials (`abc123` / `ERer00*#`) enabling mission continuity in network-isolated bunkers or damaged telecom corridors.
+- Completely clean and sanitized UI with zero visible credential leakage.
+
+![Admin Access Tab](docs/screenshots/77_clean_auth_modal_admin_tab.png)
+*Figure 21: Administrative passcode access tab for authorized command personnel.*
+
+---
+
+### 3. Dynamic Time-of-Day Greetings
+Upon successful authentication, the top command navigation bar automatically displays a context-aware greeting referencing the local system clock and responder identity:
+- **05:00 – 11:59**: `🌅 Good morning, [FirstName]`
+- **12:00 – 16:59**: `☀️ Good afternoon, [FirstName]`
+- **17:00 – 20:59**: `🌇 Good evening, [FirstName]`
+- **21:00 – 04:59**: `🌙 Good night, [FirstName]`
+
+![Active Header Greeting](docs/screenshots/78_clean_authenticated_header.png)
+*Figure 22: Live authenticated top navigation header showing the dynamic time-of-day greeting, responsive view toggles, and user avatar.*
+
+---
+
+### 4. Interactive Profile Avatar & Sign Out Action
+Clicking the profile picture in the top command bar opens an executive profile popover menu:
+- **High-Resolution Avatar**: Displays the responder's Google account picture or initial avatar.
+- **Session Telemetry**: Displays the full name, Gmail ID (`aryan.das@gmail.com`) or phone number, provider tag, and disaster risk analyst badge.
+- **Sign Out Action**: Terminating the session immediately clears localStorage tokens and redirects the responder safely back to the clean Home landing page.
+
+![Google User Profile Popover](docs/screenshots/86_google_user_profile_popover.png)
+*Figure 23: Interactive Profile Popover menu displaying authenticated Google account details ("Aryan Das") and the high-contrast Sign Out action.*
+
+![Post Sign-Out Return to Home](docs/screenshots/87_sign_out_returns_to_home.png)
+*Figure 24: Secure post-sign-out redirection to the clean Home landing page with the "SIGN IN" button restored.*
+
+---
+
+### 5. Server-Side Login Access Audit Log (`logs/auth_access.log`)
+Every successful login event is automatically transmitted to the backend server and recorded in `logs/auth_access.log`. The log captures the user's Gmail ID, display name, phone number, provider, timestamp, UID, and client IP:
+
+```log
+[2026-09-10T16:41:38.693Z] AUTH_ACCESS_SUCCESS | Provider: ADMIN | Name: "System Administrator" | Gmail: "admin@disaster-command.gov.in" | Phone: N/A | UID: admin-abc123 | IP: ::1
+[2026-09-10T16:44:00.897Z] AUTH_ACCESS_SUCCESS | Provider: GOOGLE | Name: "Aryan Das" | Gmail: "aryan.das@gmail.com" | Phone: "N/A" | UID: google-uid-aryan-das-001 | IP: ::1
+[2026-09-10T16:44:00.904Z] AUTH_ACCESS_SUCCESS | Provider: PHONE | Name: "Aryan Das" | Gmail: "N/A" | Phone: "+919435885077" | UID: phone-uid-aryan-das-002 | IP: ::1
+```
+
+> [!IMPORTANT]
+> **Strict Git Privacy Protection**: All audit log files (`logs/`, `*.log`, `auth_access.log`) and sensitive environment secrets are strictly ignored by the dedicated root `.gitignore` file, ensuring user privacy and statutory compliance.
+
+---
+## 💻 Prerequisites & System Requirements
 
 | Component | Minimum Specification | Recommended Specification |
 | :--- | :--- | :--- |
@@ -404,7 +479,7 @@ Clicking the profile picture in the top command bar opens an executive profile p
 
 ---
 
-##  Installation & Quick Start
+## 🚀 Installation & Quick Start
 
 ### 1. Clone the Repository
 ```bash
@@ -431,7 +506,7 @@ npm run dev
 ```
 Open your browser and navigate to:
 ```
-http://localhost:5173/#dashboard
+http://localhost:5173/
 ```
 
 ### 5. Build for Production
@@ -445,13 +520,37 @@ npm run preview
 
 ---
 
-##  How to Use the Platform (Walkthrough)
+## 📖 How to Use the Platform (Walkthrough)
 
-### 1. Navigating the Sovereign Map
+### 1. Default Landing & Mission Portal
+When you launch ERMS or navigate to `http://localhost:5173/`, you land on the pristine, unauthenticated Home portal:
+
+![Default Home Landing](docs/screenshots/83_default_landing_home_unauth.png)
+*Figure 25: Initial landing page featuring the national mission title and the primary "OPEN DASHBOARD" button.*
+
+### 2. Operational Authentication & Dashboard Gatekeeping
+Click **"OPEN DASHBOARD"** in the center or **"DASHBOARD"** in the top navigation bar. ERMS prompts for operational identity:
+
+![Authentication Prompt](docs/screenshots/84_open_dashboard_prompts_login.png)
+*Figure 26: Sovereign Operational Authentication modal with Google, Phone OTP, and Admin access options.*
+
+Choose your provider:
+- **Google OAuth 2.0**: Single click to sign in with your official account.
+- **Phone OTP**: Enter your mobile number to receive a 6-digit carrier SMS code.
+- **Admin Access**: For air-gapped emergency stations, authenticate with administrative credentials.
+
+Upon authentication, ERMS automatically transitions you directly into the live **Dashboard Console**!
+
+![Live Operational Cockpit](docs/screenshots/85_authenticated_dashboard_after_login.png)
+*Figure 27: Authenticated disaster operations cockpit featuring live sensor streams, geodetic map, and dynamic time-of-day greeting.*
+
+---
+
+### 3. Navigating the Sovereign Map
 - **Inspect Pre-Loaded Calamities**: Use the top **Hazard Toggles** (e.g. `FLOOD`, `HEAT`, `AQI`, `CYCLONE`) to display calibrated geo-spatial layers including river centerlines, IMD heatwave gradients, seismic faults, and cyclone tracks.
 - **Infinite GPS Hooking**: Click anywhere on the map within India. ERMS resolves the nearest river basin, gauge station, elevation contour, and administrative settlement in under 15ms.
 
-### 2. Progressive Disclosure (Hidden-by-Default Architecture)
+### 4. Progressive Disclosure (Hidden-by-Default Architecture)
 To eliminate visual clutter during emergency decision-making, detail panels are cleanly collapsed on initial load. Users can selectively expand:
 - `01 GPS NODE`: Active geodetic telemetry and elevation fix.
 - `02 12-CH RAW`: 12-channel physical IoT sensor matrix.
@@ -461,7 +560,7 @@ To eliminate visual clutter during emergency decision-making, detail panels are 
 - `06 SPILLOVER`: Downstream cascading proximity impact forecast.
 - `07 SENSOR STREAM`: Real-time hardware log ingestion dock.
 
-### 3. Interactive Scenario Simulation
+### 5. Interactive Scenario Simulation
 Click `+ VIEW MODES` on the `04 SIMULATION` block, or select a scenario from the dropdown:
 - `Silchar Flood Surge (Assam)`: Breaches danger mark by +0.38m with 3,420 cumecs discharge along the Barak River.
 - `Churu Desert Extreme Heatwave (Rajasthan)`: Simulates 48.6°C surface temp and 54°C Heat Index.
@@ -477,7 +576,7 @@ Click `+ VIEW MODES` on the `04 SIMULATION` block, or select a scenario from the
 
 ---
 
-##  Real-Time IoT Hardware Telemetry Streaming
+## 📡 Real-Time IoT Hardware Telemetry Streaming
 
 ERMS features a native hardware ingestion pipeline that monitors `sensor_logs/` in real time.
 
@@ -515,7 +614,7 @@ node scripts/sensor_logger_stream.js --scenario=glacial
 
 ---
 
-##  Offline Machine Learning Training Pipeline
+## 🧠 Offline Machine Learning Training Pipeline
 
 To re-train the Dual Ensemble machine learning models on the raw 552,912 records:
 
@@ -539,7 +638,7 @@ The script:
 
 ---
 
-##  REST & Server-Sent Events (SSE) API Reference
+## 🔌 REST & Server-Sent Events (SSE) API Reference
 
 The Vite dev server plugin exposes live HTTP endpoints for external hardware sensors, edge devices, and field loggers:
 
@@ -569,7 +668,7 @@ curl -X POST http://localhost:5173/api/sensor-logs/append \
 
 ---
 
-##  Enterprise 5-Tier Production Repository Architecture
+## 📁 Enterprise 5-Tier Production Repository Architecture
 
 ```
 SIH26178_new/
@@ -626,9 +725,19 @@ SIH26178_new/
 └── README.md                     # Master platform documentation
 ```
 
+### Production Architecture Live Operation Proof
+
+#### 1. Full-Stack Multi-Tier Production Cockpit
+![Segregated Production Cockpit](docs/screenshots/81_segregated_production_dashboard.png)
+*Figure 28: Live production deployment showing the React/Vite client running on port 5173 reverse-proxying and consuming live telemetry from the backend Express server on port 5000.*
+
+#### 2. Authenticated Command Cockpit with Night Greeting
+![Segregated Authenticated Cockpit](docs/screenshots/82_segregated_authenticated_cockpit.png)
+*Figure 29: Executive disaster intelligence session operating with backend administrative security and real-time SSE physical sensor stream active.*
+
 ---
 
-##  Hackathon Attribution & License
+## 🏆 Hackathon Attribution & License
 
 - **Initiative**: Developed for **Smart India Hackathon 2026 (SIH 2026)**.
 - **Problem Statement ID**: `SIH2026-26178` — *Comprehensive Multi-Hazard Early Warning & AI Emergency Risk Management System*.
@@ -643,4 +752,4 @@ SIH26178_new/
 - **License**: Released under the [MIT License](LICENSE). Open-source for academic, humanitarian, and civil defense applications.
 
 ---
-*Developed with dedication for the protection of human life, national infrastructure, and environmental ecosystems across Bharat.* 
+*Developed with dedication for the protection of human life, national infrastructure, and environmental ecosystems across Bharat.* 🇮🇳
