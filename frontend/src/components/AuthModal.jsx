@@ -69,10 +69,10 @@ export default function AuthModal({ isOpen, onClose }) {
 
   if (!isOpen) return null;
 
-  const handleGoogleSignIn = async (useRedirect = false) => {
+  const handleGoogleSignIn = async () => {
     setLocalError('');
     clearAuthError?.();
-    const result = await loginWithGoogle(useRedirect);
+    const result = await loginWithGoogle();
     if (!result?.success && result?.error !== 'Popup closed') {
       setLocalError(result?.error || 'Google authentication failed. Please try again.');
     }
@@ -227,7 +227,7 @@ export default function AuthModal({ isOpen, onClose }) {
               <button
                 type="button"
                 className="clean-box-btn google-sign-in-btn"
-                onClick={() => handleGoogleSignIn(false)}
+                onClick={handleGoogleSignIn}
                 disabled={authLoading}
               >
                 <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
@@ -237,26 +237,6 @@ export default function AuthModal({ isOpen, onClose }) {
                   <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
                 </svg>
                 {authLoading ? 'CONNECTING TO GOOGLE...' : 'CONTINUE WITH GOOGLE'}
-              </button>
-
-              <button
-                type="button"
-                className="clean-box-btn auth-secondary-btn"
-                style={{ marginTop: '10px', width: '100%', fontSize: '11px', letterSpacing: '0.04em' }}
-                onClick={() => handleGoogleSignIn(true)}
-                disabled={authLoading}
-              >
-                SIGN IN VIA REDIRECT (IF POPUP IS BLOCKED)
-              </button>
-
-              <button
-                type="button"
-                className="clean-box-btn auth-demo-btn"
-                style={{ marginTop: '8px', width: '100%', fontSize: '11px', letterSpacing: '0.04em', background: 'rgba(56, 189, 248, 0.08)', color: '#38bdf8', borderColor: 'rgba(56, 189, 248, 0.3)' }}
-                onClick={() => loginWithDemo('google')}
-                disabled={authLoading}
-              >
-                ENTER AS VERIFIED DEMO OPERATOR
               </button>
             </div>
           </div>
@@ -444,70 +424,7 @@ export default function AuthModal({ isOpen, onClose }) {
               <line x1="12" y1="8" x2="12" y2="12" />
               <line x1="12" y1="16" x2="12.01" y2="16" />
             </svg>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', textAlign: 'left', width: '100%' }}>
-              <span style={{ fontWeight: 600 }}>{localError || authError}</span>
-              {activeTab === 'google' && (
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', marginTop: '2px' }}>
-                  <button
-                    type="button"
-                    style={{
-                      background: 'transparent',
-                      border: 'none',
-                      color: '#ef4444',
-                      textDecoration: 'underline',
-                      cursor: 'pointer',
-                      fontSize: '11px',
-                      padding: 0,
-                      textAlign: 'left',
-                      fontWeight: 600,
-                    }}
-                    onClick={() => handleGoogleSignIn(true)}
-                    disabled={authLoading}
-                  >
-                    Click here to sign in via full-page redirect
-                  </button>
-                  <button
-                    type="button"
-                    style={{
-                      background: 'transparent',
-                      border: 'none',
-                      color: '#0284c7',
-                      textDecoration: 'underline',
-                      cursor: 'pointer',
-                      fontSize: '11px',
-                      padding: 0,
-                      textAlign: 'left',
-                      fontWeight: 600,
-                    }}
-                    onClick={() => loginWithDemo('google')}
-                    disabled={authLoading}
-                  >
-                    Or enter directly with Demo Operator profile
-                  </button>
-                </div>
-              )}
-              {activeTab === 'phone' && (
-                <button
-                  type="button"
-                  style={{
-                    background: 'transparent',
-                    border: 'none',
-                    color: '#0284c7',
-                    textDecoration: 'underline',
-                    cursor: 'pointer',
-                    fontSize: '11px',
-                    padding: 0,
-                    textAlign: 'left',
-                    fontWeight: 600,
-                    marginTop: '2px',
-                  }}
-                  onClick={() => loginWithDemo('phone', { phoneNumber: phoneNumber || '+91 99999 99999', displayName: phoneUserName || 'Field Officer' })}
-                  disabled={authLoading}
-                >
-                  Or enter directly with Field Responder profile (Bypass SMS)
-                </button>
-              )}
-            </div>
+            <span style={{ fontWeight: 600 }}>{localError || authError}</span>
           </div>
         )}
       </div>
