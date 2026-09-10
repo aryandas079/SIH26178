@@ -1,4 +1,6 @@
-# 🌐 ERMS: Environmental Risk Management System
+### Developed by Aryan Das
+
+# ERMS: Environmental Risk Management System
 ### Sovereign All-India Multi-Hazard Early Warning & AI Disaster Command System
 **Smart India Hackathon 2026 (SIH 2026) | Problem Statement: SIH2026-26178**
 
@@ -12,15 +14,15 @@
 
 ---
 
-## 📌 Executive Summary
+## Executive Summary
 
 **ERMS (Environmental Risk Management System)** is an enterprise-grade, sovereign disaster management cockpit and predictive early-warning platform engineered for the Republic of India. Calibrated on **552,912 real historical disaster records** across 12 calamity channels from India's apex scientific authorities (**CPCB, IMD, CWC, NDMA, GSI, INCOIS, and SAC-ISRO**), ERMS bridges the critical operational gap between field IoT telemetry and rapid emergency response mobilization.
 
 The system integrates:
 1. **Dual Ensemble Machine Learning Pipeline**: Calibrated Logistic Classifiers with L2 Regularization coupled with Isolation Forest models delivering an aggregate **94.72% empirical precision** across 12 sovereign hazard channels.
 2. **Physics-Informed Geotechnical & Hydraulic Mechanics**:
-   - **Terzaghi-Coulomb Limit Equilibrium Infinite Slope Stability**: Evaluates hillslope regolith shear collapse Factor of Safety ($FS$) under monsoonal pore-water pressure ($u$) and transboundary Nepal-Himalayan watershed runoff surcharges ($\times 1.42$).
-   - **Manning's Open-Channel Hydraulic Wave Kinematics**: Predicts reach-based river flood surge propagation velocities ($v = \frac{1}{n} R_h^{2/3} S^{1/2}$) and downstream arrival horizons.
+ - **Terzaghi-Coulomb Limit Equilibrium Infinite Slope Stability**: Evaluates hillslope regolith shear collapse Factor of Safety ($FS$) under monsoonal pore-water pressure ($u$) and transboundary Nepal-Himalayan watershed runoff surcharges ($\times 1.42$).
+ - **Manning's Open-Channel Hydraulic Wave Kinematics**: Predicts reach-based river flood surge propagation velocities ($v = \frac{1}{n} R_h^{2/3} S^{1/2}$) and downstream arrival horizons.
 3. **Topological Downstream Proximity Cascading Network**: Traverses all major Indian river drainage basins (Ganga, Yamuna, Narmada, Brahmaputra, Godavari, Krishna, Mahanadi, Barak, Indus-Chenab) and radial dispersion gradients to forecast adjacent settlements at risk, displacement headcounts, and economic damages.
 4. **Infinite-Coordinate Geodesic Resolution Engine**: Resolves any arbitrary click or GPS fix in India to the nearest drainage basin, river reach, elevation contour, seismic zone, and administrative district.
 5. **Real-Time Live IoT Stream Ingestion & Vite HMR Watcher**: Dev-server plugin and client subscriber providing zero-latency synchronization with hardware field logger files in `sensor_logs/` via WebSockets, SSE, and HTTP REST endpoints.
@@ -29,7 +31,7 @@ The system integrates:
 
 ---
 
-## 🗺️ System Overview & Primary Visual Tour
+## System Overview & Primary Visual Tour
 
 ### 1. Default Landing Portal (Distraction-Free Mission Entry)
 ![Default Landing Experience](docs/screenshots/83_default_landing_home_unauth.png)
@@ -41,23 +43,23 @@ The system integrates:
 
 ---
 
-## 📑 Table of Contents
+## Table of Contents
 
 - [Executive Summary](#-executive-summary)
 - [System Architecture Flowcharts](#-system-architecture-flowcharts)
-  - [High-Level System Architecture](#1-high-level-system-architecture)
-  - [Dual Ensemble ML Anomaly Pipeline](#2-dual-ensemble-ml-anomaly--physics-pipeline)
-  - [Topological Downstream Proximity Cascade](#3-topological-downstream-proximity-cascade)
-  - [Real-Time IoT Log Streaming Engine](#4-real-time-iot-log-streaming-engine)
+ - [High-Level System Architecture](#1-high-level-system-architecture)
+ - [Dual Ensemble ML Anomaly Pipeline](#2-dual-ensemble-ml-anomaly--physics-pipeline)
+ - [Topological Downstream Proximity Cascade](#3-topological-downstream-proximity-cascade)
+ - [Real-Time IoT Log Streaming Engine](#4-real-time-iot-log-streaming-engine)
 - [The 12 Sovereign Hazard Channels](#-the-12-sovereign-hazard-channels)
 - [Empirical ML Validation & Precision Metrics](#-empirical-ml-validation--precision-metrics)
 - [Physics-Informed Formulations](#-physics-informed-formulations)
 - [Comprehensive Visual Tour & Screenshots](#-comprehensive-visual-tour--screenshots)
 - [Authentication & Sovereign Access Control](#-authentication--sovereign-access-control)
-  - [Google Account OAuth 2.0](#1-google-account-oauth-20)
-  - [Mobile Phone SMS OTP Authentication](#2-mobile-phone-sms-otp-authentication)
-  - [Dynamic Time-of-Day Greetings](#3-dynamic-time-of-day-greetings)
-  - [Interactive Profile Avatar & Sign Out](#4-interactive-profile-avatar--sign-out)
+ - [Google Account OAuth 2.0](#1-google-account-oauth-20)
+ - [Mobile Phone SMS OTP Authentication](#2-mobile-phone-sms-otp-authentication)
+ - [Dynamic Time-of-Day Greetings](#3-dynamic-time-of-day-greetings)
+ - [Interactive Profile Avatar & Sign Out](#4-interactive-profile-avatar--sign-out)
 - [Prerequisites & System Requirements](#-prerequisites--system-requirements)
 - [Installation & Quick Start](#-installation--quick-start)
 - [How to Use the Platform (Walkthrough)](#-how-to-use-the-platform-walkthrough)
@@ -69,46 +71,46 @@ The system integrates:
 
 ---
 
-## 🔄 System Architecture Flowcharts
+## System Architecture Flowcharts
 
 ### 1. High-Level System Architecture
 
 ```mermaid
 graph TB
-    subgraph SENSORS["1. MULTI-SOURCE SENSOR & SATELLITE TELEMETRY"]
-        A1["CPCB SAMEER Ambient Air Stations"]
-        A2["CWC / NIH Telemetric River Gauges"]
-        A3["IMD Synoptic AWS Network"]
-        A4["INCOIS DART Ocean Buoys"]
-        A5["SAC-ISRO Himalayan Cryosphere Satellites"]
-        A6["CPCB Online Stack OCEMS (Industry)"]
-        A7["Field Hardware CSV Logs (sensor_logs/)"]
-    end
+ subgraph SENSORS["1. MULTI-SOURCE SENSOR & SATELLITE TELEMETRY"]
+ A1["CPCB SAMEER Ambient Air Stations"]
+ A2["CWC / NIH Telemetric River Gauges"]
+ A3["IMD Synoptic AWS Network"]
+ A4["INCOIS DART Ocean Buoys"]
+ A5["SAC-ISRO Himalayan Cryosphere Satellites"]
+ A6["CPCB Online Stack OCEMS (Industry)"]
+ A7["Field Hardware CSV Logs (sensor_logs/)"]
+ end
 
-    subgraph INGESTION["2. INGESTION & GEODETIC RESOLUTION ENGINE"]
-        B1["Vite Dev Server SensorLogsWatcher Plugin"]
-        B2["Real-Time Stream Service (WebSocket + SSE + Polling)"]
-        B3["Infinite-Coordinate Geodesic Resolver (All-India KD-Tree/Haversine)"]
-    end
+ subgraph INGESTION["2. INGESTION & GEODETIC RESOLUTION ENGINE"]
+ B1["Vite Dev Server SensorLogsWatcher Plugin"]
+ B2["Real-Time Stream Service (WebSocket + SSE + Polling)"]
+ B3["Infinite-Coordinate Geodesic Resolver (All-India KD-Tree/Haversine)"]
+ end
 
-    subgraph CORE_ENGINES["3. INTELLIGENCE & ANALYTIC ENGINES"]
-        C1["Dual Ensemble ML Anomaly Detector (Calibrated Logistic + Isolation Forest)"]
-        C2["Geotechnical Limit Equilibrium Engine (Terzaghi-Coulomb FS)"]
-        C3["Topological River Basin Graph & Manning Hydraulics"]
-        C4["Sovereign Gemini AI Disaster Commander (Gemini 1.5 Flash + Heuristics)"]
-    end
+ subgraph CORE_ENGINES["3. INTELLIGENCE & ANALYTIC ENGINES"]
+ C1["Dual Ensemble ML Anomaly Detector (Calibrated Logistic + Isolation Forest)"]
+ C2["Geotechnical Limit Equilibrium Engine (Terzaghi-Coulomb FS)"]
+ C3["Topological River Basin Graph & Manning Hydraulics"]
+ C4["Sovereign Gemini AI Disaster Commander (Gemini 1.5 Flash + Heuristics)"]
+ end
 
-    subgraph COCKPIT_UI["4. SOVEREIGN DISASTER COCKPIT INTERFACE"]
-        D1["Sovereign All-India Vector Map (River Polylines, Quake Faults, Heat Contours)"]
-        D2["Dual Ensemble Anomaly Forensic Cards (Precision %, Feature Weights)"]
-        D3["Topic Analytics Radar (CPCB/IMD Standard Barometers)"]
-        D4["Downstream Cascading Risk & NDRF Mobilization Directives"]
-        D5["Sovereign Emergency AI Voice & Multi-Lingual Incident Briefing"]
-    end
+ subgraph COCKPIT_UI["4. SOVEREIGN DISASTER COCKPIT INTERFACE"]
+ D1["Sovereign All-India Vector Map (River Polylines, Quake Faults, Heat Contours)"]
+ D2["Dual Ensemble Anomaly Forensic Cards (Precision %, Feature Weights)"]
+ D3["Topic Analytics Radar (CPCB/IMD Standard Barometers)"]
+ D4["Downstream Cascading Risk & NDRF Mobilization Directives"]
+ D5["Sovereign Emergency AI Voice & Multi-Lingual Incident Briefing"]
+ end
 
-    SENSORS --> INGESTION
-    INGESTION --> CORE_ENGINES
-    CORE_ENGINES --> COCKPIT_UI
+ SENSORS --> INGESTION
+ INGESTION --> CORE_ENGINES
+ CORE_ENGINES --> COCKPIT_UI
 ```
 
 ---
@@ -117,42 +119,42 @@ graph TB
 
 ```mermaid
 flowchart LR
-    subgraph INPUT["12-Channel Input Telemetry"]
-        X["Observation Vector X = [x_1, x_2, ..., x_n]"]
-    end
+ subgraph INPUT["12-Channel Input Telemetry"]
+ X["Observation Vector X = [x_1, x_2, ..., x_n]"]
+ end
 
-    subgraph PREPROCESSING["Standardization & Scaling"]
-        Z["Standard Score: z_i = (x_i - μ_i) / σ_i"]
-    end
+ subgraph PREPROCESSING["Standardization & Scaling"]
+ Z["Standard Score: z_i = (x_i - μ_i) / σ_i"]
+ end
 
-    subgraph MODEL["Dual Ensemble Evaluation"]
-        M1["Calibrated Logistic Classifier: z = b + Σ(w_i * z_i)"]
-        M2["Isolation Forest Anomaly Scoring"]
-        M3["Probability Sigmoid: P = 1 / (1 + e^-z)"]
-    end
+ subgraph MODEL["Dual Ensemble Evaluation"]
+ M1["Calibrated Logistic Classifier: z = b + Σ(w_i * z_i)"]
+ M2["Isolation Forest Anomaly Scoring"]
+ M3["Probability Sigmoid: P = 1 / (1 + e^-z)"]
+ end
 
-    subgraph ATTRIBUTION["Feature Attribution"]
-        W["Normalized Attribution: Contrib_i = |w_i * z_i| / Σ|w_j * z_j| * 100%"]
-    end
+ subgraph ATTRIBUTION["Feature Attribution"]
+ W["Normalized Attribution: Contrib_i = |w_i * z_i| / Σ|w_j * z_j| * 100%"]
+ end
 
-    subgraph PHYSICS["Physics-Informed Domain Engines"]
-        P1["Coulomb-Terzaghi Infinite Slope Stability: FS = Resisting / Mobilized"]
-        P2["Manning's Open-Channel Wave Velocity: v = (1/n) * Rh^(2/3) * S^(1/2)"]
-    end
+ subgraph PHYSICS["Physics-Informed Domain Engines"]
+ P1["Coulomb-Terzaghi Infinite Slope Stability: FS = Resisting / Mobilized"]
+ P2["Manning's Open-Channel Wave Velocity: v = (1/n) * Rh^(2/3) * S^(1/2)"]
+ end
 
-    subgraph OUTPUT["Telemetry Forensic Payload"]
-        R1["Hazard Severity & Alert Trigger"]
-        R2["Precision %, Recall %, F1-Score, ROC-AUC, FAR %"]
-        R3["Feature Contribution Progress Bars"]
-        R4["Geotechnical Factor of Safety (FS) Badge"]
-    end
+ subgraph OUTPUT["Telemetry Forensic Payload"]
+ R1["Hazard Severity & Alert Trigger"]
+ R2["Precision %, Recall %, F1-Score, ROC-AUC, FAR %"]
+ R3["Feature Contribution Progress Bars"]
+ R4["Geotechnical Factor of Safety (FS) Badge"]
+ end
 
-    INPUT --> PREPROCESSING
-    PREPROCESSING --> MODEL
-    MODEL --> ATTRIBUTION
-    MODEL --> PHYSICS
-    ATTRIBUTION --> OUTPUT
-    PHYSICS --> OUTPUT
+ INPUT --> PREPROCESSING
+ PREPROCESSING --> MODEL
+ MODEL --> ATTRIBUTION
+ MODEL --> PHYSICS
+ ATTRIBUTION --> OUTPUT
+ PHYSICS --> OUTPUT
 ```
 
 ---
@@ -161,21 +163,21 @@ flowchart LR
 
 ```mermaid
 flowchart TD
-    A["Epicenter Coordinates (lat, lng) Clicked or Streamed"] --> B["Resolve Geodetic Fix: Nearest Settlement & Drainage Basin"]
-    B --> C{"Is Distance to River Polyline < 120 km?"}
-    
-    C -- YES --> D["Traverse River Topological Reach Graph (Ganga, Narmada, Barak, etc.)"]
-    D --> E["Identify Downstream Settlements Along Reach Vector"]
-    D --> F["Calculate Manning's Wave Velocity: v = (1/n) * Rh^(2/3) * S^(1/2)"]
-    F --> G["Compute Reach-Based Arrival Horizons (Hours: t = d / v)"]
-    E --> H["Compute Cascading Spillover Probability %, Displaced Population, Economic Loss"]
+ A["Epicenter Coordinates (lat, lng) Clicked or Streamed"] --> B["Resolve Geodetic Fix: Nearest Settlement & Drainage Basin"]
+ B --> C{"Is Distance to River Polyline < 120 km?"}
+ 
+ C -- YES --> D["Traverse River Topological Reach Graph (Ganga, Narmada, Barak, etc.)"]
+ D --> E["Identify Downstream Settlements Along Reach Vector"]
+ D --> F["Calculate Manning's Wave Velocity: v = (1/n) * Rh^(2/3) * S^(1/2)"]
+ F --> G["Compute Reach-Based Arrival Horizons (Hours: t = d / v)"]
+ E --> H["Compute Cascading Spillover Probability %, Displaced Population, Economic Loss"]
 
-    C -- NO --> I["Traverse Radial Terrestrial Proximity Network"]
-    I --> J["Compute Convective Dispersion (Atmospheric Plume, Thermal Advection)"]
-    J --> G
-    J --> H
+ C -- NO --> I["Traverse Radial Terrestrial Proximity Network"]
+ I --> J["Compute Convective Dispersion (Atmospheric Plume, Thermal Advection)"]
+ J --> G
+ J --> H
 
-    G & H --> K["3-Phase Operational Action Countermeasures (Phase I Immediate, Phase II Evacuation, Phase III Recovery)"]
+ G & H --> K["3-Phase Operational Action Countermeasures (Phase I Immediate, Phase II Evacuation, Phase III Recovery)"]
 ```
 
 ---
@@ -184,29 +186,29 @@ flowchart TD
 
 ```mermaid
 sequenceDiagram
-    autonumber
-    actor Sensor as Field Hardware Logger / CLI Simulator
-    participant File as sensor_logs/live_active_stream.csv
-    participant Watcher as Vite Plugin (vitePluginSensorLogs.js)
-    participant Client as React Dashboard (realtimeSensorStreamService.js)
-    participant ML as ML Anomaly Engine (anomalyDetectionEngine.js)
-    participant Map as Sovereign Map UI
+ autonumber
+ actor Sensor as Field Hardware Logger / CLI Simulator
+ participant File as sensor_logs/live_active_stream.csv
+ participant Watcher as Vite Plugin (vitePluginSensorLogs.js)
+ participant Client as React Dashboard (realtimeSensorStreamService.js)
+ participant ML as ML Anomaly Engine (anomalyDetectionEngine.js)
+ participant Map as Sovereign Map UI
 
-    Sensor->>File: Append CSV telemetry frame (timestamp, GPS, 12 channels)
-    File-->>Watcher: Native OS FileSystem Watch Trigger (fs.watch)
-    Watcher->>Watcher: Parse CSV, extract latest record & station metadata
-    Watcher->>Client: Instant Push over Vite HMR WebSocket (sensor-log-stream-update)
-    alt WebSocket Offline Fallback
-        Watcher-->>Client: Fallback via Server-Sent Events (/api/sensor-logs/stream)
-    end
-    Client->>ML: evaluateMultiSensorAnomaly(newReadings, activeHazards)
-    ML->>Client: Anomaly Payload (Breaches, Precision %, Feature Attributions, FS)
-    Client->>Map: Update Sovereign GPS Pin, Shift Center, Render Breach Overlays
+ Sensor->>File: Append CSV telemetry frame (timestamp, GPS, 12 channels)
+ File-->>Watcher: Native OS FileSystem Watch Trigger (fs.watch)
+ Watcher->>Watcher: Parse CSV, extract latest record & station metadata
+ Watcher->>Client: Instant Push over Vite HMR WebSocket (sensor-log-stream-update)
+ alt WebSocket Offline Fallback
+ Watcher-->>Client: Fallback via Server-Sent Events (/api/sensor-logs/stream)
+ end
+ Client->>ML: evaluateMultiSensorAnomaly(newReadings, activeHazards)
+ ML->>Client: Anomaly Payload (Breaches, Precision %, Feature Attributions, FS)
+ Client->>Map: Update Sovereign GPS Pin, Shift Center, Render Breach Overlays
 ```
 
 ---
 
-## 🛡️ The 12 Sovereign Hazard Channels
+## The 12 Sovereign Hazard Channels
 
 ERMS covers all twelve natural and anthropogenic calamity classifications recognized under national civil protection protocols:
 
@@ -227,7 +229,7 @@ ERMS covers all twelve natural and anthropogenic calamity classifications recogn
 
 ---
 
-## 📊 Empirical ML Validation & Precision Metrics
+## Empirical ML Validation & Precision Metrics
 
 The machine learning subsystem was trained on **552,912 authentic Indian environmental disaster observations** using Stratified 5-Fold Cross-Validation. Below are the verified empirical performance benchmarks on held-out validation partitions:
 
@@ -249,7 +251,7 @@ The machine learning subsystem was trained on **552,912 authentic Indian environ
 
 ---
 
-## 🧮 Physics-Informed Formulations
+## Physics-Informed Formulations
 
 ### 1. Terzaghi-Coulomb Factor of Safety ($FS$) for Hillslope Stability
 In hilly and transboundary mountainous tracts (e.g. Nepal-Himalayan Arc, Western Ghats), rainfall saturation induces positive pore-water pressure, collapsing effective shear strength. The Factor of Safety is evaluated continuously:
@@ -279,7 +281,7 @@ where:
 
 ---
 
-## 🖼️ Comprehensive Visual Tour & Screenshots
+## Comprehensive Visual Tour & Screenshots
 
 ### 1. Default Landing Experience (Pristine Home Portal)
 ![Default Landing Experience](docs/screenshots/83_default_landing_home_unauth.png)
@@ -380,7 +382,7 @@ where:
 
 ---
 
-## 🔐 Authentication & Sovereign Access Control
+## Authentication & Sovereign Access Control
 
 ERMS incorporates a zero-trust, multi-provider sovereign access control architecture powered by **Firebase Authentication** (`firebase/auth`), supporting live Google OAuth 2.0, mobile phone SMS OTP verification, and emergency field credentials.
 
@@ -429,10 +431,10 @@ When an unauthenticated responder clicks **"OPEN DASHBOARD"** on the landing pag
 
 ### 3. Dynamic Time-of-Day Greetings
 Upon successful authentication, the top command navigation bar automatically displays a context-aware greeting referencing the local system clock and responder identity:
-- **05:00 – 11:59**: `🌅 Good morning, [FirstName]`
-- **12:00 – 16:59**: `☀️ Good afternoon, [FirstName]`
-- **17:00 – 20:59**: `🌇 Good evening, [FirstName]`
-- **21:00 – 04:59**: `🌙 Good night, [FirstName]`
+- **05:00 – 11:59**: ` Good morning, [FirstName]`
+- **12:00 – 16:59**: ` Good afternoon, [FirstName]`
+- **17:00 – 20:59**: ` Good evening, [FirstName]`
+- **21:00 – 04:59**: ` Good night, [FirstName]`
 
 ![Active Header Greeting](docs/screenshots/78_clean_authenticated_header.png)
 *Figure 22: Live authenticated top navigation header showing the dynamic time-of-day greeting, responsive view toggles, and user avatar.*
@@ -466,7 +468,7 @@ Every successful login event is automatically transmitted to the backend server 
 > **Strict Git Privacy Protection**: All audit log files (`logs/`, `*.log`, `auth_access.log`) and sensitive environment secrets are strictly ignored by the dedicated root `.gitignore` file, ensuring user privacy and statutory compliance.
 
 ---
-## 💻 Prerequisites & System Requirements
+## Prerequisites & System Requirements
 
 | Component | Minimum Specification | Recommended Specification |
 | :--- | :--- | :--- |
@@ -479,7 +481,7 @@ Every successful login event is automatically transmitted to the backend server 
 
 ---
 
-## 🚀 Installation & Quick Start
+## Installation & Quick Start
 
 ### 1. Clone the Repository
 ```bash
@@ -520,7 +522,7 @@ npm run preview
 
 ---
 
-## 📖 How to Use the Platform (Walkthrough)
+## How to Use the Platform (Walkthrough)
 
 ### 1. Default Landing & Mission Portal
 When you launch ERMS or navigate to `http://localhost:5173/`, you land on the pristine, unauthenticated Home portal:
@@ -576,7 +578,7 @@ Click `+ VIEW MODES` on the `04 SIMULATION` block, or select a scenario from the
 
 ---
 
-## 📡 Real-Time IoT Hardware Telemetry Streaming
+## Real-Time IoT Hardware Telemetry Streaming
 
 ERMS features a native hardware ingestion pipeline that monitors `sensor_logs/` in real time.
 
@@ -614,7 +616,7 @@ node scripts/sensor_logger_stream.js --scenario=glacial
 
 ---
 
-## 🧠 Offline Machine Learning Training Pipeline
+## Offline Machine Learning Training Pipeline
 
 To re-train the Dual Ensemble machine learning models on the raw 552,912 records:
 
@@ -632,13 +634,13 @@ The script:
 3. Fits L2-penalized `LogisticRegression` and `IsolationForest` models.
 4. Generates cross-validation classification reports (Precision, Recall, F1, ROC-AUC, FAR).
 5. Exports production model weights, standardizers, feature importances, and geotechnical physics into:
-   ```
-   src/data/hazardAnomalyModel.json
-   ```
+ ```
+ src/data/hazardAnomalyModel.json
+ ```
 
 ---
 
-## 🔌 REST & Server-Sent Events (SSE) API Reference
+## REST & Server-Sent Events (SSE) API Reference
 
 The Vite dev server plugin exposes live HTTP endpoints for external hardware sensors, edge devices, and field loggers:
 
@@ -652,77 +654,77 @@ The Vite dev server plugin exposes live HTTP endpoints for external hardware sen
 #### Example POST Request:
 ```bash
 curl -X POST http://localhost:5173/api/sensor-logs/append \
-  -H "Content-Type: application/json" \
-  -d '{
-    "station_id": "NODE-KOSHI-8821",
-    "latitude": 26.5412,
-    "longitude": 86.9214,
-    "zone": "KOSHI RIVER BASIN, BIHAR",
-    "river_water_level_m": 72.85,
-    "river_danger_level_m": 71.50,
-    "river_discharge_cumecs": 14200.0,
-    "rainfall_24h_mm": 128.5,
-    "soil_moisture_pct": 98.2
-  }'
+ -H "Content-Type: application/json" \
+ -d '{
+ "station_id": "NODE-KOSHI-8821",
+ "latitude": 26.5412,
+ "longitude": 86.9214,
+ "zone": "KOSHI RIVER BASIN, BIHAR",
+ "river_water_level_m": 72.85,
+ "river_danger_level_m": 71.50,
+ "river_discharge_cumecs": 14200.0,
+ "rainfall_24h_mm": 128.5,
+ "soil_moisture_pct": 98.2
+ }'
 ```
 
 ---
 
-## 📁 Enterprise 5-Tier Production Repository Architecture
+## Enterprise 5-Tier Production Repository Architecture
 
 ```
 SIH26178_new/
-├── frontend/                     # [TIER 1: CLIENT APPLICATION]
-│   ├── public/                   # Static assets, fonts, icons, cursors
-│   ├── src/                      # React UI Application
-│   │   ├── components/           # UI components (Header, Dashboard, Map, etc.)
-│   │   ├── context/              # State contexts (AuthContext, etc.)
-│   │   ├── data/                 # Client-side spatial data & model weights
-│   │   ├── services/             # Client API clients & Firebase auth
-│   │   ├── styles/               # Design tokens, themes & CSS
-│   │   └── utils/                # Visualization & meteorological layers
-│   ├── index.html                # Vite entry HTML
-│   ├── vite.config.js            # Vite build & proxy configuration
-│   └── package.json              # Frontend dependencies
+├── frontend/ # [TIER 1: CLIENT APPLICATION]
+│ ├── public/ # Static assets, fonts, icons, cursors
+│ ├── src/ # React UI Application
+│ │ ├── components/ # UI components (Header, Dashboard, Map, etc.)
+│ │ ├── context/ # State contexts (AuthContext, etc.)
+│ │ ├── data/ # Client-side spatial data & model weights
+│ │ ├── services/ # Client API clients & Firebase auth
+│ │ ├── styles/ # Design tokens, themes & CSS
+│ │ └── utils/ # Visualization & meteorological layers
+│ ├── index.html # Vite entry HTML
+│ ├── vite.config.js # Vite build & proxy configuration
+│ └── package.json # Frontend dependencies
 │
-├── backend/                      # [TIER 2: ENTERPRISE API SERVER]
-│   ├── src/
-│   │   ├── controllers/          # Request handlers (telemetry, hazard, auth)
-│   │   ├── middleware/           # Auth, security headers, rate limiters, logging
-│   │   ├── routes/               # API route definitions (/api/telemetry, etc.)
-│   │   ├── services/             # Real-time SSE broadcaster & AI service
-│   │   └── server.js             # Express app entry & HTTP server
-│   ├── package.json              # Backend dependencies (express, cors, helmet)
-│   └── .env.example              # Server environment template
+├── backend/ # [TIER 2: ENTERPRISE API SERVER]
+│ ├── src/
+│ │ ├── controllers/ # Request handlers (telemetry, hazard, auth)
+│ │ ├── middleware/ # Auth, security headers, rate limiters, logging
+│ │ ├── routes/ # API route definitions (/api/telemetry, etc.)
+│ │ ├── services/ # Real-time SSE broadcaster & AI service
+│ │ └── server.js # Express app entry & HTTP server
+│ ├── package.json # Backend dependencies (express, cors, helmet)
+│ └── .env.example # Server environment template
 │
-├── database/                     # [TIER 3: PERSISTENCE & TELEMETRY STORE]
-│   ├── schemas/
-│   │   ├── sql/schema.sql        # Relational SQL schema (PostgreSQL/SQLite)
-│   │   └── json/                 # JSON Schemas for sensor ingestion validation
-│   ├── seeds/                    # Seed records for CWC gauges & danger marks
-│   ├── sensor_logs/              # Live CSV/JSON physical sensor telemetry
-│   └── dbClient.js               # Unified Data Access Object / Database Adapter
+├── database/ # [TIER 3: PERSISTENCE & TELEMETRY STORE]
+│ ├── schemas/
+│ │ ├── sql/schema.sql # Relational SQL schema (PostgreSQL/SQLite)
+│ │ └── json/ # JSON Schemas for sensor ingestion validation
+│ ├── seeds/ # Seed records for CWC gauges & danger marks
+│ ├── sensor_logs/ # Live CSV/JSON physical sensor telemetry
+│ └── dbClient.js # Unified Data Access Object / Database Adapter
 │
-├── ml_engine/                    # [TIER 4: MACHINE LEARNING & GEOSPATIAL AI]
-│   ├── models/                   # Serialized Random Forest / Anomaly weights
-│   ├── training/                 # Python training pipelines (Scikit-learn)
-│   ├── geospatial/               # Survey of India boundary & CWC river reaches
-│   └── README.md                 # ML pipeline execution & retraining guide
+├── ml_engine/ # [TIER 4: MACHINE LEARNING & GEOSPATIAL AI]
+│ ├── models/ # Serialized Random Forest / Anomaly weights
+│ ├── training/ # Python training pipelines (Scikit-learn)
+│ ├── geospatial/ # Survey of India boundary & CWC river reaches
+│ └── README.md # ML pipeline execution & retraining guide
 │
-├── management/                   # [TIER 5: DEVOPS, DEPLOYMENT & OPERATIONS]
-│   ├── docker/
-│   │   ├── Dockerfile.frontend   # Multi-stage Nginx Alpine container
-│   │   ├── Dockerfile.backend    # Lightweight Node.js Alpine container
-│   │   └── nginx.conf            # Reverse proxy configuration
-│   ├── docker-compose.yml        # Multi-service container orchestrator
-│   ├── ecosystem.config.cjs      # PM2 cluster configuration
-│   └── scripts/                  # Production start & backup scripts
+├── management/ # [TIER 5: DEVOPS, DEPLOYMENT & OPERATIONS]
+│ ├── docker/
+│ │ ├── Dockerfile.frontend # Multi-stage Nginx Alpine container
+│ │ ├── Dockerfile.backend # Lightweight Node.js Alpine container
+│ │ └── nginx.conf # Reverse proxy configuration
+│ ├── docker-compose.yml # Multi-service container orchestrator
+│ ├── ecosystem.config.cjs # PM2 cluster configuration
+│ └── scripts/ # Production start & backup scripts
 │
-├── docs/                         # System documentation & screenshots
-├── package.json                  # Root Workspaces & Orchestration Manager
-├── run.bat                       # One-click Windows starter
-├── run.ps1                       # PowerShell starter
-└── README.md                     # Master platform documentation
+├── docs/ # System documentation & screenshots
+├── package.json # Root Workspaces & Orchestration Manager
+├── run.bat # One-click Windows starter
+├── run.ps1 # PowerShell starter
+└── README.md # Master platform documentation
 ```
 
 ### Production Architecture Live Operation Proof
@@ -737,19 +739,19 @@ SIH26178_new/
 
 ---
 
-## 🏆 Hackathon Attribution & License
+## Hackathon Attribution & License
 
 - **Initiative**: Developed for **Smart India Hackathon 2026 (SIH 2026)**.
 - **Problem Statement ID**: `SIH2026-26178` — *Comprehensive Multi-Hazard Early Warning & AI Emergency Risk Management System*.
 - **Data Attributions**:
-  - Central Water Commission (CWC), Ministry of Jal Shakti
-  - India Meteorological Department (IMD), MoES
-  - Central Pollution Control Board (CPCB), MoEFCC
-  - National Disaster Management Authority (NDMA), MHA
-  - Geological Survey of India (GSI), Ministry of Mines
-  - Space Applications Centre (SAC), Indian Space Research Organisation (ISRO)
-  - Indian National Centre for Ocean Information Services (INCOIS)
+ - Central Water Commission (CWC), Ministry of Jal Shakti
+ - India Meteorological Department (IMD), MoES
+ - Central Pollution Control Board (CPCB), MoEFCC
+ - National Disaster Management Authority (NDMA), MHA
+ - Geological Survey of India (GSI), Ministry of Mines
+ - Space Applications Centre (SAC), Indian Space Research Organisation (ISRO)
+ - Indian National Centre for Ocean Information Services (INCOIS)
 - **License**: Released under the [MIT License](LICENSE). Open-source for academic, humanitarian, and civil defense applications.
 
 ---
-*Developed with dedication for the protection of human life, national infrastructure, and environmental ecosystems across Bharat.* 🇮🇳
+*Developed with dedication for the protection of human life, national infrastructure, and environmental ecosystems across Bharat.* 
