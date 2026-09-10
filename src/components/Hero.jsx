@@ -18,7 +18,7 @@ export default function Hero({ onOpenDashboard }) {
       {isAuthenticated && user && (
         <div className="hero-operator-badge">
           <span className="live-pulse-dot" style={{ backgroundColor: '#10b981' }} />
-          <span>{greeting} // OPERATOR ACTIVE: <strong>{user.displayName}</strong> [{user.role}]</span>
+          <span>OPERATOR ACTIVE: <strong>{user.displayName || user.email}</strong></span>
         </div>
       )}
 

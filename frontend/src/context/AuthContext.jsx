@@ -93,7 +93,21 @@ export function AuthProvider({ children }) {
   const [user, setUser] = useState(() => {
     try {
       const saved = localStorage.getItem(STORAGE_KEY);
-      if (saved) return JSON.parse(saved);
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        // Purge any stale mock, demo, or fallback data from previous sessions
+        if (
+          !parsed?.uid ||
+          parsed?.isDemo ||
+          parsed?.uid?.startsWith('demo-') ||
+          parsed?.displayName?.includes('Sovereign') ||
+          parsed?.email?.includes('erms.gov.in')
+        ) {
+          localStorage.removeItem(STORAGE_KEY);
+          return null;
+        }
+        return parsed;
+      }
     } catch (e) {
       console.error('Failed to read auth state from localStorage', e);
     }
@@ -145,7 +159,7 @@ export function AuthProvider({ children }) {
         }
       })
       .catch((err) => {
-        console.warn('[Firebase Redirect Result notice]:', err.code, err.message);
+        console.warn('[Firebase Redirect Result notice]:', err?.code, err?.message);
         setAuthLoading(false);
       });
 
@@ -177,39 +191,31 @@ export function AuthProvider({ children }) {
 
   const greetingInfo = useMemo(() => computeGreeting(user), [user]);
 
-  // Direct Google login handler with guaranteed state update and timeout race
+  // Direct Google login handler - authenticates exclusively with Google OAuth
   const loginWithGoogle = useCallback(async () => {
     setAuthLoading(true);
     setAuthError(null);
 
-    const defaultName = 'Sovereign Disaster Analyst';
-    const makeUser = (name, email, photoURL, uid) => ({
-      uid: uid || ('google-' + Date.now().toString(36)),
-      displayName: name || defaultName,
-      email: email || 'analyst@erms.gov.in',
-      phoneNumber: null,
-      photoURL: photoURL || getInitialsAvatar(name || defaultName, '0ea5e9'),
-      provider: 'google',
-      role: 'Disaster Risk Analyst',
-      lastLogin: new Date().toISOString(),
-    });
+    const makeGoogleUser = (fbUser) => {
+      const name = fbUser.displayName || (fbUser.email ? fbUser.email.split('@')[0] : 'Authorized User');
+      return {
+        uid: fbUser.uid,
+        displayName: name,
+        email: fbUser.email,
+        phoneNumber: fbUser.phoneNumber || null,
+        photoURL: fbUser.photoURL || getInitialsAvatar(name, '0ea5e9'),
+        provider: 'google',
+        role: 'Disaster Risk Analyst',
+        lastLogin: new Date().toISOString(),
+      };
+    };
 
     if (isFirebaseConfigured && auth && googleProvider) {
       try {
-        // Race popup with 5s timeout to prevent cross-origin freeze on Vercel
-        const timeoutPromise = new Promise((_, reject) =>
-          setTimeout(() => reject(new Error('AUTH_TIMEOUT')), 5000)
-        );
-
-        const result = await Promise.race([
-          signInWithPopup(auth, googleProvider),
-          timeoutPromise,
-        ]);
+        const result = await signInWithPopup(auth, googleProvider);
 
         if (result?.user) {
-          const fbUser = result.user;
-          const name = fbUser.displayName || (fbUser.email ? fbUser.email.split('@')[0] : defaultName);
-          const loggedUser = makeUser(name, fbUser.email, fbUser.photoURL, fbUser.uid);
+          const loggedUser = makeGoogleUser(result.user);
           setUser(loggedUser);
           setAuthLoading(false);
           setAuthModalOpen(false);
@@ -221,9 +227,7 @@ export function AuthProvider({ children }) {
 
         // Check if Firebase auth.currentUser was updated in the background
         if (auth?.currentUser) {
-          const fbUser = auth.currentUser;
-          const name = fbUser.displayName || (fbUser.email ? fbUser.email.split('@')[0] : defaultName);
-          const loggedUser = makeUser(name, fbUser.email, fbUser.photoURL, fbUser.uid);
+          const loggedUser = makeGoogleUser(auth.currentUser);
           setUser(loggedUser);
           setAuthLoading(false);
           setAuthModalOpen(false);
@@ -231,22 +235,36 @@ export function AuthProvider({ children }) {
           return { success: true, user: loggedUser };
         }
 
-        // Direct commit fallback so user is never stranded on logging in
-        const loggedUser = makeUser(defaultName, 'analyst@erms.gov.in', null, 'google-' + Date.now().toString(36));
-        setUser(loggedUser);
+        // Popup closed by user or cancelled - reset loading gracefully without error
+        if (
+          err?.code === 'auth/popup-closed-by-user' ||
+          err?.code === 'auth/cancelled-popup-request'
+        ) {
+          setAuthLoading(false);
+          return { success: false, error: 'Popup closed' };
+        }
+
+        // If popup is blocked by browser, attempt redirect method
+        if (err?.code === 'auth/popup-blocked') {
+          try {
+            await signInWithRedirect(auth, googleProvider);
+            return { success: true };
+          } catch (redirectErr) {
+            console.warn('[Firebase Redirect fallback failed]:', redirectErr);
+          }
+        }
+
         setAuthLoading(false);
-        setAuthModalOpen(false);
-        transmitAuthLog(loggedUser);
-        return { success: true, user: loggedUser };
+        const errMsg = err?.message || 'Google authentication failed. Please try again.';
+        setAuthError(errMsg);
+        return { success: false, error: errMsg };
       }
     }
 
-    const loggedUser = makeUser(defaultName, 'analyst@erms.gov.in', null, 'google-' + Date.now().toString(36));
-    setUser(loggedUser);
     setAuthLoading(false);
-    setAuthModalOpen(false);
-    transmitAuthLog(loggedUser);
-    return { success: true, user: loggedUser };
+    const errMessage = 'Firebase authentication is not configured.';
+    setAuthError(errMessage);
+    return { success: false, error: errMessage };
   }, []);
 
   // Set up Recaptcha Verifier for Phone Auth
@@ -280,11 +298,11 @@ export function AuthProvider({ children }) {
 
   const loginWithDemo = useCallback((provider = 'google', customProfile = {}) => {
     const isGoogle = provider === 'google';
-    const defaultName = customProfile.displayName || (isGoogle ? 'Sovereign Disaster Analyst' : 'Field Telemetry Responder');
+    const defaultName = customProfile.displayName || (isGoogle ? 'Authorized Analyst' : 'Field Telemetry Responder');
     const demoUser = {
       uid: 'demo-' + Date.now().toString(36),
       displayName: defaultName,
-      email: customProfile.email || (isGoogle ? 'analyst@erms.gov.in' : null),
+      email: customProfile.email || (isGoogle ? 'analyst@disaster-command.gov.in' : null),
       phoneNumber: customProfile.phoneNumber || (isGoogle ? null : '+91 98765 43210'),
       photoURL: getInitialsAvatar(defaultName, isGoogle ? '0ea5e9' : '059669'),
       provider: isGoogle ? 'google' : 'phone',
