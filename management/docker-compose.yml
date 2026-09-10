@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  # 1. Backend REST & SSE Service
+  backend:
+    build:
+      context: ..
+      dockerfile: management/docker/Dockerfile.backend
+    container_name: erms-backend-api
+    restart: always
+    environment:
+      - PORT=5000
+      - NODE_ENV=production
+      - ADMIN_ID=abc123
+      - ADMIN_PASSWORD=ERer00*#
+    ports:
+      - "5000:5000"
+    volumes:
+      - ../database/data:/app/database/data
+      - ../database/sensor_logs:/app/database/sensor_logs
+    networks:
+      - erms-network
+
+  # 2. Frontend Nginx Web Server
+  frontend:
+    build:
+      context: ..
+      dockerfile: management/docker/Dockerfile.frontend
+    container_name: erms-frontend-web
+    restart: always
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    networks:
+      - erms-network
+
+networks:
+  erms-network:
+    driver: bridge

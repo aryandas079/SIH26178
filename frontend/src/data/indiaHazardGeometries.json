@@ -1,0 +1,2572 @@
+{
+  "type": "HazardGeometriesBundle",
+  "version": "2.1.0",
+  "flood_prone_zones_nih": [
+    {
+      "id": "brahmaputra_valley",
+      "name": "Brahmaputra Basin Flood Corridor",
+      "state": "Assam",
+      "color": "#0284c7",
+      "fillColor": "#38bdf8",
+      "fillOpacity": 0.48,
+      "coordinates": [
+        [
+          27.9,
+          95.8
+        ],
+        [
+          27.5,
+          95.0
+        ],
+        [
+          26.9,
+          94.2
+        ],
+        [
+          26.7,
+          92.8
+        ],
+        [
+          26.2,
+          91.8
+        ],
+        [
+          26.1,
+          90.6
+        ],
+        [
+          26.0,
+          89.9
+        ],
+        [
+          26.3,
+          89.8
+        ],
+        [
+          26.6,
+          90.8
+        ],
+        [
+          26.7,
+          92.0
+        ],
+        [
+          27.0,
+          93.5
+        ],
+        [
+          27.5,
+          94.6
+        ],
+        [
+          27.9,
+          95.8
+        ]
+      ]
+    },
+    {
+      "id": "indo_gangetic_plains",
+      "name": "Indo-Gangetic Alluvial Flood Corridor",
+      "state": "UP / Bihar / West Bengal",
+      "color": "#0284c7",
+      "fillColor": "#38bdf8",
+      "fillOpacity": 0.45,
+      "coordinates": [
+        [
+          28.8,
+          77.2
+        ],
+        [
+          27.8,
+          78.5
+        ],
+        [
+          26.8,
+          80.5
+        ],
+        [
+          25.8,
+          82.5
+        ],
+        [
+          25.4,
+          85.0
+        ],
+        [
+          25.2,
+          87.0
+        ],
+        [
+          24.5,
+          88.2
+        ],
+        [
+          22.8,
+          88.5
+        ],
+        [
+          22.2,
+          88.2
+        ],
+        [
+          23.2,
+          87.5
+        ],
+        [
+          24.8,
+          86.8
+        ],
+        [
+          25.6,
+          84.8
+        ],
+        [
+          26.2,
+          82.0
+        ],
+        [
+          27.4,
+          79.5
+        ],
+        [
+          28.6,
+          77.8
+        ],
+        [
+          28.8,
+          77.2
+        ]
+      ]
+    },
+    {
+      "id": "punjab_haryana_belt",
+      "name": "Sutlej-Ghaggar-Yamuna Flood Plains",
+      "state": "Punjab / Haryana",
+      "color": "#0284c7",
+      "fillColor": "#38bdf8",
+      "fillOpacity": 0.45,
+      "coordinates": [
+        [
+          31.8,
+          75.2
+        ],
+        [
+          31.0,
+          75.5
+        ],
+        [
+          30.2,
+          76.2
+        ],
+        [
+          29.2,
+          76.8
+        ],
+        [
+          28.8,
+          77.2
+        ],
+        [
+          29.6,
+          77.2
+        ],
+        [
+          30.6,
+          76.8
+        ],
+        [
+          31.4,
+          76.0
+        ],
+        [
+          31.8,
+          75.2
+        ]
+      ]
+    },
+    {
+      "id": "mahanadi_delta",
+      "name": "Mahanadi Deltaic Flood Corridor",
+      "state": "Odisha",
+      "color": "#0284c7",
+      "fillColor": "#38bdf8",
+      "fillOpacity": 0.48,
+      "coordinates": [
+        [
+          21.5,
+          83.9
+        ],
+        [
+          20.8,
+          84.5
+        ],
+        [
+          20.4,
+          85.8
+        ],
+        [
+          20.2,
+          86.7
+        ],
+        [
+          20.5,
+          86.8
+        ],
+        [
+          20.8,
+          86.0
+        ],
+        [
+          21.4,
+          84.8
+        ],
+        [
+          21.5,
+          83.9
+        ]
+      ]
+    },
+    {
+      "id": "godavari_krishna_deltas",
+      "name": "Godavari-Krishna Inter-Delta Floodplain",
+      "state": "Andhra Pradesh",
+      "color": "#0284c7",
+      "fillColor": "#38bdf8",
+      "fillOpacity": 0.48,
+      "coordinates": [
+        [
+          17.2,
+          81.6
+        ],
+        [
+          16.8,
+          81.8
+        ],
+        [
+          16.2,
+          82.2
+        ],
+        [
+          15.8,
+          81.0
+        ],
+        [
+          16.4,
+          80.5
+        ],
+        [
+          16.7,
+          80.8
+        ],
+        [
+          17.2,
+          81.6
+        ]
+      ]
+    },
+    {
+      "id": "narmada_tapi_estuaries",
+      "name": "Narmada-Tapi Estuarine Flood Zone",
+      "state": "Gujarat",
+      "color": "#0284c7",
+      "fillColor": "#38bdf8",
+      "fillOpacity": 0.48,
+      "coordinates": [
+        [
+          21.9,
+          72.8
+        ],
+        [
+          21.6,
+          73.1
+        ],
+        [
+          21.2,
+          73.2
+        ],
+        [
+          21.0,
+          72.8
+        ],
+        [
+          21.5,
+          72.5
+        ],
+        [
+          21.9,
+          72.8
+        ]
+      ]
+    },
+    {
+      "id": "kerala_coastal_flood",
+      "name": "Kuttanad & Coastal Kerala Lowland Basin",
+      "state": "Kerala",
+      "color": "#0284c7",
+      "fillColor": "#38bdf8",
+      "fillOpacity": 0.48,
+      "coordinates": [
+        [
+          10.2,
+          76.1
+        ],
+        [
+          9.5,
+          76.3
+        ],
+        [
+          9.1,
+          76.5
+        ],
+        [
+          9.2,
+          76.7
+        ],
+        [
+          9.8,
+          76.6
+        ],
+        [
+          10.3,
+          76.3
+        ],
+        [
+          10.2,
+          76.1
+        ]
+      ]
+    }
+  ],
+  "seismic_zones_bis": [
+    {
+      "zone": "Zone - V (Highest)",
+      "zone_code": "V",
+      "factor": 0.36,
+      "risk": "Highest Active Seismic Intensity",
+      "color": "#b31b26",
+      "fillColor": "#b31b26",
+      "fillOpacity": 0.72,
+      "regions": [
+        [
+          [
+            28.5,
+            93.5
+          ],
+          [
+            28.2,
+            96.5
+          ],
+          [
+            27.0,
+            96.8
+          ],
+          [
+            25.5,
+            94.5
+          ],
+          [
+            24.0,
+            93.5
+          ],
+          [
+            23.5,
+            92.5
+          ],
+          [
+            24.0,
+            91.5
+          ],
+          [
+            25.2,
+            90.0
+          ],
+          [
+            26.2,
+            89.8
+          ],
+          [
+            26.8,
+            92.0
+          ],
+          [
+            28.0,
+            93.0
+          ],
+          [
+            28.5,
+            93.5
+          ]
+        ],
+        [
+          [
+            13.5,
+            92.8
+          ],
+          [
+            11.5,
+            92.6
+          ],
+          [
+            9.0,
+            92.7
+          ],
+          [
+            6.8,
+            93.8
+          ],
+          [
+            7.2,
+            94.0
+          ],
+          [
+            10.0,
+            93.2
+          ],
+          [
+            13.2,
+            93.2
+          ],
+          [
+            13.5,
+            92.8
+          ]
+        ],
+        [
+          [
+            24.2,
+            68.8
+          ],
+          [
+            24.0,
+            70.8
+          ],
+          [
+            23.2,
+            70.6
+          ],
+          [
+            23.0,
+            69.2
+          ],
+          [
+            23.5,
+            68.6
+          ],
+          [
+            24.2,
+            68.8
+          ]
+        ],
+        [
+          [
+            35.0,
+            74.5
+          ],
+          [
+            34.5,
+            75.8
+          ],
+          [
+            33.8,
+            75.2
+          ],
+          [
+            34.2,
+            74.2
+          ],
+          [
+            35.0,
+            74.5
+          ]
+        ],
+        [
+          [
+            32.6,
+            75.8
+          ],
+          [
+            32.4,
+            76.8
+          ],
+          [
+            31.5,
+            77.2
+          ],
+          [
+            31.6,
+            76.2
+          ],
+          [
+            32.6,
+            75.8
+          ]
+        ],
+        [
+          [
+            31.0,
+            78.5
+          ],
+          [
+            30.8,
+            80.2
+          ],
+          [
+            29.8,
+            80.4
+          ],
+          [
+            30.0,
+            78.8
+          ],
+          [
+            31.0,
+            78.5
+          ]
+        ],
+        [
+          [
+            26.8,
+            84.8
+          ],
+          [
+            26.7,
+            86.8
+          ],
+          [
+            26.0,
+            86.6
+          ],
+          [
+            26.2,
+            85.0
+          ],
+          [
+            26.8,
+            84.8
+          ]
+        ]
+      ]
+    },
+    {
+      "zone": "Zone - IV (High)",
+      "zone_code": "IV",
+      "factor": 0.24,
+      "risk": "High Seismic Vulnerability",
+      "color": "#de5437",
+      "fillColor": "#de5437",
+      "fillOpacity": 0.65,
+      "regions": [
+        [
+          [
+            32.8,
+            74.5
+          ],
+          [
+            32.0,
+            76.5
+          ],
+          [
+            30.5,
+            78.0
+          ],
+          [
+            28.8,
+            79.5
+          ],
+          [
+            27.5,
+            81.5
+          ],
+          [
+            26.0,
+            84.5
+          ],
+          [
+            25.5,
+            87.8
+          ],
+          [
+            26.5,
+            88.8
+          ],
+          [
+            27.4,
+            88.5
+          ],
+          [
+            26.5,
+            84.0
+          ],
+          [
+            27.5,
+            81.0
+          ],
+          [
+            28.5,
+            77.0
+          ],
+          [
+            29.5,
+            75.5
+          ],
+          [
+            31.5,
+            74.0
+          ],
+          [
+            32.8,
+            74.5
+          ]
+        ],
+        [
+          [
+            19.8,
+            72.8
+          ],
+          [
+            19.2,
+            73.2
+          ],
+          [
+            17.2,
+            74.0
+          ],
+          [
+            16.8,
+            73.5
+          ],
+          [
+            17.5,
+            73.0
+          ],
+          [
+            19.2,
+            72.6
+          ],
+          [
+            19.8,
+            72.8
+          ]
+        ],
+        [
+          [
+            24.5,
+            70.8
+          ],
+          [
+            23.8,
+            72.0
+          ],
+          [
+            22.8,
+            71.5
+          ],
+          [
+            22.2,
+            70.2
+          ],
+          [
+            22.8,
+            69.2
+          ],
+          [
+            24.5,
+            70.8
+          ]
+        ]
+      ]
+    },
+    {
+      "zone": "Zone - III (Moderate)",
+      "zone_code": "III",
+      "factor": 0.16,
+      "risk": "Moderate Seismic Activity",
+      "color": "#f0a882",
+      "fillColor": "#f0a882",
+      "fillOpacity": 0.58,
+      "regions": [
+        [
+          [
+            21.5,
+            72.8
+          ],
+          [
+            19.0,
+            73.5
+          ],
+          [
+            15.5,
+            74.5
+          ],
+          [
+            12.0,
+            75.5
+          ],
+          [
+            8.5,
+            77.0
+          ],
+          [
+            8.5,
+            77.8
+          ],
+          [
+            11.5,
+            76.5
+          ],
+          [
+            15.0,
+            75.5
+          ],
+          [
+            18.5,
+            74.5
+          ],
+          [
+            21.5,
+            73.8
+          ],
+          [
+            21.5,
+            72.8
+          ]
+        ],
+        [
+          [
+            27.5,
+            72.5
+          ],
+          [
+            26.5,
+            75.5
+          ],
+          [
+            25.5,
+            77.8
+          ],
+          [
+            24.5,
+            82.5
+          ],
+          [
+            23.5,
+            86.5
+          ],
+          [
+            22.5,
+            88.5
+          ],
+          [
+            24.2,
+            88.2
+          ],
+          [
+            25.2,
+            85.5
+          ],
+          [
+            26.2,
+            80.5
+          ],
+          [
+            27.0,
+            76.5
+          ],
+          [
+            28.0,
+            73.5
+          ],
+          [
+            27.5,
+            72.5
+          ]
+        ],
+        [
+          [
+            13.5,
+            80.3
+          ],
+          [
+            16.0,
+            81.5
+          ],
+          [
+            18.0,
+            83.5
+          ],
+          [
+            19.5,
+            85.5
+          ],
+          [
+            19.0,
+            85.0
+          ],
+          [
+            17.0,
+            82.8
+          ],
+          [
+            15.0,
+            80.5
+          ],
+          [
+            13.0,
+            79.8
+          ],
+          [
+            13.5,
+            80.3
+          ]
+        ]
+      ]
+    },
+    {
+      "zone": "Zone - II (Least Active)",
+      "zone_code": "II",
+      "factor": 0.1,
+      "risk": "Low / Nominal Seismic Probability",
+      "color": "#fbf0e4",
+      "fillColor": "#fbf0e4",
+      "fillOpacity": 0.45,
+      "regions": [
+        [
+          [
+            25.0,
+            74.5
+          ],
+          [
+            24.0,
+            78.5
+          ],
+          [
+            23.5,
+            82.5
+          ],
+          [
+            21.5,
+            83.5
+          ],
+          [
+            18.5,
+            80.5
+          ],
+          [
+            15.5,
+            78.5
+          ],
+          [
+            12.5,
+            77.8
+          ],
+          [
+            10.5,
+            78.2
+          ],
+          [
+            12.5,
+            76.8
+          ],
+          [
+            15.5,
+            76.5
+          ],
+          [
+            18.5,
+            76.0
+          ],
+          [
+            21.5,
+            75.8
+          ],
+          [
+            24.0,
+            74.8
+          ],
+          [
+            25.0,
+            74.5
+          ]
+        ],
+        [
+          [
+            28.5,
+            70.0
+          ],
+          [
+            27.0,
+            72.0
+          ],
+          [
+            25.5,
+            71.5
+          ],
+          [
+            26.0,
+            69.8
+          ],
+          [
+            28.5,
+            70.0
+          ]
+        ]
+      ]
+    }
+  ],
+  "landslide_zones_gsi": [
+    {
+      "class": "Very High / Critical Hazard",
+      "color": "#b91c1c",
+      "fillColor": "#b91c1c",
+      "fillOpacity": 0.7,
+      "regions": [
+        [
+          [
+            33.8,
+            75.0
+          ],
+          [
+            33.2,
+            75.8
+          ],
+          [
+            32.5,
+            76.8
+          ],
+          [
+            31.8,
+            77.8
+          ],
+          [
+            30.8,
+            79.5
+          ],
+          [
+            30.0,
+            80.2
+          ],
+          [
+            30.4,
+            80.4
+          ],
+          [
+            31.5,
+            78.5
+          ],
+          [
+            32.8,
+            76.5
+          ],
+          [
+            33.5,
+            75.2
+          ],
+          [
+            33.8,
+            75.0
+          ]
+        ],
+        [
+          [
+            27.8,
+            88.2
+          ],
+          [
+            27.2,
+            88.6
+          ],
+          [
+            26.8,
+            88.4
+          ],
+          [
+            25.8,
+            91.5
+          ],
+          [
+            25.2,
+            92.8
+          ],
+          [
+            24.2,
+            93.0
+          ],
+          [
+            23.2,
+            92.8
+          ],
+          [
+            24.0,
+            93.5
+          ],
+          [
+            25.5,
+            93.5
+          ],
+          [
+            26.2,
+            92.5
+          ],
+          [
+            27.5,
+            89.0
+          ],
+          [
+            27.8,
+            88.2
+          ]
+        ],
+        [
+          [
+            18.5,
+            73.4
+          ],
+          [
+            18.1,
+            73.6
+          ],
+          [
+            17.5,
+            73.8
+          ],
+          [
+            18.2,
+            73.2
+          ],
+          [
+            18.5,
+            73.4
+          ]
+        ],
+        [
+          [
+            11.8,
+            75.9
+          ],
+          [
+            11.4,
+            76.2
+          ],
+          [
+            11.0,
+            76.6
+          ],
+          [
+            10.2,
+            77.0
+          ],
+          [
+            9.6,
+            77.2
+          ],
+          [
+            10.0,
+            76.8
+          ],
+          [
+            11.2,
+            76.2
+          ],
+          [
+            11.8,
+            75.9
+          ]
+        ]
+      ]
+    },
+    {
+      "class": "High Hazard",
+      "color": "#ea580c",
+      "fillColor": "#ea580c",
+      "fillOpacity": 0.55,
+      "regions": [
+        [
+          [
+            33.0,
+            74.8
+          ],
+          [
+            32.0,
+            76.0
+          ],
+          [
+            30.5,
+            77.5
+          ],
+          [
+            29.5,
+            79.2
+          ],
+          [
+            29.0,
+            79.8
+          ],
+          [
+            30.0,
+            78.2
+          ],
+          [
+            31.5,
+            76.5
+          ],
+          [
+            33.0,
+            74.8
+          ]
+        ],
+        [
+          [
+            16.8,
+            73.8
+          ],
+          [
+            15.2,
+            74.2
+          ],
+          [
+            14.0,
+            74.6
+          ],
+          [
+            12.8,
+            75.4
+          ],
+          [
+            13.2,
+            75.8
+          ],
+          [
+            14.8,
+            75.0
+          ],
+          [
+            16.2,
+            74.4
+          ],
+          [
+            16.8,
+            73.8
+          ]
+        ]
+      ]
+    },
+    {
+      "class": "Moderate Hazard",
+      "color": "#eab308",
+      "fillColor": "#eab308",
+      "fillOpacity": 0.45,
+      "regions": [
+        [
+          [
+            18.8,
+            82.8
+          ],
+          [
+            18.2,
+            83.2
+          ],
+          [
+            17.8,
+            82.5
+          ],
+          [
+            18.4,
+            82.2
+          ],
+          [
+            18.8,
+            82.8
+          ]
+        ],
+        [
+          [
+            22.8,
+            75.5
+          ],
+          [
+            22.5,
+            78.5
+          ],
+          [
+            22.8,
+            81.2
+          ],
+          [
+            23.4,
+            80.8
+          ],
+          [
+            23.2,
+            77.5
+          ],
+          [
+            23.5,
+            75.8
+          ],
+          [
+            22.8,
+            75.5
+          ]
+        ]
+      ]
+    }
+  ],
+  "state_aqi_diwali2025": [
+    {
+      "state": "Haryana",
+      "aqi": 402,
+      "category": "Severe / Hazardous",
+      "color": "#581c87",
+      "lat": 29.0588,
+      "lng": 76.0856
+    },
+    {
+      "state": "Uttar Pradesh",
+      "aqi": 350,
+      "category": "Severe / Hazardous",
+      "color": "#6b21a8",
+      "lat": 26.8467,
+      "lng": 80.9462
+    },
+    {
+      "state": "Delhi",
+      "aqi": 344,
+      "category": "Severe / Hazardous",
+      "color": "#7e22ce",
+      "lat": 28.6139,
+      "lng": 77.209
+    },
+    {
+      "state": "Punjab",
+      "aqi": 320,
+      "category": "Severe / Hazardous",
+      "color": "#7e22ce",
+      "lat": 31.1471,
+      "lng": 75.3412
+    },
+    {
+      "state": "Bihar",
+      "aqi": 280,
+      "category": "Very Unhealthy",
+      "color": "#be123c",
+      "lat": 25.0961,
+      "lng": 85.3131
+    },
+    {
+      "state": "Rajasthan",
+      "aqi": 260,
+      "category": "Very Unhealthy",
+      "color": "#e11d48",
+      "lat": 27.0238,
+      "lng": 74.2179
+    },
+    {
+      "state": "Madhya Pradesh",
+      "aqi": 250,
+      "category": "Very Unhealthy",
+      "color": "#e11d48",
+      "lat": 22.9734,
+      "lng": 78.6569
+    },
+    {
+      "state": "Maharashtra",
+      "aqi": 250,
+      "category": "Very Unhealthy",
+      "color": "#e11d48",
+      "lat": 19.7515,
+      "lng": 75.7139
+    },
+    {
+      "state": "Gujarat",
+      "aqi": 240,
+      "category": "Very Unhealthy",
+      "color": "#e11d48",
+      "lat": 22.2587,
+      "lng": 71.1924
+    },
+    {
+      "state": "West Bengal",
+      "aqi": 220,
+      "category": "Very Unhealthy",
+      "color": "#f43f5e",
+      "lat": 22.9868,
+      "lng": 87.855
+    },
+    {
+      "state": "Jharkhand",
+      "aqi": 210,
+      "category": "Very Unhealthy",
+      "color": "#f43f5e",
+      "lat": 23.6102,
+      "lng": 85.2799
+    },
+    {
+      "state": "Chhattisgarh",
+      "aqi": 200,
+      "category": "Unhealthy",
+      "color": "#ea580c",
+      "lat": 21.2787,
+      "lng": 81.8661
+    },
+    {
+      "state": "Karnataka",
+      "aqi": 190,
+      "category": "Unhealthy for Sensitive",
+      "color": "#f97316",
+      "lat": 15.3173,
+      "lng": 75.7139
+    },
+    {
+      "state": "Andhra Pradesh",
+      "aqi": 180,
+      "category": "Unhealthy for Sensitive",
+      "color": "#f97316",
+      "lat": 15.9129,
+      "lng": 79.74
+    },
+    {
+      "state": "Telangana",
+      "aqi": 180,
+      "category": "Unhealthy for Sensitive",
+      "color": "#f97316",
+      "lat": 18.1124,
+      "lng": 79.0193
+    },
+    {
+      "state": "Tamil Nadu",
+      "aqi": 170,
+      "category": "Moderate",
+      "color": "#fb923c",
+      "lat": 11.1271,
+      "lng": 78.6569
+    },
+    {
+      "state": "Kerala",
+      "aqi": 150,
+      "category": "Moderate",
+      "color": "#fb923c",
+      "lat": 10.8505,
+      "lng": 76.2711
+    },
+    {
+      "state": "Assam",
+      "aqi": 140,
+      "category": "Moderate",
+      "color": "#fb923c",
+      "lat": 26.2006,
+      "lng": 92.9376
+    },
+    {
+      "state": "Odisha",
+      "aqi": 130,
+      "category": "Moderate",
+      "color": "#fbbf24",
+      "lat": 20.9517,
+      "lng": 85.0985
+    },
+    {
+      "state": "Goa",
+      "aqi": 120,
+      "category": "Moderate",
+      "color": "#fbbf24",
+      "lat": 15.2993,
+      "lng": 74.124
+    },
+    {
+      "state": "Himachal Pradesh",
+      "aqi": 110,
+      "category": "Moderate",
+      "color": "#eab308",
+      "lat": 31.1048,
+      "lng": 77.1734
+    },
+    {
+      "state": "Uttarakhand",
+      "aqi": 100,
+      "category": "Satisfactory",
+      "color": "#eab308",
+      "lat": 30.0668,
+      "lng": 79.0193
+    },
+    {
+      "state": "Jammu & Kashmir",
+      "aqi": 90,
+      "category": "Satisfactory",
+      "color": "#fde047",
+      "lat": 33.7782,
+      "lng": 76.5762
+    },
+    {
+      "state": "Tripura",
+      "aqi": 80,
+      "category": "Satisfactory",
+      "color": "#fde047",
+      "lat": 23.9408,
+      "lng": 91.9882
+    },
+    {
+      "state": "Nagaland",
+      "aqi": 70,
+      "category": "Satisfactory",
+      "color": "#facc15",
+      "lat": 26.1584,
+      "lng": 94.5624
+    },
+    {
+      "state": "Manipur",
+      "aqi": 60,
+      "category": "Satisfactory",
+      "color": "#facc15",
+      "lat": 24.6637,
+      "lng": 93.9063
+    },
+    {
+      "state": "Mizoram",
+      "aqi": 50,
+      "category": "Good",
+      "color": "#22c55e",
+      "lat": 23.1645,
+      "lng": 92.9376
+    },
+    {
+      "state": "Puducherry",
+      "aqi": 50,
+      "category": "Good",
+      "color": "#22c55e",
+      "lat": 11.9416,
+      "lng": 79.8083
+    },
+    {
+      "state": "Meghalaya",
+      "aqi": 40,
+      "category": "Good",
+      "color": "#16a34a",
+      "lat": 25.467,
+      "lng": 91.3662
+    },
+    {
+      "state": "Arunachal Pradesh",
+      "aqi": 30,
+      "category": "Good",
+      "color": "#15803d",
+      "lat": 28.218,
+      "lng": 94.7278
+    },
+    {
+      "state": "Andaman & Nicobar",
+      "aqi": 30,
+      "category": "Good",
+      "color": "#15803d",
+      "lat": 11.7401,
+      "lng": 92.6586
+    },
+    {
+      "state": "Sikkim",
+      "aqi": 20,
+      "category": "Good",
+      "color": "#15803d",
+      "lat": 27.533,
+      "lng": 88.5122
+    },
+    {
+      "state": "Ladakh",
+      "aqi": 20,
+      "category": "Good",
+      "color": "#15803d",
+      "lat": 34.1526,
+      "lng": 77.5771
+    },
+    {
+      "state": "Lakshadweep",
+      "aqi": 10,
+      "category": "Good",
+      "color": "#166534",
+      "lat": 10.5667,
+      "lng": 72.6417
+    }
+  ],
+  "imd_max_temperature_isotherms": [
+    {
+      "temp_range": "> 44\u00b0C (Severe Heatwave Maximum)",
+      "color": "#4a0404",
+      "fillColor": "#580000",
+      "fillOpacity": 0.75,
+      "regions": [
+        [
+          [
+            22.8,
+            77.5
+          ],
+          [
+            22.5,
+            80.5
+          ],
+          [
+            21.8,
+            83.2
+          ],
+          [
+            20.5,
+            83.8
+          ],
+          [
+            19.2,
+            81.5
+          ],
+          [
+            18.5,
+            79.5
+          ],
+          [
+            19.2,
+            78.2
+          ],
+          [
+            20.8,
+            77.2
+          ],
+          [
+            22.2,
+            76.8
+          ],
+          [
+            22.8,
+            77.5
+          ]
+        ],
+        [
+          [
+            28.5,
+            74.2
+          ],
+          [
+            28.2,
+            75.8
+          ],
+          [
+            27.2,
+            76.2
+          ],
+          [
+            26.8,
+            74.8
+          ],
+          [
+            27.5,
+            73.8
+          ],
+          [
+            28.5,
+            74.2
+          ]
+        ]
+      ]
+    },
+    {
+      "temp_range": "40\u00b0 - 44\u00b0C (Heatwave Alert)",
+      "color": "#b91c1c",
+      "fillColor": "#dc2626",
+      "fillOpacity": 0.6,
+      "regions": [
+        [
+          [
+            29.5,
+            74.0
+          ],
+          [
+            28.5,
+            78.0
+          ],
+          [
+            26.5,
+            82.5
+          ],
+          [
+            25.0,
+            85.5
+          ],
+          [
+            23.5,
+            86.8
+          ],
+          [
+            21.0,
+            85.5
+          ],
+          [
+            18.0,
+            83.5
+          ],
+          [
+            16.0,
+            80.5
+          ],
+          [
+            15.5,
+            78.0
+          ],
+          [
+            17.5,
+            76.0
+          ],
+          [
+            20.5,
+            74.5
+          ],
+          [
+            23.5,
+            72.5
+          ],
+          [
+            26.5,
+            71.0
+          ],
+          [
+            28.5,
+            72.0
+          ],
+          [
+            29.5,
+            74.0
+          ]
+        ]
+      ]
+    },
+    {
+      "temp_range": "34\u00b0 - 40\u00b0C (Elevated Ambient)",
+      "color": "#ea580c",
+      "fillColor": "#f97316",
+      "fillOpacity": 0.48,
+      "regions": [
+        [
+          [
+            15.5,
+            74.0
+          ],
+          [
+            13.0,
+            75.0
+          ],
+          [
+            10.5,
+            76.5
+          ],
+          [
+            8.5,
+            77.5
+          ],
+          [
+            10.0,
+            79.5
+          ],
+          [
+            13.5,
+            80.2
+          ],
+          [
+            16.0,
+            81.5
+          ],
+          [
+            18.0,
+            83.8
+          ],
+          [
+            17.0,
+            81.0
+          ],
+          [
+            15.5,
+            77.5
+          ],
+          [
+            15.5,
+            74.0
+          ]
+        ]
+      ]
+    },
+    {
+      "temp_range": "26\u00b0 - 34\u00b0C (Sub-Himalayan & Coastal)",
+      "color": "#eab308",
+      "fillColor": "#facc15",
+      "fillOpacity": 0.38,
+      "regions": [
+        [
+          [
+            32.5,
+            74.5
+          ],
+          [
+            31.5,
+            76.2
+          ],
+          [
+            30.0,
+            78.5
+          ],
+          [
+            27.5,
+            84.5
+          ],
+          [
+            26.5,
+            88.5
+          ],
+          [
+            26.0,
+            89.8
+          ],
+          [
+            24.5,
+            88.5
+          ],
+          [
+            26.5,
+            84.0
+          ],
+          [
+            29.0,
+            78.5
+          ],
+          [
+            31.0,
+            76.0
+          ],
+          [
+            32.5,
+            74.5
+          ]
+        ]
+      ]
+    },
+    {
+      "temp_range": "18\u00b0 - 26\u00b0C (Montane Foothills & NE Hills)",
+      "color": "#16a34a",
+      "fillColor": "#22c55e",
+      "fillOpacity": 0.52,
+      "regions": [
+        [
+          [
+            28.0,
+            93.5
+          ],
+          [
+            27.5,
+            96.0
+          ],
+          [
+            25.5,
+            94.5
+          ],
+          [
+            23.5,
+            93.0
+          ],
+          [
+            24.0,
+            92.0
+          ],
+          [
+            25.5,
+            90.5
+          ],
+          [
+            26.2,
+            92.5
+          ],
+          [
+            28.0,
+            93.5
+          ]
+        ],
+        [
+          [
+            34.5,
+            74.5
+          ],
+          [
+            33.5,
+            75.5
+          ],
+          [
+            32.0,
+            76.8
+          ],
+          [
+            30.5,
+            78.8
+          ],
+          [
+            31.2,
+            77.5
+          ],
+          [
+            32.8,
+            76.0
+          ],
+          [
+            34.0,
+            74.8
+          ],
+          [
+            34.5,
+            74.5
+          ]
+        ]
+      ]
+    },
+    {
+      "temp_range": "< 16\u00b0C (Alpine Snow & Glacial Peaks)",
+      "color": "#2563eb",
+      "fillColor": "#3b82f6",
+      "fillOpacity": 0.65,
+      "regions": [
+        [
+          [
+            36.0,
+            76.0
+          ],
+          [
+            35.5,
+            78.5
+          ],
+          [
+            34.2,
+            79.2
+          ],
+          [
+            33.0,
+            79.0
+          ],
+          [
+            31.8,
+            78.8
+          ],
+          [
+            32.5,
+            77.2
+          ],
+          [
+            34.5,
+            76.2
+          ],
+          [
+            36.0,
+            76.0
+          ]
+        ],
+        [
+          [
+            28.1,
+            88.1
+          ],
+          [
+            27.9,
+            88.8
+          ],
+          [
+            27.5,
+            88.6
+          ],
+          [
+            27.7,
+            88.0
+          ],
+          [
+            28.1,
+            88.1
+          ]
+        ]
+      ]
+    }
+  ],
+  "industrial_emissions_clusters": [
+    {
+      "id": "manali_ennore",
+      "name": "Manali-Ennore Petrochemical & Fertilizer Zone",
+      "state": "Tamil Nadu (Chennai)",
+      "lat": 13.168,
+      "lng": 80.292,
+      "radius_meters": 12000,
+      "color": "#64748b",
+      "fillColor": "#94a3b8",
+      "fillOpacity": 0.55,
+      "so2_ugm3": 118.5,
+      "nox_ugm3": 94.2,
+      "voc_ppm": 6.8,
+      "status": "CPCB NON-ATTAINMENT EXCEEDANCE",
+      "plume_vector": "North-West (315\u00b0 at 14 km/h)"
+    },
+    {
+      "id": "ankleshwar_vapi",
+      "name": "Ankleshwar-Vapi PCPIR Chemical Corridor",
+      "state": "Gujarat",
+      "lat": 21.628,
+      "lng": 73.015,
+      "radius_meters": 15000,
+      "color": "#64748b",
+      "fillColor": "#94a3b8",
+      "fillOpacity": 0.55,
+      "so2_ugm3": 142.0,
+      "nox_ugm3": 112.5,
+      "voc_ppm": 8.4,
+      "status": "CRITICALLY POLLUTED INDUSTRIAL AREA (CEPI: 88.5)",
+      "plume_vector": "West-Southwest towards Gulf of Khambhat"
+    },
+    {
+      "id": "singrauli_korba",
+      "name": "Singrauli-Korba Thermal Super-Cluster",
+      "state": "MP / Chhattisgarh",
+      "lat": 24.2,
+      "lng": 82.67,
+      "radius_meters": 22000,
+      "color": "#64748b",
+      "fillColor": "#94a3b8",
+      "fillOpacity": 0.58,
+      "so2_ugm3": 168.0,
+      "nox_ugm3": 124.0,
+      "voc_ppm": 4.2,
+      "status": "POWER GRID FLUE-GAS DESULFURIZATION EXCEEDANCE",
+      "plume_vector": "East-Southeast regional drift"
+    },
+    {
+      "id": "durgapur_asansol",
+      "name": "Durgapur-Asansol Coal-Steel Industrial Belt",
+      "state": "West Bengal",
+      "lat": 23.52,
+      "lng": 87.31,
+      "radius_meters": 18000,
+      "color": "#64748b",
+      "fillColor": "#94a3b8",
+      "fillOpacity": 0.55,
+      "so2_ugm3": 134.0,
+      "nox_ugm3": 98.0,
+      "voc_ppm": 5.4,
+      "status": "METALLURGICAL STACK OPACITY EXCEEDANCE",
+      "plume_vector": "Southeast down Damodar basin"
+    },
+    {
+      "id": "chembur_trombay",
+      "name": "Chembur-Trombay Industrial Petrochemical Basin",
+      "state": "Maharashtra (Mumbai)",
+      "lat": 19.015,
+      "lng": 72.898,
+      "radius_meters": 10000,
+      "color": "#64748b",
+      "fillColor": "#94a3b8",
+      "fillOpacity": 0.55,
+      "so2_ugm3": 96.0,
+      "nox_ugm3": 88.0,
+      "voc_ppm": 7.1,
+      "status": "COASTAL INVERSION REFRACTORY EMISSIONS",
+      "plume_vector": "Southward dispersion over Thane Creek"
+    }
+  ],
+  "water_quality_river_reaches": [
+    {
+      "id": "yamuna_delhi_stretch",
+      "river": "Yamuna",
+      "name": "Yamuna River (Wazirabad to Okhla Barrage)",
+      "state": "Delhi / UP",
+      "cpcb_class": "Class E (Severely Polluted / DO Deficit)",
+      "color": "#ef4444",
+      "weight": 5.5,
+      "do_mg_l": 0.8,
+      "bod_mg_l": 24.5,
+      "fecal_coliform_mpn": 84000,
+      "coordinates": [
+        [
+          28.72,
+          77.22
+        ],
+        [
+          28.69,
+          77.23
+        ],
+        [
+          28.66,
+          77.24
+        ],
+        [
+          28.62,
+          77.26
+        ],
+        [
+          28.58,
+          77.29
+        ],
+        [
+          28.54,
+          77.31
+        ]
+      ]
+    },
+    {
+      "id": "ganga_kanpur_varanasi",
+      "river": "Ganga",
+      "name": "Ganga River (Kanpur Jajmau to Varanasi)",
+      "state": "Uttar Pradesh",
+      "cpcb_class": "Class D (Moderate to Critical Organic Load)",
+      "color": "#f97316",
+      "weight": 5.0,
+      "do_mg_l": 3.4,
+      "bod_mg_l": 11.2,
+      "fecal_coliform_mpn": 22000,
+      "coordinates": [
+        [
+          26.44,
+          80.38
+        ],
+        [
+          26.15,
+          80.85
+        ],
+        [
+          25.8,
+          81.65
+        ],
+        [
+          25.43,
+          81.88
+        ],
+        [
+          25.28,
+          82.55
+        ],
+        [
+          25.31,
+          83.0
+        ]
+      ]
+    },
+    {
+      "id": "barak_silchar_reach",
+      "river": "Barak",
+      "name": "Barak River Monitored Reach (Annapurna Ghat to Badarpur)",
+      "state": "Assam",
+      "cpcb_class": "Class C (Drinking water with conventional treatment)",
+      "color": "#06b6d4",
+      "weight": 4.5,
+      "do_mg_l": 5.8,
+      "bod_mg_l": 4.1,
+      "fecal_coliform_mpn": 1600,
+      "coordinates": [
+        [
+          24.832,
+          92.798
+        ],
+        [
+          24.846,
+          92.832
+        ],
+        [
+          24.892,
+          92.605
+        ],
+        [
+          24.876,
+          92.489
+        ]
+      ]
+    },
+    {
+      "id": "sabarmati_ahmedabad",
+      "river": "Sabarmati",
+      "name": "Sabarmati River (Subhash Bridge to Miroli)",
+      "state": "Gujarat",
+      "cpcb_class": "Class E (Industrial Effluent Anoxia)",
+      "color": "#dc2626",
+      "weight": 5.0,
+      "do_mg_l": 1.2,
+      "bod_mg_l": 18.6,
+      "fecal_coliform_mpn": 34000,
+      "coordinates": [
+        [
+          23.07,
+          72.58
+        ],
+        [
+          23.02,
+          72.57
+        ],
+        [
+          22.98,
+          72.58
+        ],
+        [
+          22.92,
+          72.61
+        ]
+      ]
+    }
+  ],
+  "glacial_glof_zones": [
+    {
+      "id": "south_lhonak_sikkim",
+      "name": "South Lhonak Glacial Lake Outburst Basin",
+      "state": "North Sikkim",
+      "color": "#0284c7",
+      "fillColor": "#38bdf8",
+      "fillOpacity": 0.65,
+      "elevation_m": 5200,
+      "lake_volume_m3": "64 Million m\u00b3",
+      "moraine_status": "HIGH MORAINE BREACH & LIQUEFACTION RISK",
+      "coordinates": [
+        [
+          27.92,
+          88.18
+        ],
+        [
+          27.95,
+          88.23
+        ],
+        [
+          27.91,
+          88.28
+        ],
+        [
+          27.87,
+          88.24
+        ],
+        [
+          27.92,
+          88.18
+        ]
+      ],
+      "surge_path": [
+        [
+          27.92,
+          88.22
+        ],
+        [
+          27.85,
+          88.35
+        ],
+        [
+          27.6,
+          88.64
+        ],
+        [
+          27.42,
+          88.52
+        ]
+      ]
+    },
+    {
+      "id": "chamoli_rishiganga_glof",
+      "name": "Chamoli-Rishiganga Cryospheric Liquefaction Valley",
+      "state": "Uttarakhand",
+      "color": "#0284c7",
+      "fillColor": "#38bdf8",
+      "fillOpacity": 0.65,
+      "elevation_m": 4800,
+      "lake_volume_m3": "Hanging Rock-Ice Avalanche Detachment",
+      "moraine_status": "HIGH-VELOCITY CRYOSPHERE DEBRIS SURGE",
+      "coordinates": [
+        [
+          30.45,
+          79.72
+        ],
+        [
+          30.5,
+          79.78
+        ],
+        [
+          30.48,
+          79.84
+        ],
+        [
+          30.41,
+          79.8
+        ],
+        [
+          30.45,
+          79.72
+        ]
+      ],
+      "surge_path": [
+        [
+          30.48,
+          79.82
+        ],
+        [
+          30.52,
+          79.68
+        ],
+        [
+          30.55,
+          79.56
+        ]
+      ]
+    },
+    {
+      "id": "spiti_kinnaur_permafrost",
+      "name": "Spiti-Kinnaur Moraine Thaw & Outburst Sector",
+      "state": "Himachal Pradesh",
+      "color": "#0284c7",
+      "fillColor": "#38bdf8",
+      "fillOpacity": 0.65,
+      "elevation_m": 4650,
+      "lake_volume_m3": "Moraine Thermokarst Subsidence",
+      "moraine_status": "ACTIVE PERMAFROST DEGRADATION",
+      "coordinates": [
+        [
+          32.05,
+          78.1
+        ],
+        [
+          32.12,
+          78.22
+        ],
+        [
+          32.02,
+          78.28
+        ],
+        [
+          31.95,
+          78.16
+        ],
+        [
+          32.05,
+          78.1
+        ]
+      ],
+      "surge_path": [
+        [
+          32.08,
+          78.18
+        ],
+        [
+          31.85,
+          78.4
+        ],
+        [
+          31.55,
+          78.25
+        ]
+      ]
+    }
+  ],
+  "tsunami_inundation_zones": [
+    {
+      "id": "coromandel_tsunami_sector",
+      "name": "Coromandel Coastal Inundation Sector (Chennai - Nagapattinam)",
+      "state": "Tamil Nadu",
+      "color": "#0f766e",
+      "fillColor": "#14b8a6",
+      "fillOpacity": 0.55,
+      "dart_station": "INCOIS DART Buoy #23223 (Bay of Bengal)",
+      "runup_projected_m": 4.2,
+      "bathymetric_depth_m": 3200,
+      "coordinates": [
+        [
+          13.25,
+          80.35
+        ],
+        [
+          13.1,
+          80.3
+        ],
+        [
+          12.5,
+          80.18
+        ],
+        [
+          11.9,
+          79.84
+        ],
+        [
+          11.15,
+          79.86
+        ],
+        [
+          10.75,
+          79.88
+        ],
+        [
+          10.75,
+          80.2
+        ],
+        [
+          11.5,
+          80.45
+        ],
+        [
+          12.3,
+          80.6
+        ],
+        [
+          13.25,
+          80.35
+        ]
+      ]
+    },
+    {
+      "id": "andaman_nicobar_trench",
+      "name": "Andaman-Sumatra Megathrust Tsunami Zone",
+      "state": "Andaman & Nicobar Islands",
+      "color": "#0f766e",
+      "fillColor": "#14b8a6",
+      "fillOpacity": 0.6,
+      "dart_station": "INCOIS DART Buoy #23221 (Ten Degree Channel)",
+      "runup_projected_m": 6.8,
+      "bathymetric_depth_m": 4100,
+      "coordinates": [
+        [
+          13.5,
+          92.8
+        ],
+        [
+          12.0,
+          92.65
+        ],
+        [
+          10.0,
+          92.45
+        ],
+        [
+          7.0,
+          93.65
+        ],
+        [
+          6.8,
+          94.2
+        ],
+        [
+          9.5,
+          93.8
+        ],
+        [
+          12.5,
+          93.3
+        ],
+        [
+          13.5,
+          92.8
+        ]
+      ]
+    },
+    {
+      "id": "odisha_coastal_surge_shelf",
+      "name": "Odisha Deltaic Continental Shelf Tsunami Sector",
+      "state": "Odisha (Puri - Paradeep - Balasore)",
+      "color": "#0f766e",
+      "fillColor": "#14b8a6",
+      "fillOpacity": 0.52,
+      "dart_station": "INCOIS Coastal Radar Array Paradeep",
+      "runup_projected_m": 3.8,
+      "bathymetric_depth_m": 2400,
+      "coordinates": [
+        [
+          21.5,
+          87.1
+        ],
+        [
+          20.5,
+          86.8
+        ],
+        [
+          19.75,
+          85.9
+        ],
+        [
+          19.2,
+          85.0
+        ],
+        [
+          19.2,
+          85.4
+        ],
+        [
+          20.2,
+          87.2
+        ],
+        [
+          21.5,
+          87.1
+        ]
+      ]
+    }
+  ],
+  "cyclone_tracks_and_isobars": [
+    {
+      "id": "bay_of_bengal_super_cyclone",
+      "name": "Extremely Severe Cyclonic Storm (IMD Stage IV Landfall Vortex)",
+      "basin": "Bay of Bengal (West-Northwest Track)",
+      "eye_lat": 19.85,
+      "eye_lng": 86.4,
+      "central_pressure_hpa": 942.0,
+      "max_sustained_wind_kmh": 185.0,
+      "gusts_kmh": 225.0,
+      "storm_surge_m": 4.8,
+      "category": "VSCS / Category 4 Equivalent",
+      "color": "#ec4899",
+      "fillColor": "#f472b6",
+      "isobar_rings": [
+        {
+          "radius_km": 60,
+          "wind_kmh": 185,
+          "pressure_hpa": 942,
+          "color": "#be185d",
+          "opacity": 0.65
+        },
+        {
+          "radius_km": 140,
+          "wind_kmh": 130,
+          "pressure_hpa": 968,
+          "color": "#db2777",
+          "opacity": 0.45
+        },
+        {
+          "radius_km": 260,
+          "wind_kmh": 85,
+          "pressure_hpa": 992,
+          "color": "#ec4899",
+          "opacity": 0.28
+        },
+        {
+          "radius_km": 420,
+          "wind_kmh": 55,
+          "pressure_hpa": 1004,
+          "color": "#f472b6",
+          "opacity": 0.16
+        }
+      ],
+      "projected_track": [
+        [
+          16.5,
+          88.5
+        ],
+        [
+          17.8,
+          87.6
+        ],
+        [
+          18.9,
+          86.9
+        ],
+        [
+          19.85,
+          86.4
+        ],
+        [
+          20.8,
+          85.8
+        ],
+        [
+          21.9,
+          85.1
+        ]
+      ],
+      "surge_inundation_coastal_belt": [
+        [
+          19.4,
+          85.2
+        ],
+        [
+          19.8,
+          85.8
+        ],
+        [
+          20.3,
+          86.7
+        ],
+        [
+          20.8,
+          87.0
+        ],
+        [
+          21.2,
+          87.2
+        ],
+        [
+          21.0,
+          86.8
+        ],
+        [
+          20.2,
+          86.2
+        ],
+        [
+          19.6,
+          85.3
+        ],
+        [
+          19.4,
+          85.2
+        ]
+      ]
+    }
+  ],
+  "multi_hazard_hotspots": [
+    {
+      "id": "lightning_chotanagpur_belt",
+      "name": "Chota Nagpur Severe Kalbaishakhi & Lightning Flash Zone",
+      "state": "Jharkhand / Odisha / West Bengal",
+      "hazard_type": "Severe Convective Downburst & Lightning Strikes",
+      "color": "#d97706",
+      "fillColor": "#fbbf24",
+      "fillOpacity": 0.48,
+      "lightning_strikes_hr": 1450,
+      "coordinates": [
+        [
+          24.5,
+          85.2
+        ],
+        [
+          24.2,
+          86.8
+        ],
+        [
+          23.1,
+          87.1
+        ],
+        [
+          22.2,
+          86.1
+        ],
+        [
+          22.8,
+          84.8
+        ],
+        [
+          24.5,
+          85.2
+        ]
+      ]
+    },
+    {
+      "id": "coastal_pluvial_mumbai",
+      "name": "Konkan Mega-City Pluvial Drainage Paralysis Belt",
+      "state": "Maharashtra (Greater Mumbai)",
+      "hazard_type": "Compound High Tide + 300mm Extreme Cloudburst",
+      "color": "#d97706",
+      "fillColor": "#fbbf24",
+      "fillOpacity": 0.52,
+      "pluvial_inundation_m": 1.45,
+      "coordinates": [
+        [
+          19.25,
+          72.8
+        ],
+        [
+          19.28,
+          72.95
+        ],
+        [
+          19.0,
+          73.05
+        ],
+        [
+          18.88,
+          72.85
+        ],
+        [
+          19.25,
+          72.8
+        ]
+      ]
+    }
+  ]
+}

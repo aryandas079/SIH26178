@@ -1,0 +1,2 @@
+station_id,timestamp,latitude,longitude,zone,elevation_m,surface_temp_c,relative_humidity_pct,river_water_level_m,river_danger_level_m,river_discharge_cumecs,aqi,pm2_5_ugm3,pm10_ugm3,seismic_mmi,rainfall_24h_mm,soil_moisture_pct,pressure_hpa,wind_speed_kmh,wind_gust_kmh,water_wqi,dissolved_oxygen_mg_l,bod_mg_l,so2_ugm3,nox_ugm3,co_mgm3,ozone_ugm3
+NODE-DELHI-CPCB-01,2026-09-10T12:00:00Z,28.6139,77.2090,"NATIONAL CAPITAL REGION",216,34.2,55.0,204.2,205.33,1240.0,385,248.0,395.0,1.2,0.0,32.0,1006.0,8.0,12.0,35,2.1,16.5,84.0,112.0,4.8,92.0

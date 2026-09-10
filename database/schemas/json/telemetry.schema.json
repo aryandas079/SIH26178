@@ -1,0 +1,78 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ERMSSensorTelemetry",
+  "description": "Validation schema for multi-channel physical sensor telemetry observations in ERMS",
+  "type": "object",
+  "required": ["station_id", "timestamp"],
+  "properties": {
+    "station_id": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 64
+    },
+    "timestamp": {
+      "type": "string"
+    },
+    "latitude": {
+      "type": ["number", "null"],
+      "minimum": 6.0,
+      "maximum": 38.0
+    },
+    "longitude": {
+      "type": ["number", "null"],
+      "minimum": 68.0,
+      "maximum": 98.0
+    },
+    "surface_temp_c": {
+      "type": ["number", "null"],
+      "minimum": -50.0,
+      "maximum": 60.0
+    },
+    "relative_humidity_pct": {
+      "type": ["number", "null"],
+      "minimum": 0.0,
+      "maximum": 100.0
+    },
+    "river_water_level_m": {
+      "type": ["number", "null"],
+      "minimum": 0.0,
+      "maximum": 200.0
+    },
+    "river_danger_level_m": {
+      "type": ["number", "null"],
+      "minimum": 0.0,
+      "maximum": 200.0
+    },
+    "river_discharge_cumecs": {
+      "type": ["number", "null"],
+      "minimum": 0.0
+    },
+    "aqi": {
+      "type": ["integer", "number", "null"],
+      "minimum": 0,
+      "maximum": 1000
+    },
+    "pm2_5_ugm3": {
+      "type": ["number", "null"],
+      "minimum": 0.0
+    },
+    "pm10_ugm3": {
+      "type": ["number", "null"],
+      "minimum": 0.0
+    },
+    "rainfall_24h_mm": {
+      "type": ["number", "null"],
+      "minimum": 0.0
+    },
+    "pressure_hpa": {
+      "type": ["number", "null"],
+      "minimum": 800.0,
+      "maximum": 1100.0
+    },
+    "wind_speed_kmh": {
+      "type": ["number", "null"],
+      "minimum": 0.0
+    }
+  },
+  "additionalProperties": true
+}

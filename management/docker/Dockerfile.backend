@@ -1,0 +1,28 @@
+# =====================================================================
+# ERMS Production Backend Dockerfile
+# Lightweight Node.js 20 Alpine container for REST & SSE API
+# =====================================================================
+
+FROM node:20-alpine
+WORKDIR /app
+
+ENV NODE_ENV=production
+ENV PORT=5000
+
+# Copy package definitions
+COPY backend/package*.json ./backend/
+COPY database/ ./database/
+
+# Install production dependencies only
+WORKDIR /app/backend
+RUN npm install --omit=dev
+
+# Copy backend source code
+COPY backend/src/ ./src/
+
+EXPOSE 5000
+
+HEALTHCHECK --interval=30s --timeout=5s --retries=3 \
+  CMD wget --no-verbose --tries=1 --spider http://localhost:5000/api/health || exit 1
+
+CMD ["node", "src/server.js"]

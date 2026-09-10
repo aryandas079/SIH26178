@@ -1,0 +1,3 @@
+station_id,timestamp,latitude,longitude,zone,elevation_m,surface_temp_c,relative_humidity_pct,river_water_level_m,river_danger_level_m,river_discharge_cumecs,aqi,pm2_5_ugm3,pm10_ugm3,seismic_mmi,rainfall_24h_mm,soil_moisture_pct,pressure_hpa,wind_speed_kmh,wind_gust_kmh,water_wqi,dissolved_oxygen_mg_l,bod_mg_l,so2_ugm3,nox_ugm3,dart_wave_m,moraine_pressure_mpa
+NODE-SILCHA-4696,2026-09-10T11:45:00Z,24.8273,92.7979,"BARAK VALLEY, ASSAM",22,26.0,95.0,20.25,19.83,3420.0,94,54.5,98.7,1.4,84.0,98.0,1011.0,12.0,17.0,60,5.4,3.8,28.5,42.0,0.0,null
+NODE-SILCHA-4696,2026-09-10T12:00:00Z,24.8273,92.7979,"BARAK VALLEY, ASSAM",22,26.4,94.0,20.35,19.83,3540.0,88,48.0,92.0,1.4,92.0,98.5,1009.5,14.0,21.0,58,5.1,4.2,26.0,38.0,0.0,null

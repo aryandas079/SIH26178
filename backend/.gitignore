@@ -1,0 +1,104 @@
+# =====================================================================
+# ERMS Enterprise Production .gitignore
+# Problem Statement: SIH2026-26178
+# =====================================================================
+
+# 1. Authentication Logs & Security Audit Trails (STRICTLY PRIVATE)
+*.log
+*.log.*
+logs/
+*/logs/
+database/logs/
+database/logs/*
+auth_access_logs.*
+access.log
+audit_logs.json
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# 2. Database Runtime Stores & Local Persistence
+database/data/
+database/data/*.json
+database/data/*.sqlite
+database/data/*.db
+database/data/*.sqlite3
+
+# 3. Monitored Sensor Streams & Hardware Telemetry Logs
+sensor_logs/
+database/sensor_logs/
+*.csv
+!assets/dataFiles/*.csv
+
+# 4. Environment Credentials & Secrets
+.env
+.env.*
+!.env.example
+frontend/.env
+frontend/.env.*
+!frontend/.env.example
+backend/.env
+backend/.env.*
+!backend/.env.example
+
+# 5. Dependency Directories
+node_modules/
+*/node_modules/
+
+# 6. Production Builds & Distribution Packages
+dist/
+*/dist/
+dist-ssr/
+build/
+*.tsbuildinfo
+
+# 7. Operating System & Editor Artifacts
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# 8. Python Runtime & Cache
+__pycache__/
+*/__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+build/
+develop-eggs/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# 9. Test Profiles, Headless Browser Profiles & Scratch Files
+scratch/
+chrome_prof*
+chrome_clean*
+temp/
+tmp/
+*.tmp
+recovered_*.txt

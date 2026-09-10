@@ -1,0 +1,2 @@
+station_id,timestamp,latitude,longitude,zone,elevation_m,surface_temp_c,relative_humidity_pct,river_water_level_m,river_danger_level_m,river_discharge_cumecs,aqi,pm2_5_ugm3,pm10_ugm3,seismic_mmi,rainfall_24h_mm,soil_moisture_pct,pressure_hpa,wind_speed_kmh,wind_gust_kmh,water_wqi,dissolved_oxygen_mg_l,bod_mg_l,moraine_pressure_mpa,lake_expansion_pct,ice_core_temp_c
+NODE-LHONAK-7371,2026-09-10T12:00:00Z,27.6042,88.6475,"NORTH SIKKIM HIMALAYAS",5200,1.2,88.0,14.5,12.0,1850.0,24,8.0,14.0,3.4,48.0,92.0,540.0,32.0,55.0,82,7.4,1.4,2.85,42.0,1.2

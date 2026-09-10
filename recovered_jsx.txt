@@ -1,0 +1,7 @@
+{/* Channel 1: Surface Ambient')
+            if idx1 == -1: idx1 = line.find('Channel 1: Surface Ambient')
+            idx2 = line.find('INCOIS / ISRO EARLY WARNING')
+            if idx1 != -1 and idx2 != -1:
+                end_div = line.find('</div>', idx2)
+                end_div = line.find('</div>', end_div + 6)
+                end_div = line.find('</div>

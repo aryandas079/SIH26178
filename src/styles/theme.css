@@ -1,0 +1,256 @@
+/* ERMS THEME & GLOBAL DESIGN SYSTEM */
+
+:root {
+  /* Exact Velvet Botanical Palette Tokens from Swatch Board (Image 5) */
+  --pal-mint: #dce4dc;
+  --pal-sage: #bcc6b8;
+  --pal-pistachio: #c5cca2;
+  --pal-olive: #7f875e;
+  --pal-fern: #586b4f;
+  --pal-emerald: #284f38;
+  --pal-jade: #204539;
+  --pal-forest: #183022;
+  --pal-pine: #122319;
+  --pal-evergreen: #0b1610;
+
+  /* Aliases mapped to Image 5 */
+  --olive-deep: var(--pal-forest);
+  --olive-title: var(--pal-pine);
+  --olive-sub: var(--pal-fern);
+  --olive-border: var(--pal-olive);
+  --whitesmoke-bg: #eef3ed;
+  --whitesmoke-text: #f5f8f5;
+
+  /* Universal Font - strictly Instagram Sans */
+  --font-primary: 'Instagram Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-headline: 'Instagram Sans', sans-serif;
+  --font-condensed: 'Instagram Sans', sans-serif;
+  --font-mono: 'Instagram Sans', monospace;
+
+  /* Refined Corner Curvature */
+  --radius-main: 10px;
+  --radius-sm: 6px;
+  --radius-pill: 9999px;
+}
+
+/* 1. LIGHT MODE (Faded organic tones with intense velvet botanical accents - Default Root) */
+:root,
+[data-theme='light'] {
+  --bg-primary: #eef3ed; /* Soft faded Mint wash */
+  --bg-surface: #f9fbf8; /* Crisp organic botanical surface */
+  --bg-surface-elevated: #ffffff;
+  --bg-card: #ffffff;
+
+  --text-title: #122319; /* Deep nocturnal Pine */
+  --text-sub: #586b4f;   /* Velvet Fern */
+  --text-primary: #183022; /* Rich Forest */
+  --text-secondary: #284f38; /* Intense Emerald */
+  --text-muted: #7f875e; /* Olive */
+
+  --btn-border: #284f38; /* Intense Emerald */
+  --btn-text: #122319;
+  --btn-hover-bg: rgba(40, 79, 56, 0.08);
+
+  --footer-bg: #0b1610;   /* Velvet Evergreen */
+  --footer-text: #dce4dc; /* Soft Mint */
+
+  --border-subtle: rgba(88, 107, 79, 0.22);
+  --border-medium: rgba(88, 107, 79, 0.38);
+  --border-strong: #7f875e;
+  --card-shadow: 0 4px 20px -2px rgba(18, 35, 25, 0.06);
+
+  /* Botanical Natural Shades Calibrated to Image 5 */
+  /* 1. Pistachio */
+  --shade-pistachio-bg: #f3f6ea;
+  --shade-pistachio-surface: #e5ecd3;
+  --shade-pistachio-border: #9aa475;
+  --shade-pistachio-text: #183022;
+  --shade-pistachio-accent: #586b4f;
+  --shade-pistachio-glow: rgba(127, 135, 94, 0.20);
+  --shade-pistachio-pill-bg: #ffffff;
+
+  /* 2. Sage */
+  --shade-sage-bg: #edf2eb;
+  --shade-sage-surface: #dce4dc;
+  --shade-sage-border: #bcc6b8;
+  --shade-sage-text: #122319;
+  --shade-sage-accent: #284f38;
+  --shade-sage-glow: rgba(188, 198, 184, 0.25);
+  --shade-sage-pill-bg: #ffffff;
+
+  /* 3. Emerald */
+  --shade-emerald-bg: #e2eee6;
+  --shade-emerald-surface: #c7ded0;
+  --shade-emerald-border: #284f38;
+  --shade-emerald-text: #0b1610;
+  --shade-emerald-accent: #204539;
+  --shade-emerald-glow: rgba(40, 79, 56, 0.24);
+  --shade-emerald-pill-bg: #ffffff;
+
+  /* 4. Forest */
+  --shade-forest-bg: #e7ede8;
+  --shade-forest-surface: #cfded2;
+  --shade-forest-border: #586b4f;
+  --shade-forest-text: #0b1610;
+  --shade-forest-accent: #183022;
+  --shade-forest-glow: rgba(88, 107, 79, 0.22);
+  --shade-forest-pill-bg: #ffffff;
+}
+
+/* 2. DARK MODE (Executive Shades of Black & Storm Grey) */
+[data-theme='dark'] {
+  --bg-primary: #0a0b0e; /* Deep Nocturnal Black */
+  --bg-surface: #12141a; /* Storm Charcoal Surface */
+  --bg-surface-elevated: #1a1d24; /* Elevated Storm Slate */
+  --bg-card: #151820; /* Refined Storm Grey Card */
+
+  --text-title: #f8fafc; /* Crisp Pure Silver / Ice White */
+  --text-sub: #94a3b8; /* Storm Grey Slate */
+  --text-primary: #e2e8f0; /* Crisp Neutral Light Grey */
+  --text-secondary: #cbd5e1; /* Storm Mist */
+  --text-muted: #64748b; /* Medium Storm Grey */
+
+  --btn-border: #333a48; /* Storm Grey Border */
+  --btn-text: #f1f5f9;
+  --btn-hover-bg: rgba(148, 163, 184, 0.12);
+
+  --footer-bg: #060709; /* Deep Obsidian Black */
+  --footer-text: #94a3b8; /* Storm Grey */
+
+  --border-subtle: rgba(148, 163, 184, 0.15);
+  --border-medium: #282f3d; /* Storm Grey Medium Border */
+  --border-strong: #3b4455; /* Solid Storm Grey */
+  --card-shadow: 0 4px 25px -2px rgba(0, 0, 0, 0.75);
+
+  /* Dark Storm Black & Slate Natural Shades */
+  --shade-pistachio-bg: #101217;
+  --shade-pistachio-surface: #171b23;
+  --shade-pistachio-border: #28303e;
+  --shade-pistachio-text: #f1f5f9;
+  --shade-pistachio-accent: #94a3b8;
+  --shade-pistachio-glow: rgba(148, 163, 184, 0.08);
+  --shade-pistachio-pill-bg: rgba(0, 0, 0, 0.55);
+
+  --shade-sage-bg: #0e1015;
+  --shade-sage-surface: #151921;
+  --shade-sage-border: #262c38;
+  --shade-sage-text: #e2e8f0;
+  --shade-sage-accent: #8895a7;
+  --shade-sage-glow: rgba(136, 149, 167, 0.08);
+  --shade-sage-pill-bg: rgba(0, 0, 0, 0.55);
+
+  --shade-emerald-bg: #12151c;
+  --shade-emerald-surface: #1a1e28;
+  --shade-emerald-border: #303949;
+  --shade-emerald-text: #f8fafc;
+  --shade-emerald-accent: #38bdf8;
+  --shade-emerald-glow: rgba(56, 189, 248, 0.12);
+  --shade-emerald-pill-bg: rgba(0, 0, 0, 0.55);
+
+  --shade-forest-bg: #0c0e12;
+  --shade-forest-surface: #13161d;
+  --shade-forest-border: #242934;
+  --shade-forest-text: #e2e8f0;
+  --shade-forest-accent: #94a3b8;
+  --shade-forest-glow: rgba(148, 163, 184, 0.08);
+  --shade-forest-pill-bg: rgba(0, 0, 0, 0.55);
+}
+
+/* 3. TINTED MODE (Storm Grey Tinted Obsidian) */
+[data-theme='tinted'] {
+  --bg-primary: #0d0f14;
+  --bg-surface: #151820;
+  --bg-surface-elevated: #1d212b;
+  --bg-card: #181c25;
+
+  --text-title: #f8fafc;
+  --text-sub: #94a3b8;
+  --text-primary: #e2e8f0;
+  --text-secondary: #cbd5e1;
+  --text-muted: #64748b;
+
+  --btn-border: #363e4f;
+  --btn-text: #f1f5f9;
+  --btn-hover-bg: rgba(148, 163, 184, 0.14);
+
+  --footer-bg: #07080b;
+  --footer-text: #94a3b8;
+
+  --border-subtle: rgba(148, 163, 184, 0.18);
+  --border-medium: #2e3646;
+  --border-strong: #3d475a;
+  --card-shadow: 0 4px 25px -2px rgba(0, 0, 0, 0.7);
+
+  /* Tinted Storm Shades */
+  --shade-pistachio-bg: #12151c;
+  --shade-pistachio-surface: #1a1e28;
+  --shade-pistachio-border: #2c3545;
+  --shade-pistachio-text: #f1f5f9;
+  --shade-pistachio-accent: #94a3b8;
+  --shade-pistachio-glow: rgba(148, 163, 184, 0.08);
+  --shade-pistachio-pill-bg: rgba(0, 0, 0, 0.55);
+
+  --shade-sage-bg: #101319;
+  --shade-sage-surface: #171b24;
+  --shade-sage-border: #283140;
+  --shade-sage-text: #e2e8f0;
+  --shade-sage-accent: #8895a7;
+  --shade-sage-glow: rgba(136, 149, 167, 0.08);
+  --shade-sage-pill-bg: rgba(0, 0, 0, 0.55);
+
+  --shade-emerald-bg: #141720;
+  --shade-emerald-surface: #1c212e;
+  --shade-emerald-border: #323d50;
+  --shade-emerald-text: #f8fafc;
+  --shade-emerald-accent: #38bdf8;
+  --shade-emerald-glow: rgba(56, 189, 248, 0.12);
+  --shade-emerald-pill-bg: rgba(0, 0, 0, 0.55);
+
+  --shade-forest-bg: #0f1117;
+  --shade-forest-surface: #151821;
+  --shade-forest-border: #262e3c;
+  --shade-forest-text: #e2e8f0;
+  --shade-forest-accent: #94a3b8;
+  --shade-forest-glow: rgba(148, 163, 184, 0.08);
+  --shade-forest-pill-bg: rgba(0, 0, 0, 0.55);
+}
+
+/* Global Reset, Custom Cursor & Font Enforcement */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  cursor: url('/assets/normal.cur'), auto !important;
+  font-family: 'Instagram Sans', sans-serif !important;
+}
+
+button, a, input, select, textarea, [role="button"], [tabindex="0"] {
+  cursor: url('/assets/normal.cur'), pointer !important;
+  font-family: 'Instagram Sans', sans-serif !important;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-family: 'Instagram Sans', sans-serif !important;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color 0.35s ease, color 0.35s ease;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden !important;
+  max-width: 100vw !important;
+  width: 100%;
+}
+
+body {
+  min-height: 100vh;
+  overflow-x: hidden !important;
+  max-width: 100vw !important;
+  width: 100%;
+  position: relative;
+}
+
+::selection {
+  background-color: var(--olive-title);
+  color: #ffffff;
+}

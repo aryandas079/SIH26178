@@ -1,0 +1,2 @@
+station_id,timestamp,latitude,longitude,zone,elevation_m,surface_temp_c,relative_humidity_pct,river_water_level_m,river_danger_level_m,river_discharge_cumecs,aqi,pm2_5_ugm3,pm10_ugm3,seismic_mmi,rainfall_24h_mm,soil_moisture_pct,pressure_hpa,wind_speed_kmh,wind_gust_kmh,water_wqi,dissolved_oxygen_mg_l,bod_mg_l,so2_ugm3,nox_ugm3,stack_opacity_pct,voc_ppm
+NODE-ANKLESH-3930,2026-09-10T12:00:00Z,21.6265,73.0033,"CHEMICAL CORRIDOR, GUJARAT",18,34.5,62.0,5.2,8.5,420.0,265,142.0,210.0,1.2,0.0,38.0,1008.0,16.0,24.0,42,3.2,9.8,142.0,116.0,38.5,8.4

@@ -1,0 +1,2588 @@
+{
+  "version": "4.0.0-PRECISION-ENHANCED",
+  "trained_on": "12 CPCB / IMD / CWC / NDMA / GSI / SOI Hazard Datasets",
+  "total_records_processed": 552912,
+  "hazard_models": {
+    "flood": {
+      "model_type": "Dual Ensemble (Calibrated Logistic Classifier + Isolation Forest)",
+      "agency": "Central Water Commission (CWC) / National Institute of Hydrology (NIH)",
+      "sample_count": 100000,
+      "anomaly_count": 22655,
+      "features": [
+        "water_level_ratio",
+        "level_above_danger_m",
+        "discharge_cumecs",
+        "rainfall_last_24hr_mm"
+      ],
+      "weights": [
+        9.2632,
+        35.6534,
+        0.0809,
+        -0.0042
+      ],
+      "intercept": -31.6772,
+      "means": [
+        0.9384,
+        -2.4408,
+        304.7094,
+        56.9851
+      ],
+      "stds": [
+        0.1626,
+        3.0121,
+        428.2487,
+        71.7498
+      ],
+      "percentiles_50": [
+        0.985,
+        -2.38,
+        121.1,
+        34.0
+      ],
+      "percentiles_95": [
+        1.047,
+        2.39,
+        1209.1,
+        192.505
+      ],
+      "percentiles_99": [
+        1.179,
+        3.17,
+        2058.607,
+        367.7
+      ],
+      "percentiles_99_9": [
+        1.449,
+        4.67,
+        3211.8,
+        619.8
+      ],
+      "feature_importances_pct": [
+        20.6,
+        79.2,
+        0.2,
+        0.0
+      ],
+      "metrics": {
+        "precision_pct": 97.42,
+        "recall_pct": 100.0,
+        "f1_score": 0.9869,
+        "roc_auc": 1.0,
+        "false_alarm_rate_pct": 0.78,
+        "accuracy_pct": 99.4,
+        "test_sample_count": 20000
+      },
+      "thresholds": {
+        "anomaly_threshold_ratio": 1.0,
+        "critical_threshold_ratio": 1.05,
+        "danger_discharge_cumecs": 2800.0,
+        "torrential_rain_24h_mm": 64.5
+      }
+    },
+    "heat": {
+      "model_type": "Dual Ensemble (Calibrated Logistic Classifier + Isolation Forest)",
+      "agency": "India Meteorological Department (IMD) / NDMA Heat Action Plan",
+      "sample_count": 10000,
+      "anomaly_count": 8784,
+      "features": [
+        "Max_Temperature_C",
+        "Heat_Index_C",
+        "Wet_Bulb_Temp_C",
+        "Urban_Heat_Island_Delta_C",
+        "Power_Grid_Peak_Stress_Index"
+      ],
+      "weights": [
+        2.3139,
+        16.6496,
+        -7.8653,
+        -0.0079,
+        0.1292
+      ],
+      "intercept": 9.0704,
+      "means": [
+        44.2994,
+        54.2401,
+        29.1798,
+        2.3497,
+        6.3376
+      ],
+      "stds": [
+        2.8741,
+        8.7631,
+        3.2567,
+        1.0608,
+        1.3497
+      ],
+      "percentiles_50": [
+        44.4,
+        52.5,
+        29.1,
+        2.4,
+        6.4
+      ],
+      "percentiles_95": [
+        49.0,
+        71.4,
+        34.8,
+        4.0,
+        8.5
+      ],
+      "percentiles_99": [
+        50.5,
+        82.0,
+        36.8,
+        4.2,
+        9.2
+      ],
+      "percentiles_99_9": [
+        50.5,
+        92.4,
+        38.6,
+        4.2,
+        9.8
+      ],
+      "feature_importances_pct": [
+        8.6,
+        61.7,
+        29.2,
+        0.0,
+        0.5
+      ],
+      "metrics": {
+        "precision_pct": 99.76,
+        "recall_pct": 95.9,
+        "f1_score": 0.9779,
+        "roc_auc": 0.9957,
+        "false_alarm_rate_pct": 1.65,
+        "accuracy_pct": 96.2,
+        "test_sample_count": 2000
+      },
+      "thresholds": {
+        "heatwave_temp_threshold": 42.5,
+        "severe_heatwave_temp_threshold": 45.0,
+        "heat_index_critical_c": 52.0,
+        "wet_bulb_survivability_c": 31.5
+      }
+    },
+    "aqi": {
+      "model_type": "Dual Ensemble (Calibrated Logistic Classifier + Isolation Forest)",
+      "agency": "Central Pollution Control Board (CPCB) SAMEER National Ambient Air Quality",
+      "sample_count": 100000,
+      "anomaly_count": 33615,
+      "features": [
+        "pm2_5_ugm3",
+        "pm10_ugm3",
+        "no2_ugm3",
+        "so2_ugm3",
+        "aqi"
+      ],
+      "weights": [
+        9.4356,
+        0.001,
+        0.2081,
+        -0.0021,
+        27.7216
+      ],
+      "intercept": -9.2405,
+      "means": [
+        83.744,
+        154.9644,
+        36.0342,
+        14.7694,
+        163.0424
+      ],
+      "stds": [
+        67.0981,
+        125.9591,
+        28.05,
+        12.0067,
+        116.9428
+      ],
+      "percentiles_50": [
+        64.8,
+        119.1,
+        28.3,
+        11.5,
+        119.0
+      ],
+      "percentiles_95": [
+        215.3,
+        402.7,
+        91.0,
+        38.3,
+        376.0
+      ],
+      "percentiles_99": [
+        330.301,
+        620.402,
+        137.801,
+        58.701,
+        433.0
+      ],
+      "percentiles_99_9": [
+        502.301,
+        958.2,
+        204.5,
+        87.9,
+        458.0
+      ],
+      "feature_importances_pct": [
+        25.3,
+        0.0,
+        0.6,
+        0.0,
+        74.2
+      ],
+      "metrics": {
+        "precision_pct": 99.12,
+        "recall_pct": 100.0,
+        "f1_score": 0.9956,
+        "roc_auc": 1.0,
+        "false_alarm_rate_pct": 0.45,
+        "accuracy_pct": 99.7,
+        "test_sample_count": 20000
+      },
+      "thresholds": {
+        "anomaly_threshold_aqi": 250.0,
+        "severe_threshold_aqi": 350.0,
+        "pm25_cpcb_24h_limit": 60.0,
+        "pm10_cpcb_24h_limit": 100.0
+      }
+    },
+    "emissions": {
+      "model_type": "Dual Ensemble (Calibrated Logistic Classifier + Isolation Forest)",
+      "agency": "CPCB Online Continuous Emission Monitoring System (OCEMS)",
+      "sample_count": 10000,
+      "anomaly_count": 9980,
+      "features": [
+        "Stack_SO2_mg_Nm3",
+        "Stack_NOx_mg_Nm3",
+        "VOC_Level_ppm",
+        "CO2_Emission_Rate_t_hr",
+        "Operating_Load_Pct"
+      ],
+      "weights": [
+        13.2768,
+        9.1852,
+        -0.0511,
+        3.1804,
+        0.2028
+      ],
+      "intercept": 26.6601,
+      "means": [
+        252.316,
+        228.6819,
+        20.6406,
+        0.5025,
+        81.6304
+      ],
+      "stds": [
+        168.4425,
+        136.3703,
+        27.7031,
+        0.2426,
+        11.1746
+      ],
+      "percentiles_50": [
+        227.8,
+        192.2,
+        6.9,
+        0.53,
+        81.8
+      ],
+      "percentiles_95": [
+        487.91,
+        476.62,
+        75.5,
+        0.88,
+        100.0
+      ],
+      "percentiles_99": [
+        939.751,
+        713.853,
+        84.6,
+        0.99,
+        100.0
+      ],
+      "percentiles_99_9": [
+        1462.341,
+        1403.304,
+        228.805,
+        1.07,
+        100.0
+      ],
+      "feature_importances_pct": [
+        51.3,
+        35.5,
+        0.2,
+        12.3,
+        0.8
+      ],
+      "metrics": {
+        "precision_pct": 100.0,
+        "recall_pct": 98.35,
+        "f1_score": 0.9917,
+        "roc_auc": 0.9999,
+        "false_alarm_rate_pct": 0.0,
+        "accuracy_pct": 98.35,
+        "test_sample_count": 2000
+      },
+      "thresholds": {
+        "so2_cpcb_limit_ugm3": 80.0,
+        "nox_cpcb_limit_ugm3": 80.0,
+        "voc_warning_ppm": 5.0,
+        "stack_opacity_limit_pct": 25.0
+      }
+    },
+    "water": {
+      "model_type": "Dual Ensemble (Calibrated Logistic Classifier + Isolation Forest)",
+      "agency": "CPCB National Water Quality Monitoring Programme (NWMP)",
+      "sample_count": 10000,
+      "anomaly_count": 6616,
+      "features": [
+        "pH",
+        "Dissolved_Oxygen_DO_mg_L",
+        "Biochemical_Oxygen_Demand_BOD_mg_L",
+        "Total_Dissolved_Solids_TDS_mg_L",
+        "Turbidity_NTU",
+        "Fecal_Coliform_MPN_100ml"
+      ],
+      "weights": [
+        -0.2315,
+        -4.6581,
+        11.5123,
+        0.1661,
+        -0.2756,
+        -0.0126
+      ],
+      "intercept": 10.487,
+      "means": [
+        7.9296,
+        3.3169,
+        18.1722,
+        968.4126,
+        56.1132,
+        199964.4925
+      ],
+      "stds": [
+        0.6223,
+        2.596,
+        17.6293,
+        616.57,
+        58.149,
+        367879.1787
+      ],
+      "percentiles_50": [
+        7.84,
+        2.89,
+        8.0,
+        809.05,
+        39.8,
+        25000.0
+      ],
+      "percentiles_95": [
+        9.08,
+        7.76,
+        49.56,
+        1983.27,
+        200.615,
+        1200000.0
+      ],
+      "percentiles_99": [
+        9.51,
+        8.53,
+        57.081,
+        2521.807,
+        265.501,
+        1200000.0
+      ],
+      "percentiles_99_9": [
+        10.02,
+        9.28,
+        63.26,
+        3072.277,
+        279.1,
+        1200000.0
+      ],
+      "feature_importances_pct": [
+        1.4,
+        27.6,
+        68.3,
+        1.0,
+        1.6,
+        0.1
+      ],
+      "metrics": {
+        "precision_pct": 97.34,
+        "recall_pct": 91.31,
+        "f1_score": 0.9423,
+        "roc_auc": 0.987,
+        "false_alarm_rate_pct": 4.87,
+        "accuracy_pct": 92.6,
+        "test_sample_count": 2000
+      },
+      "thresholds": {
+        "do_critical_min_mg_l": 4.0,
+        "bod_critical_max_mg_l": 8.0,
+        "tds_max_ppm": 1200.0,
+        "turbidity_max_ntu": 15.0,
+        "ph_min": 6.5,
+        "ph_max": 8.5
+      }
+    },
+    "glacial": {
+      "model_type": "Dual Ensemble (Calibrated Logistic Classifier + Isolation Forest)",
+      "agency": "ISRO Space Applications Centre / National Centre for Polar and Ocean Research (NCPOR)",
+      "sample_count": 10000,
+      "anomaly_count": 9829,
+      "features": [
+        "Ambient_Air_Temp_C",
+        "Ice_Surface_Temp_C",
+        "Daily_Liquefaction_Melt_cm_we",
+        "Glacial_Lake_Volume_10k_m3",
+        "Proglacial_Discharge_m3_s"
+      ],
+      "weights": [
+        0.8625,
+        -0.2436,
+        -0.0436,
+        18.3534,
+        1.9475
+      ],
+      "intercept": 19.0026,
+      "means": [
+        5.3711,
+        -0.2392,
+        5.492,
+        381.0466,
+        23.91
+      ],
+      "stds": [
+        3.5253,
+        0.4481,
+        2.8762,
+        353.9108,
+        11.1705
+      ],
+      "percentiles_50": [
+        5.4,
+        0.0,
+        5.31,
+        319.5,
+        23.5
+      ],
+      "percentiles_95": [
+        11.1,
+        0.0,
+        10.47,
+        1148.405,
+        43.0
+      ],
+      "percentiles_99": [
+        13.2,
+        0.0,
+        12.67,
+        1738.209,
+        50.8
+      ],
+      "percentiles_99_9": [
+        16.1,
+        0.0,
+        14.53,
+        2061.821,
+        58.5
+      ],
+      "feature_importances_pct": [
+        4.0,
+        1.1,
+        0.2,
+        85.6,
+        9.1
+      ],
+      "metrics": {
+        "precision_pct": 100.0,
+        "recall_pct": 96.29,
+        "f1_score": 0.9811,
+        "roc_auc": 0.9931,
+        "false_alarm_rate_pct": 0.0,
+        "accuracy_pct": 96.35,
+        "test_sample_count": 2000
+      },
+      "thresholds": {
+        "moraine_pressure_critical_mpa": 2.2,
+        "lake_expansion_critical_pct": 30.0,
+        "thaw_rate_critical_cm_mo": 4.0
+      }
+    },
+    "cyclone": {
+      "model_type": "Dual Ensemble (Calibrated Logistic Classifier + Isolation Forest)",
+      "agency": "India Meteorological Department (IMD) / RSMC New Delhi",
+      "sample_count": 102572,
+      "anomaly_count": 25680,
+      "features": [
+        "central_pressure_hpa",
+        "max_sustained_wind_kmph",
+        "gust_speed_kmph",
+        "movement_speed_kmph"
+      ],
+      "weights": [
+        -32.3146,
+        7.778,
+        0.5814,
+        -0.0562
+      ],
+      "intercept": -8.4186,
+      "means": [
+        989.7098,
+        32.3796,
+        39.6666,
+        13.9063
+      ],
+      "stds": [
+        22.9908,
+        26.6835,
+        32.7423,
+        4.9085
+      ],
+      "percentiles_50": [
+        999.1,
+        22.0,
+        27.0,
+        13.9
+      ],
+      "percentiles_95": [
+        1006.4,
+        87.0,
+        106.7,
+        22.0
+      ],
+      "percentiles_99": [
+        1008.1,
+        136.029,
+        167.129,
+        25.0
+      ],
+      "percentiles_99_9": [
+        1009.7,
+        200.186,
+        246.486,
+        28.0
+      ],
+      "feature_importances_pct": [
+        79.3,
+        19.1,
+        1.4,
+        0.1
+      ],
+      "metrics": {
+        "precision_pct": 98.16,
+        "recall_pct": 99.92,
+        "f1_score": 0.9904,
+        "roc_auc": 1.0,
+        "false_alarm_rate_pct": 0.62,
+        "accuracy_pct": 99.51,
+        "test_sample_count": 20515
+      },
+      "thresholds": {
+        "cyclonic_storm_wind_kmh": 62.0,
+        "severe_cyclone_wind_kmh": 88.0,
+        "very_severe_cyclone_wind_kmh": 118.0,
+        "central_pressure_critical_hpa": 980.0,
+        "storm_surge_warning_m": 2.5
+      }
+    },
+    "tsunami": {
+      "model_type": "Dual Ensemble (Calibrated Logistic Classifier + Isolation Forest)",
+      "agency": "INCOIS Indian Tsunami Early Warning Centre (ITEWC)",
+      "sample_count": 37,
+      "anomaly_count": 29,
+      "features": [
+        "Earthquake_Magnitude_Mw",
+        "Maximum_Water_Runup_m",
+        "Inland_Inundation_Distance_m"
+      ],
+      "weights": [
+        2.009,
+        0.7442,
+        0.5447
+      ],
+      "intercept": 1.6922,
+      "means": [
+        8.6297,
+        4.3332,
+        532.2162
+      ],
+      "stds": [
+        0.5457,
+        3.3234,
+        667.3222
+      ],
+      "percentiles_50": [
+        9.1,
+        3.5,
+        340.0
+      ],
+      "percentiles_95": [
+        9.1,
+        11.26,
+        1440.0
+      ],
+      "percentiles_99": [
+        9.1,
+        11.692,
+        3032.0
+      ],
+      "percentiles_99_9": [
+        9.1,
+        11.789,
+        3453.2
+      ],
+      "feature_importances_pct": [
+        60.9,
+        22.6,
+        16.5
+      ],
+      "metrics": {
+        "precision_pct": 100.0,
+        "recall_pct": 66.67,
+        "f1_score": 0.8,
+        "roc_auc": 0.9167,
+        "false_alarm_rate_pct": 0.0,
+        "accuracy_pct": 75.0,
+        "test_sample_count": 8
+      },
+      "thresholds": {
+        "dart_buoy_alert_m": 0.4,
+        "runup_critical_m": 2.0,
+        "seismic_moment_warning_mw": 7.5
+      }
+    },
+    "earthquake": {
+      "model_type": "Dual Ensemble (Calibrated Logistic Classifier + Isolation Forest)",
+      "agency": "National Centre for Seismology (NCS) / MoES",
+      "sample_count": 100000,
+      "anomaly_count": 89067,
+      "features": [
+        "magnitude",
+        "depth_km",
+        "mmi_intensity"
+      ],
+      "weights": [
+        0.0674,
+        4.1692,
+        0.099
+      ],
+      "intercept": 1.9849,
+      "means": [
+        2.4531,
+        23.4014,
+        3.2195
+      ],
+      "stds": [
+        0.5074,
+        23.805,
+        1.0068
+      ],
+      "percentiles_50": [
+        2.3,
+        16.0,
+        3.0
+      ],
+      "percentiles_95": [
+        3.4,
+        72.1,
+        5.0
+      ],
+      "percentiles_99": [
+        4.2,
+        121.001,
+        6.0
+      ],
+      "percentiles_99_9": [
+        6.7,
+        176.8,
+        10.0
+      ],
+      "feature_importances_pct": [
+        1.6,
+        96.2,
+        2.3
+      ],
+      "metrics": {
+        "precision_pct": 97.22,
+        "recall_pct": 68.69,
+        "f1_score": 0.805,
+        "roc_auc": 0.8404,
+        "false_alarm_rate_pct": 16.0,
+        "accuracy_pct": 70.36,
+        "test_sample_count": 20000
+      },
+      "thresholds": {
+        "anomaly_magnitude_threshold": 4.5,
+        "severe_magnitude_threshold": 6.0,
+        "focal_depth_shallow_km": 30.0
+      }
+    },
+    "landslide": {
+      "model_type": "Dual Ensemble (Calibrated Logistic Classifier + Isolation Forest)",
+      "agency": "Geological Survey of India (GSI) Landslide Early Warning System",
+      "sample_count": 100000,
+      "anomaly_count": 58597,
+      "features": [
+        "slope_degrees",
+        "rainfall_24hr_mm",
+        "antecedent_rainfall_15day_mm",
+        "estimated_volume_m3"
+      ],
+      "weights": [
+        0.1282,
+        1.417,
+        -0.0999,
+        0.0091
+      ],
+      "intercept": 0.2198,
+      "means": [
+        42.4377,
+        69.4766,
+        340.1426,
+        430.5899
+      ],
+      "stds": [
+        9.1128,
+        63.784,
+        303.9318,
+        441.1347
+      ],
+      "percentiles_50": [
+        42.1,
+        50.4,
+        253.1,
+        289.95
+      ],
+      "percentiles_95": [
+        57.8,
+        196.1,
+        935.605,
+        1282.5
+      ],
+      "percentiles_99": [
+        59.6,
+        297.501,
+        1429.9,
+        2126.402
+      ],
+      "percentiles_99_9": [
+        60.0,
+        441.801,
+        2174.109,
+        3603.601
+      ],
+      "feature_importances_pct": [
+        7.7,
+        85.7,
+        6.0,
+        0.6
+      ],
+      "metrics": {
+        "precision_pct": 76.96,
+        "recall_pct": 57.1,
+        "f1_score": 0.6556,
+        "roc_auc": 0.7116,
+        "false_alarm_rate_pct": 24.19,
+        "accuracy_pct": 64.85,
+        "test_sample_count": 20000
+      },
+      "thresholds": {
+        "critical_slope_degrees": 30.0,
+        "trigger_rainfall_24h_mm": 120.0,
+        "factor_of_safety_critical": 1.0,
+        "pore_water_pressure_critical_kpa": 45.0
+      },
+      "physics_engine": "Infinite Slope Geotechnical Limit Equilibrium (Coulomb-Terzaghi)",
+      "transboundary_nepal_himalayan_coupling": true
+    },
+    "fires": {
+      "model_type": "Dual Ensemble (Calibrated Logistic Classifier + Isolation Forest)",
+      "agency": "Forest Survey of India (FSI) Forest Fire Alert System / SNPP-VIIRS",
+      "sample_count": 300,
+      "anomaly_count": 81,
+      "features": [
+        "temperature_c",
+        "relative_humidity_pct",
+        "wind_speed_kmh",
+        "fire_radiative_power_mw",
+        "fuel_moisture_index"
+      ],
+      "weights": [
+        0.8218,
+        -0.2771,
+        0.0869,
+        5.0677,
+        0.4565
+      ],
+      "intercept": -3.1718,
+      "means": [
+        30.8133,
+        40.2133,
+        8.671,
+        36.1103,
+        0.6616
+      ],
+      "stds": [
+        4.7986,
+        12.2098,
+        2.9811,
+        13.0145,
+        0.1017
+      ],
+      "percentiles_50": [
+        30.6,
+        39.0,
+        8.6,
+        35.75,
+        0.666
+      ],
+      "percentiles_95": [
+        39.41,
+        59.4,
+        13.705,
+        56.205,
+        0.818
+      ],
+      "percentiles_99": [
+        41.606,
+        71.218,
+        15.6,
+        63.416,
+        0.879
+      ],
+      "percentiles_99_9": [
+        44.411,
+        73.561,
+        17.071,
+        70.104,
+        0.9
+      ],
+      "feature_importances_pct": [
+        12.2,
+        4.1,
+        1.3,
+        75.5,
+        6.8
+      ],
+      "metrics": {
+        "precision_pct": 84.21,
+        "recall_pct": 100.0,
+        "f1_score": 0.9143,
+        "roc_auc": 1.0,
+        "false_alarm_rate_pct": 6.82,
+        "accuracy_pct": 95.0,
+        "test_sample_count": 60
+      },
+      "thresholds": {
+        "frp_alert_mw": 50.0,
+        "dry_fuel_moisture_index_crit": 0.2,
+        "humidity_crit_min_pct": 25.0
+      }
+    },
+    "other": {
+      "model_type": "Dual Ensemble (Calibrated Logistic Classifier + Isolation Forest)",
+      "agency": "NDMA Multi-Hazard Vulnerability & Emergency Operation Directorate",
+      "sample_count": 10000,
+      "anomaly_count": 5537,
+      "features": [
+        "Measured_Severity_Value",
+        "Estimated_Population_Displaced",
+        "Estimated_Economic_Loss_INR_Crore"
+      ],
+      "weights": [
+        -1.7168,
+        4.5026,
+        -1.0471
+      ],
+      "intercept": 0.8826,
+      "means": [
+        215.7016,
+        2529.0227,
+        44.0561
+      ],
+      "stds": [
+        451.8155,
+        3714.728,
+        55.103
+      ],
+      "percentiles_50": [
+        48.35,
+        1053.0,
+        23.6
+      ],
+      "percentiles_95": [
+        1399.77,
+        10260.7,
+        156.0
+      ],
+      "percentiles_99": [
+        2203.902,
+        16952.19,
+        254.501
+      ],
+      "percentiles_99_9": [
+        2375.001,
+        26182.411,
+        358.903
+      ],
+      "feature_importances_pct": [
+        23.6,
+        62.0,
+        14.4
+      ],
+      "metrics": {
+        "precision_pct": 86.35,
+        "recall_pct": 73.71,
+        "f1_score": 0.7953,
+        "roc_auc": 0.9068,
+        "false_alarm_rate_pct": 14.45,
+        "accuracy_pct": 79.0,
+        "test_sample_count": 2000
+      },
+      "thresholds": {
+        "multi_hazard_stress_index_crit": 0.7,
+        "mass_displacement_crit_pop": 10000
+      }
+    }
+  },
+  "river_basins": {
+    "Bagmati": {
+      "river": "Bagmati",
+      "stations": [
+        "Hayaghat"
+      ],
+      "districts": [
+        "Muzaffarpur"
+      ],
+      "avg_danger_level_m": 47.0,
+      "max_discharge_cumecs": 813.8,
+      "historical_flood_events": 407
+    },
+    "Barak": {
+      "river": "Barak",
+      "stations": [
+        "Annapurna Ghat"
+      ],
+      "districts": [
+        "Silchar"
+      ],
+      "avg_danger_level_m": 18.0,
+      "max_discharge_cumecs": 395.4,
+      "historical_flood_events": 373
+    },
+    "Beas": {
+      "river": "Beas",
+      "stations": [
+        "Mandi",
+        "Kullu"
+      ],
+      "districts": [
+        "Mandi",
+        "Kullu"
+      ],
+      "avg_danger_level_m": 952.61,
+      "max_discharge_cumecs": 5173.7,
+      "historical_flood_events": 791
+    },
+    "Brahmaputra": {
+      "river": "Brahmaputra",
+      "stations": [
+        "Nimatighat",
+        "Pandu",
+        "Dibrugarh",
+        "Dhubri"
+      ],
+      "districts": [
+        "Jorhat",
+        "Guwahati",
+        "Dibrugarh",
+        "Dhubri"
+      ],
+      "avg_danger_level_m": 66.71,
+      "max_discharge_cumecs": 1215.9,
+      "historical_flood_events": 1540
+    },
+    "Cauvery": {
+      "river": "Cauvery",
+      "stations": [
+        "Bhavani",
+        "Mukombu (Upper Anicut)"
+      ],
+      "districts": [
+        "Erode",
+        "Tiruchirappalli"
+      ],
+      "avg_danger_level_m": 91.54,
+      "max_discharge_cumecs": 1070.6,
+      "historical_flood_events": 834
+    },
+    "Chalakudy": {
+      "river": "Chalakudy",
+      "stations": [
+        "Arangaly"
+      ],
+      "districts": [
+        "Thrissur"
+      ],
+      "avg_danger_level_m": 21.0,
+      "max_discharge_cumecs": 473.2,
+      "historical_flood_events": 383
+    },
+    "Chambal": {
+      "river": "Chambal",
+      "stations": [
+        "Kota Barrage",
+        "Rajghat"
+      ],
+      "districts": [
+        "Kota",
+        "Gwalior"
+      ],
+      "avg_danger_level_m": 205.8,
+      "max_discharge_cumecs": 2478.6,
+      "historical_flood_events": 756
+    },
+    "Damodar": {
+      "river": "Damodar",
+      "stations": [
+        "Durgapur Barrage",
+        "Rhondia"
+      ],
+      "districts": [
+        "Howrah",
+        "Dhanbad"
+      ],
+      "avg_danger_level_m": 95.37,
+      "max_discharge_cumecs": 1308.3,
+      "historical_flood_events": 756
+    },
+    "Gandak": {
+      "river": "Gandak",
+      "stations": [
+        "Dumariaghat"
+      ],
+      "districts": [
+        "Motihari"
+      ],
+      "avg_danger_level_m": 55.0,
+      "max_discharge_cumecs": 839.3,
+      "historical_flood_events": 394
+    },
+    "Ganga": {
+      "river": "Ganga",
+      "stations": [
+        "Ballia",
+        "Gandhi Ghat",
+        "Haridwar",
+        "Varanasi (Malviya Bridge)",
+        "Bhagalpur",
+        "Rishikesh"
+      ],
+      "districts": [
+        "Ballia",
+        "Patna",
+        "Haridwar",
+        "Varanasi",
+        "Bhagalpur",
+        "Rishikesh"
+      ],
+      "avg_danger_level_m": 140.06,
+      "max_discharge_cumecs": 2431.1,
+      "historical_flood_events": 2236
+    },
+    "Ganga (Padma)": {
+      "river": "Ganga (Padma)",
+      "stations": [
+        "Manikchak"
+      ],
+      "districts": [
+        "Malda"
+      ],
+      "avg_danger_level_m": 24.5,
+      "max_discharge_cumecs": 468.6,
+      "historical_flood_events": 382
+    },
+    "Ganga-Yamuna Confluence": {
+      "river": "Ganga-Yamuna Confluence",
+      "stations": [
+        "Prayagraj (Old Naini Bridge)"
+      ],
+      "districts": [
+        "Allahabad"
+      ],
+      "avg_danger_level_m": 82.0,
+      "max_discharge_cumecs": 1222.3,
+      "historical_flood_events": 380
+    },
+    "Ghaghara (Saryu)": {
+      "river": "Ghaghara (Saryu)",
+      "stations": [
+        "Ayodhya"
+      ],
+      "districts": [
+        "Ayodhya"
+      ],
+      "avg_danger_level_m": 91.7,
+      "max_discharge_cumecs": 1103.4,
+      "historical_flood_events": 400
+    },
+    "Godavari": {
+      "river": "Godavari",
+      "stations": [
+        "Nashik Road",
+        "Dowleswaram Barrage",
+        "Nanded",
+        "Bhadrachalam"
+      ],
+      "districts": [
+        "Nashik",
+        "Rajahmundry",
+        "Nanded",
+        "Bhadrachalam"
+      ],
+      "avg_danger_level_m": 225.05,
+      "max_discharge_cumecs": 3060.1,
+      "historical_flood_events": 1517
+    },
+    "Gomti": {
+      "river": "Gomti",
+      "stations": [
+        "Gomti Barrage"
+      ],
+      "districts": [
+        "Lucknow"
+      ],
+      "avg_danger_level_m": 103.0,
+      "max_discharge_cumecs": 1252.2,
+      "historical_flood_events": 410
+    },
+    "Hooghly": {
+      "river": "Hooghly",
+      "stations": [
+        "Kolkata Jetty"
+      ],
+      "districts": [
+        "Kolkata"
+      ],
+      "avg_danger_level_m": 5.2,
+      "max_discharge_cumecs": 167.4,
+      "historical_flood_events": 399
+    },
+    "Jhelum": {
+      "river": "Jhelum",
+      "stations": [
+        "Ram Munshi Bagh"
+      ],
+      "districts": [
+        "Srinagar"
+      ],
+      "avg_danger_level_m": 21.5,
+      "max_discharge_cumecs": 524.9,
+      "historical_flood_events": 342
+    },
+    "Kabini": {
+      "river": "Kabini",
+      "stations": [
+        "Panamaram"
+      ],
+      "districts": [
+        "Wayanad"
+      ],
+      "avg_danger_level_m": 691.0,
+      "max_discharge_cumecs": 3797.4,
+      "historical_flood_events": 407
+    },
+    "Kopili": {
+      "river": "Kopili",
+      "stations": [
+        "Kampur"
+      ],
+      "districts": [
+        "Nagaon"
+      ],
+      "avg_danger_level_m": 45.0,
+      "max_discharge_cumecs": 710.5,
+      "historical_flood_events": 372
+    },
+    "Kosi": {
+      "river": "Kosi",
+      "stations": [
+        "Basua",
+        "Kosi Barrage"
+      ],
+      "districts": [
+        "Darbhanga",
+        "Supaul"
+      ],
+      "avg_danger_level_m": 61.89,
+      "max_discharge_cumecs": 1117.5,
+      "historical_flood_events": 773
+    },
+    "Krishna": {
+      "river": "Krishna",
+      "stations": [
+        "Prakasam Barrage",
+        "Kudachi",
+        "Nagarjuna Sagar"
+      ],
+      "districts": [
+        "Vijayawada",
+        "Belagavi",
+        "Nalgonda"
+      ],
+      "avg_danger_level_m": 239.05,
+      "max_discharge_cumecs": 3308.3,
+      "historical_flood_events": 1168
+    },
+    "Mahanadi": {
+      "river": "Mahanadi",
+      "stations": [
+        "Munduli",
+        "Hirakud",
+        "Rajim"
+      ],
+      "districts": [
+        "Cuttack",
+        "Sambalpur",
+        "Raipur"
+      ],
+      "avg_danger_level_m": 169.11,
+      "max_discharge_cumecs": 2128.8,
+      "historical_flood_events": 1111
+    },
+    "Mula-Mutha": {
+      "river": "Mula-Mutha",
+      "stations": [
+        "Khadakwasla"
+      ],
+      "districts": [
+        "Pune"
+      ],
+      "avg_danger_level_m": 553.0,
+      "max_discharge_cumecs": 3261.8,
+      "historical_flood_events": 372
+    },
+    "Narmada": {
+      "river": "Narmada",
+      "stations": [
+        "Golden Bridge",
+        "Gwarighat",
+        "Sethani Ghat"
+      ],
+      "districts": [
+        "Bharuch",
+        "Jabalpur",
+        "Hoshangabad"
+      ],
+      "avg_danger_level_m": 244.91,
+      "max_discharge_cumecs": 2815.2,
+      "historical_flood_events": 1110
+    },
+    "Panchganga": {
+      "river": "Panchganga",
+      "stations": [
+        "Rajaram Bandhara"
+      ],
+      "districts": [
+        "Kolhapur"
+      ],
+      "avg_danger_level_m": 528.0,
+      "max_discharge_cumecs": 3292.4,
+      "historical_flood_events": 384
+    },
+    "Periyar": {
+      "river": "Periyar",
+      "stations": [
+        "Aluva"
+      ],
+      "districts": [
+        "Aluva"
+      ],
+      "avg_danger_level_m": 5.5,
+      "max_discharge_cumecs": 202.7,
+      "historical_flood_events": 388
+    },
+    "Sabarmati": {
+      "river": "Sabarmati",
+      "stations": [
+        "Ahmedabad"
+      ],
+      "districts": [
+        "Ahmedabad"
+      ],
+      "avg_danger_level_m": 47.0,
+      "max_discharge_cumecs": 794.8,
+      "historical_flood_events": 376
+    },
+    "Subarnarekha": {
+      "river": "Subarnarekha",
+      "stations": [
+        "Rajghat",
+        "Jonha"
+      ],
+      "districts": [
+        "Balasore",
+        "Ranchi"
+      ],
+      "avg_danger_level_m": 308.79,
+      "max_discharge_cumecs": 3620.8,
+      "historical_flood_events": 788
+    },
+    "Sutlej": {
+      "river": "Sutlej",
+      "stations": [
+        "Ludhiana",
+        "Ropar Headworks"
+      ],
+      "districts": [
+        "Ludhiana",
+        "Ropar"
+      ],
+      "avg_danger_level_m": 252.93,
+      "max_discharge_cumecs": 2117.7,
+      "historical_flood_events": 741
+    },
+    "Tapi": {
+      "river": "Tapi",
+      "stations": [
+        "Singanpor"
+      ],
+      "districts": [
+        "Surat"
+      ],
+      "avg_danger_level_m": 30.5,
+      "max_discharge_cumecs": 646.3,
+      "historical_flood_events": 412
+    },
+    "Tawi": {
+      "river": "Tawi",
+      "stations": [
+        "Jammu"
+      ],
+      "districts": [
+        "Jammu"
+      ],
+      "avg_danger_level_m": 12.0,
+      "max_discharge_cumecs": 348.6,
+      "historical_flood_events": 383
+    },
+    "Teesta": {
+      "river": "Teesta",
+      "stations": [
+        "Domohani"
+      ],
+      "districts": [
+        "Jalpaiguri"
+      ],
+      "avg_danger_level_m": 45.5,
+      "max_discharge_cumecs": 700.6,
+      "historical_flood_events": 394
+    },
+    "Tungabhadra": {
+      "river": "Tungabhadra",
+      "stations": [
+        "Tungabhadra Dam"
+      ],
+      "districts": [
+        "Raichur"
+      ],
+      "avg_danger_level_m": 494.0,
+      "max_discharge_cumecs": 3134.7,
+      "historical_flood_events": 395
+    },
+    "Yamuna": {
+      "river": "Yamuna",
+      "stations": [
+        "Hathnikund Barrage",
+        "Old Railway Bridge"
+      ],
+      "districts": [
+        "Yamunanagar",
+        "Delhi"
+      ],
+      "avg_danger_level_m": 305.72,
+      "max_discharge_cumecs": 2702.2,
+      "historical_flood_events": 781
+    }
+  },
+  "historical_frequencies": {
+    "flood": {
+      "ahmedabad::sabarmati": {
+        "district": "Ahmedabad",
+        "river": "Sabarmati",
+        "historical_flood_count": 376,
+        "max_level_above_danger_m": 3.15,
+        "max_discharge_cumecs": 794.8,
+        "avg_rainfall_mm": 137.4,
+        "danger_level_m": 47.0,
+        "gauge_station": "Ahmedabad"
+      },
+      "allahabad::ganga-yamuna confluence": {
+        "district": "Allahabad",
+        "river": "Ganga-Yamuna Confluence",
+        "historical_flood_count": 380,
+        "max_level_above_danger_m": 6.04,
+        "max_discharge_cumecs": 1222.3,
+        "avg_rainfall_mm": 81.2,
+        "danger_level_m": 82.0,
+        "gauge_station": "Prayagraj (Old Naini Bridge)"
+      },
+      "aluva::periyar": {
+        "district": "Aluva",
+        "river": "Periyar",
+        "historical_flood_count": 388,
+        "max_level_above_danger_m": 3.48,
+        "max_discharge_cumecs": 202.7,
+        "avg_rainfall_mm": 129.9,
+        "danger_level_m": 5.5,
+        "gauge_station": "Aluva"
+      },
+      "ayodhya::ghaghara (saryu)": {
+        "district": "Ayodhya",
+        "river": "Ghaghara (Saryu)",
+        "historical_flood_count": 400,
+        "max_level_above_danger_m": 2.79,
+        "max_discharge_cumecs": 1103.4,
+        "avg_rainfall_mm": 141.2,
+        "danger_level_m": 91.7,
+        "gauge_station": "Ayodhya"
+      },
+      "balasore::subarnarekha": {
+        "district": "Balasore",
+        "river": "Subarnarekha",
+        "historical_flood_count": 411,
+        "max_level_above_danger_m": 3.09,
+        "max_discharge_cumecs": 314.6,
+        "avg_rainfall_mm": 130.5,
+        "danger_level_m": 12.0,
+        "gauge_station": "Rajghat"
+      },
+      "ballia::ganga": {
+        "district": "Ballia",
+        "river": "Ganga",
+        "historical_flood_count": 373,
+        "max_level_above_danger_m": 3.68,
+        "max_discharge_cumecs": 817.4,
+        "avg_rainfall_mm": 124.2,
+        "danger_level_m": 55.0,
+        "gauge_station": "Ballia"
+      },
+      "belagavi::krishna": {
+        "district": "Belagavi",
+        "river": "Krishna",
+        "historical_flood_count": 383,
+        "max_level_above_danger_m": 3.08,
+        "max_discharge_cumecs": 3308.3,
+        "avg_rainfall_mm": 136.2,
+        "danger_level_m": 526.0,
+        "gauge_station": "Kudachi"
+      },
+      "bhadrachalam::godavari": {
+        "district": "Bhadrachalam",
+        "river": "Godavari",
+        "historical_flood_count": 399,
+        "max_level_above_danger_m": 9.86,
+        "max_discharge_cumecs": 1165.2,
+        "avg_rainfall_mm": 58.7,
+        "danger_level_m": 43.0,
+        "gauge_station": "Bhadrachalam"
+      },
+      "bhagalpur::ganga": {
+        "district": "Bhagalpur",
+        "river": "Ganga",
+        "historical_flood_count": 394,
+        "max_level_above_danger_m": 2.6,
+        "max_discharge_cumecs": 522.4,
+        "avg_rainfall_mm": 145.6,
+        "danger_level_m": 33.5,
+        "gauge_station": "Bhagalpur"
+      },
+      "bharuch::narmada": {
+        "district": "Bharuch",
+        "river": "Narmada",
+        "historical_flood_count": 356,
+        "max_level_above_danger_m": 6.81,
+        "max_discharge_cumecs": 627.4,
+        "avg_rainfall_mm": 66.6,
+        "danger_level_m": 26.8,
+        "gauge_station": "Golden Bridge"
+      },
+      "cuttack::mahanadi": {
+        "district": "Cuttack",
+        "river": "Mahanadi",
+        "historical_flood_count": 368,
+        "max_level_above_danger_m": 2.99,
+        "max_discharge_cumecs": 543.8,
+        "avg_rainfall_mm": 133.8,
+        "danger_level_m": 24.0,
+        "gauge_station": "Munduli"
+      },
+      "darbhanga::kosi": {
+        "district": "Darbhanga",
+        "river": "Kosi",
+        "historical_flood_count": 357,
+        "max_level_above_danger_m": 2.8,
+        "max_discharge_cumecs": 887.4,
+        "avg_rainfall_mm": 147.9,
+        "danger_level_m": 46.0,
+        "gauge_station": "Basua"
+      },
+      "delhi::yamuna": {
+        "district": "Delhi",
+        "river": "Yamuna",
+        "historical_flood_count": 385,
+        "max_level_above_danger_m": 3.58,
+        "max_discharge_cumecs": 2041.1,
+        "avg_rainfall_mm": 134.8,
+        "danger_level_m": 204.5,
+        "gauge_station": "Old Railway Bridge"
+      },
+      "dhanbad::damodar": {
+        "district": "Dhanbad",
+        "river": "Damodar",
+        "historical_flood_count": 397,
+        "max_level_above_danger_m": 3.09,
+        "max_discharge_cumecs": 1308.3,
+        "avg_rainfall_mm": 136.1,
+        "danger_level_m": 129.0,
+        "gauge_station": "Rhondia"
+      },
+      "dhubri::brahmaputra": {
+        "district": "Dhubri",
+        "river": "Brahmaputra",
+        "historical_flood_count": 399,
+        "max_level_above_danger_m": 2.68,
+        "max_discharge_cumecs": 456.5,
+        "avg_rainfall_mm": 146.5,
+        "danger_level_m": 27.5,
+        "gauge_station": "Dhubri"
+      },
+      "dibrugarh::brahmaputra": {
+        "district": "Dibrugarh",
+        "river": "Brahmaputra",
+        "historical_flood_count": 376,
+        "max_level_above_danger_m": 2.49,
+        "max_discharge_cumecs": 1215.9,
+        "avg_rainfall_mm": 140.5,
+        "danger_level_m": 105.5,
+        "gauge_station": "Dibrugarh"
+      },
+      "erode::cauvery": {
+        "district": "Erode",
+        "river": "Cauvery",
+        "historical_flood_count": 421,
+        "max_level_above_danger_m": 3.08,
+        "max_discharge_cumecs": 1070.6,
+        "avg_rainfall_mm": 135.1,
+        "danger_level_m": 96.0,
+        "gauge_station": "Bhavani"
+      },
+      "guwahati::brahmaputra": {
+        "district": "Guwahati",
+        "river": "Brahmaputra",
+        "historical_flood_count": 370,
+        "max_level_above_danger_m": 2.4,
+        "max_discharge_cumecs": 732.9,
+        "avg_rainfall_mm": 144.3,
+        "danger_level_m": 49.68,
+        "gauge_station": "Pandu"
+      },
+      "gwalior::chambal": {
+        "district": "Gwalior",
+        "river": "Chambal",
+        "historical_flood_count": 380,
+        "max_level_above_danger_m": 4.04,
+        "max_discharge_cumecs": 1450.2,
+        "avg_rainfall_mm": 130.8,
+        "danger_level_m": 130.0,
+        "gauge_station": "Rajghat"
+      },
+      "haridwar::ganga": {
+        "district": "Haridwar",
+        "river": "Ganga",
+        "historical_flood_count": 376,
+        "max_level_above_danger_m": 3.07,
+        "max_discharge_cumecs": 2376.8,
+        "avg_rainfall_mm": 138.2,
+        "danger_level_m": 293.0,
+        "gauge_station": "Haridwar"
+      },
+      "hoshangabad::narmada": {
+        "district": "Hoshangabad",
+        "river": "Narmada",
+        "historical_flood_count": 365,
+        "max_level_above_danger_m": 3.6,
+        "max_discharge_cumecs": 2815.2,
+        "avg_rainfall_mm": 116.9,
+        "danger_level_m": 293.0,
+        "gauge_station": "Sethani Ghat"
+      },
+      "howrah::damodar": {
+        "district": "Howrah",
+        "river": "Damodar",
+        "historical_flood_count": 359,
+        "max_level_above_danger_m": 3.1,
+        "max_discharge_cumecs": 791.5,
+        "avg_rainfall_mm": 135.0,
+        "danger_level_m": 60.5,
+        "gauge_station": "Durgapur Barrage"
+      },
+      "jabalpur::narmada": {
+        "district": "Jabalpur",
+        "river": "Narmada",
+        "historical_flood_count": 389,
+        "max_level_above_danger_m": 3.2,
+        "max_discharge_cumecs": 2804.9,
+        "avg_rainfall_mm": 140.4,
+        "danger_level_m": 411.0,
+        "gauge_station": "Gwarighat"
+      },
+      "jalpaiguri::teesta": {
+        "district": "Jalpaiguri",
+        "river": "Teesta",
+        "historical_flood_count": 394,
+        "max_level_above_danger_m": 3.1,
+        "max_discharge_cumecs": 700.6,
+        "avg_rainfall_mm": 138.0,
+        "danger_level_m": 45.5,
+        "gauge_station": "Domohani"
+      },
+      "jammu::tawi": {
+        "district": "Jammu",
+        "river": "Tawi",
+        "historical_flood_count": 383,
+        "max_level_above_danger_m": 3.1,
+        "max_discharge_cumecs": 348.6,
+        "avg_rainfall_mm": 130.3,
+        "danger_level_m": 12.0,
+        "gauge_station": "Jammu"
+      },
+      "jorhat::brahmaputra": {
+        "district": "Jorhat",
+        "river": "Brahmaputra",
+        "historical_flood_count": 395,
+        "max_level_above_danger_m": 2.7,
+        "max_discharge_cumecs": 1140.2,
+        "avg_rainfall_mm": 145.5,
+        "danger_level_m": 85.0,
+        "gauge_station": "Nimatighat"
+      },
+      "kolhapur::panchganga": {
+        "district": "Kolhapur",
+        "river": "Panchganga",
+        "historical_flood_count": 384,
+        "max_level_above_danger_m": 3.38,
+        "max_discharge_cumecs": 3292.4,
+        "avg_rainfall_mm": 126.4,
+        "danger_level_m": 528.0,
+        "gauge_station": "Rajaram Bandhara"
+      },
+      "kolkata::hooghly": {
+        "district": "Kolkata",
+        "river": "Hooghly",
+        "historical_flood_count": 399,
+        "max_level_above_danger_m": 1.5,
+        "max_discharge_cumecs": 167.4,
+        "avg_rainfall_mm": 113.5,
+        "danger_level_m": 5.2,
+        "gauge_station": "Kolkata Jetty"
+      },
+      "kota::chambal": {
+        "district": "Kota",
+        "river": "Chambal",
+        "historical_flood_count": 376,
+        "max_level_above_danger_m": 3.59,
+        "max_discharge_cumecs": 2478.6,
+        "avg_rainfall_mm": 128.7,
+        "danger_level_m": 285.0,
+        "gauge_station": "Kota Barrage"
+      },
+      "kullu::beas": {
+        "district": "Kullu",
+        "river": "Beas",
+        "historical_flood_count": 375,
+        "max_level_above_danger_m": 5.08,
+        "max_discharge_cumecs": 5173.7,
+        "avg_rainfall_mm": 94.2,
+        "danger_level_m": 1085.0,
+        "gauge_station": "Kullu"
+      },
+      "lucknow::gomti": {
+        "district": "Lucknow",
+        "river": "Gomti",
+        "historical_flood_count": 410,
+        "max_level_above_danger_m": 3.19,
+        "max_discharge_cumecs": 1252.2,
+        "avg_rainfall_mm": 127.9,
+        "danger_level_m": 103.0,
+        "gauge_station": "Gomti Barrage"
+      },
+      "ludhiana::sutlej": {
+        "district": "Ludhiana",
+        "river": "Sutlej",
+        "historical_flood_count": 362,
+        "max_level_above_danger_m": 3.09,
+        "max_discharge_cumecs": 2117.7,
+        "avg_rainfall_mm": 120.5,
+        "danger_level_m": 244.0,
+        "gauge_station": "Ludhiana"
+      },
+      "malda::ganga (padma)": {
+        "district": "Malda",
+        "river": "Ganga (Padma)",
+        "historical_flood_count": 382,
+        "max_level_above_danger_m": 2.68,
+        "max_discharge_cumecs": 468.6,
+        "avg_rainfall_mm": 134.9,
+        "danger_level_m": 24.5,
+        "gauge_station": "Manikchak"
+      },
+      "mandi::beas": {
+        "district": "Mandi",
+        "river": "Beas",
+        "historical_flood_count": 416,
+        "max_level_above_danger_m": 5.09,
+        "max_discharge_cumecs": 4567.6,
+        "avg_rainfall_mm": 91.2,
+        "danger_level_m": 830.0,
+        "gauge_station": "Mandi"
+      },
+      "motihari::gandak": {
+        "district": "Motihari",
+        "river": "Gandak",
+        "historical_flood_count": 394,
+        "max_level_above_danger_m": 2.89,
+        "max_discharge_cumecs": 839.3,
+        "avg_rainfall_mm": 134.8,
+        "danger_level_m": 55.0,
+        "gauge_station": "Dumariaghat"
+      },
+      "muzaffarpur::bagmati": {
+        "district": "Muzaffarpur",
+        "river": "Bagmati",
+        "historical_flood_count": 407,
+        "max_level_above_danger_m": 2.8,
+        "max_discharge_cumecs": 813.8,
+        "avg_rainfall_mm": 130.7,
+        "danger_level_m": 47.0,
+        "gauge_station": "Hayaghat"
+      },
+      "nagaon::kopili": {
+        "district": "Nagaon",
+        "river": "Kopili",
+        "historical_flood_count": 372,
+        "max_level_above_danger_m": 2.8,
+        "max_discharge_cumecs": 710.5,
+        "avg_rainfall_mm": 136.5,
+        "danger_level_m": 45.0,
+        "gauge_station": "Kampur"
+      },
+      "nalgonda::krishna": {
+        "district": "Nalgonda",
+        "river": "Krishna",
+        "historical_flood_count": 407,
+        "max_level_above_danger_m": 3.55,
+        "max_discharge_cumecs": 1728.6,
+        "avg_rainfall_mm": 122.4,
+        "danger_level_m": 178.0,
+        "gauge_station": "Nagarjuna Sagar"
+      },
+      "nanded::godavari": {
+        "district": "Nanded",
+        "river": "Godavari",
+        "historical_flood_count": 357,
+        "max_level_above_danger_m": 3.15,
+        "max_discharge_cumecs": 2637.4,
+        "avg_rainfall_mm": 133.3,
+        "danger_level_m": 351.0,
+        "gauge_station": "Nanded"
+      },
+      "nashik::godavari": {
+        "district": "Nashik",
+        "river": "Godavari",
+        "historical_flood_count": 344,
+        "max_level_above_danger_m": 3.09,
+        "max_discharge_cumecs": 3060.1,
+        "avg_rainfall_mm": 139.1,
+        "danger_level_m": 507.0,
+        "gauge_station": "Nashik Road"
+      },
+      "patna::ganga": {
+        "district": "Patna",
+        "river": "Ganga",
+        "historical_flood_count": 336,
+        "max_level_above_danger_m": 3.38,
+        "max_discharge_cumecs": 723.3,
+        "avg_rainfall_mm": 120.6,
+        "danger_level_m": 48.6,
+        "gauge_station": "Gandhi Ghat"
+      },
+      "pune::mula-mutha": {
+        "district": "Pune",
+        "river": "Mula-Mutha",
+        "historical_flood_count": 372,
+        "max_level_above_danger_m": 3.09,
+        "max_discharge_cumecs": 3261.8,
+        "avg_rainfall_mm": 127.3,
+        "danger_level_m": 553.0,
+        "gauge_station": "Khadakwasla"
+      },
+      "raichur::tungabhadra": {
+        "district": "Raichur",
+        "river": "Tungabhadra",
+        "historical_flood_count": 395,
+        "max_level_above_danger_m": 3.59,
+        "max_discharge_cumecs": 3134.7,
+        "avg_rainfall_mm": 115.8,
+        "danger_level_m": 494.0,
+        "gauge_station": "Tungabhadra Dam"
+      },
+      "raipur::mahanadi": {
+        "district": "Raipur",
+        "river": "Mahanadi",
+        "historical_flood_count": 371,
+        "max_level_above_danger_m": 3.02,
+        "max_discharge_cumecs": 2128.8,
+        "avg_rainfall_mm": 127.8,
+        "danger_level_m": 292.0,
+        "gauge_station": "Rajim"
+      },
+      "rajahmundry::godavari": {
+        "district": "Rajahmundry",
+        "river": "Godavari",
+        "historical_flood_count": 417,
+        "max_level_above_danger_m": 4.38,
+        "max_discharge_cumecs": 389.8,
+        "avg_rainfall_mm": 116.0,
+        "danger_level_m": 13.7,
+        "gauge_station": "Dowleswaram Barrage"
+      },
+      "ranchi::subarnarekha": {
+        "district": "Ranchi",
+        "river": "Subarnarekha",
+        "historical_flood_count": 377,
+        "max_level_above_danger_m": 3.09,
+        "max_discharge_cumecs": 3620.8,
+        "avg_rainfall_mm": 137.9,
+        "danger_level_m": 620.0,
+        "gauge_station": "Jonha"
+      },
+      "rishikesh::ganga": {
+        "district": "Rishikesh",
+        "river": "Ganga",
+        "historical_flood_count": 375,
+        "max_level_above_danger_m": 3.0,
+        "max_discharge_cumecs": 2431.1,
+        "avg_rainfall_mm": 126.3,
+        "danger_level_m": 340.0,
+        "gauge_station": "Rishikesh"
+      },
+      "ropar::sutlej": {
+        "district": "Ropar",
+        "river": "Sutlej",
+        "historical_flood_count": 379,
+        "max_level_above_danger_m": 2.78,
+        "max_discharge_cumecs": 1980.4,
+        "avg_rainfall_mm": 139.9,
+        "danger_level_m": 262.0,
+        "gauge_station": "Ropar Headworks"
+      },
+      "sambalpur::mahanadi": {
+        "district": "Sambalpur",
+        "river": "Mahanadi",
+        "historical_flood_count": 372,
+        "max_level_above_danger_m": 5.48,
+        "max_discharge_cumecs": 1776.8,
+        "avg_rainfall_mm": 95.9,
+        "danger_level_m": 187.0,
+        "gauge_station": "Hirakud"
+      },
+      "silchar::barak": {
+        "district": "Silchar",
+        "river": "Barak",
+        "historical_flood_count": 373,
+        "max_level_above_danger_m": 3.79,
+        "max_discharge_cumecs": 395.4,
+        "avg_rainfall_mm": 116.7,
+        "danger_level_m": 18.0,
+        "gauge_station": "Annapurna Ghat"
+      },
+      "srinagar::jhelum": {
+        "district": "Srinagar",
+        "river": "Jhelum",
+        "historical_flood_count": 342,
+        "max_level_above_danger_m": 3.09,
+        "max_discharge_cumecs": 524.9,
+        "avg_rainfall_mm": 129.0,
+        "danger_level_m": 21.5,
+        "gauge_station": "Ram Munshi Bagh"
+      },
+      "supaul::kosi": {
+        "district": "Supaul",
+        "river": "Kosi",
+        "historical_flood_count": 416,
+        "max_level_above_danger_m": 2.7,
+        "max_discharge_cumecs": 1117.5,
+        "avg_rainfall_mm": 145.4,
+        "danger_level_m": 78.0,
+        "gauge_station": "Kosi Barrage"
+      },
+      "surat::tapi": {
+        "district": "Surat",
+        "river": "Tapi",
+        "historical_flood_count": 412,
+        "max_level_above_danger_m": 3.58,
+        "max_discharge_cumecs": 646.3,
+        "avg_rainfall_mm": 130.5,
+        "danger_level_m": 30.5,
+        "gauge_station": "Singanpor"
+      },
+      "thrissur::chalakudy": {
+        "district": "Thrissur",
+        "river": "Chalakudy",
+        "historical_flood_count": 383,
+        "max_level_above_danger_m": 3.39,
+        "max_discharge_cumecs": 473.2,
+        "avg_rainfall_mm": 131.2,
+        "danger_level_m": 21.0,
+        "gauge_station": "Arangaly"
+      },
+      "tiruchirappalli::cauvery": {
+        "district": "Tiruchirappalli",
+        "river": "Cauvery",
+        "historical_flood_count": 413,
+        "max_level_above_danger_m": 3.08,
+        "max_discharge_cumecs": 1000.8,
+        "avg_rainfall_mm": 133.7,
+        "danger_level_m": 87.0,
+        "gauge_station": "Mukombu (Upper Anicut)"
+      },
+      "varanasi::ganga": {
+        "district": "Varanasi",
+        "river": "Ganga",
+        "historical_flood_count": 382,
+        "max_level_above_danger_m": 4.19,
+        "max_discharge_cumecs": 1014.4,
+        "avg_rainfall_mm": 117.9,
+        "danger_level_m": 70.3,
+        "gauge_station": "Varanasi (Malviya Bridge)"
+      },
+      "vijayawada::krishna": {
+        "district": "Vijayawada",
+        "river": "Krishna",
+        "historical_flood_count": 378,
+        "max_level_above_danger_m": 3.4,
+        "max_discharge_cumecs": 369.5,
+        "avg_rainfall_mm": 131.1,
+        "danger_level_m": 12.2,
+        "gauge_station": "Prakasam Barrage"
+      },
+      "wayanad::kabini": {
+        "district": "Wayanad",
+        "river": "Kabini",
+        "historical_flood_count": 407,
+        "max_level_above_danger_m": 3.19,
+        "max_discharge_cumecs": 3797.4,
+        "avg_rainfall_mm": 133.1,
+        "danger_level_m": 691.0,
+        "gauge_station": "Panamaram"
+      },
+      "yamunanagar::yamuna": {
+        "district": "Yamunanagar",
+        "river": "Yamuna",
+        "historical_flood_count": 396,
+        "max_level_above_danger_m": 3.09,
+        "max_discharge_cumecs": 2702.2,
+        "avg_rainfall_mm": 132.8,
+        "danger_level_m": 400.0,
+        "gauge_station": "Hathnikund Barrage"
+      }
+    }
+  },
+  "all_india_hotspots": [
+    {
+      "id": "HOT-SILCHAR-01",
+      "name": "SILCHAR",
+      "district": "Cachar",
+      "state": "Assam",
+      "region": "Barak Valley, Assam",
+      "lat": 24.8273,
+      "lng": 92.7979,
+      "hazardId": "flood",
+      "hazardName": "Riverine Flood Anomaly",
+      "severity": "CRITICAL DANGER LEVEL BREACH",
+      "score": 0.94,
+      "trigger": "River Barak water level 20.25m (+0.42m above 19.83m danger level) with discharge of 3,420 cumecs",
+      "station": "NODE-SILCHAR-4696",
+      "historicalIncidents": 373,
+      "modelPrecision": "97.4%",
+      "f1Score": "0.987"
+    },
+    {
+      "id": "HOT-PATNA-02",
+      "name": "PATNA",
+      "district": "Patna",
+      "state": "Bihar",
+      "region": "Middle Gangetic Plains",
+      "lat": 25.5941,
+      "lng": 85.1376,
+      "hazardId": "flood",
+      "hazardName": "Riverine Flood Anomaly",
+      "severity": "DANGER LEVEL BREACH",
+      "score": 0.89,
+      "trigger": "Ganga at Digha Ghat water level 50.82m (+0.30m above danger level), discharge 2,840 cumecs",
+      "station": "NODE-PATNA-8120",
+      "historicalIncidents": 380,
+      "modelPrecision": "97.4%",
+      "f1Score": "0.987"
+    },
+    {
+      "id": "HOT-CUTTACK-03",
+      "name": "CUTTACK",
+      "district": "Cuttack",
+      "state": "Odisha",
+      "region": "Mahanadi Delta",
+      "lat": 20.4625,
+      "lng": 85.8828,
+      "hazardId": "flood",
+      "hazardName": "Deltaic Hydraulic Surge",
+      "severity": "ELEVATED HYDRAULIC DISCHARGE",
+      "score": 0.85,
+      "trigger": "Mahanadi at Naraj barrage discharge 8,920 cumecs, high silt saturation",
+      "station": "NODE-CUTTACK-3190",
+      "historicalIncidents": 370,
+      "modelPrecision": "97.4%",
+      "f1Score": "0.987"
+    },
+    {
+      "id": "HOT-DELHI-04",
+      "name": "NEW DELHI NCR",
+      "district": "Central Delhi",
+      "state": "Delhi",
+      "region": "National Capital Region",
+      "lat": 28.6139,
+      "lng": 77.209,
+      "hazardId": "aqi",
+      "hazardName": "Hazardous Toxic Smog Anomaly",
+      "severity": "SEVERE AIR QUALITY EMERGENCY",
+      "score": 0.96,
+      "trigger": "CPCB SAMEER AQI 412 with PM2.5 at 310 ug/m3 and thermal inversion lid",
+      "station": "NODE-DELHI-1101",
+      "historicalIncidents": 420,
+      "modelPrecision": "99.1%",
+      "f1Score": "0.996"
+    },
+    {
+      "id": "HOT-KANPUR-05",
+      "name": "KANPUR INDUSTRIAL",
+      "district": "Kanpur Nagar",
+      "state": "Uttar Pradesh",
+      "region": "Industrial Gangetic Belt",
+      "lat": 26.4499,
+      "lng": 80.3319,
+      "hazardId": "water",
+      "hazardName": "Aquatic Hypoxia & Effluent Crisis",
+      "severity": "CLASS E SEVERE POLLUTION",
+      "score": 0.91,
+      "trigger": "Ganga Dissolved Oxygen collapsed to 1.8 mg/L with industrial BOD surge to 19.5 mg/L",
+      "station": "NODE-KANPUR-2081",
+      "historicalIncidents": 290,
+      "modelPrecision": "97.3%",
+      "f1Score": "0.942"
+    },
+    {
+      "id": "HOT-ANKLESHWAR-06",
+      "name": "ANKLESHWAR & VAPI",
+      "district": "Bharuch",
+      "state": "Gujarat",
+      "region": "Chemical Industrial Corridor",
+      "lat": 21.6265,
+      "lng": 73.0033,
+      "hazardId": "emissions",
+      "hazardName": "Industrial Chemical Emission Exceedance",
+      "severity": "CRITICAL CPCB STACK EXCEEDANCE",
+      "score": 0.92,
+      "trigger": "Continuous CEMS SO2 flue concentration at 142 ug/m3 and stack opacity 38%",
+      "station": "NODE-ANKLESH-3930",
+      "historicalIncidents": 215,
+      "modelPrecision": "100.0%",
+      "f1Score": "0.992"
+    },
+    {
+      "id": "HOT-MANALI-07",
+      "name": "MANALI INDUSTRIAL CLUSTER",
+      "district": "Chennai",
+      "state": "Tamil Nadu",
+      "region": "Petrochemical Enclave",
+      "lat": 13.1678,
+      "lng": 80.2642,
+      "hazardId": "emissions",
+      "hazardName": "Petrochemical VOC & SO2 Plume",
+      "severity": "ELEVATED CPCB VIOLATION",
+      "score": 0.88,
+      "trigger": "VOC volatile organic vapors at 8.4 ppm and NOx at 116 ug/m3",
+      "station": "NODE-MANALI-6000",
+      "historicalIncidents": 180,
+      "modelPrecision": "100.0%",
+      "f1Score": "0.992"
+    },
+    {
+      "id": "HOT-CHURU-08",
+      "name": "CHURU & PHALODI",
+      "district": "Churu",
+      "state": "Rajasthan",
+      "region": "Thar Desert Thermal Zone",
+      "lat": 28.29,
+      "lng": 74.96,
+      "hazardId": "heat",
+      "hazardName": "Extreme Heatwave Red Alert",
+      "severity": "RED ALERT SEVERE HEATWAVE",
+      "score": 0.98,
+      "trigger": "Max surface temp 48.6 C (Heat Index: 56.4 C) under persistent anti-cyclonic dome",
+      "station": "NODE-CHURU-3310",
+      "historicalIncidents": 310,
+      "modelPrecision": "99.8%",
+      "f1Score": "0.978"
+    },
+    {
+      "id": "HOT-NAGPUR-09",
+      "name": "NAGPUR & CHANDRAPUR",
+      "district": "Chandrapur",
+      "state": "Maharashtra",
+      "region": "Vidarbha Thermal & Coal Belt",
+      "lat": 19.9615,
+      "lng": 79.2961,
+      "hazardId": "heat",
+      "hazardName": "Compound Thermal & Coal Grid Stress",
+      "severity": "ORANGE ALERT HEATWAVE",
+      "score": 0.89,
+      "trigger": "Ambient temp 46.2 C with peak power grid transmission transformer stress index 8.9",
+      "station": "NODE-CHANDRA-4424",
+      "historicalIncidents": 260,
+      "modelPrecision": "99.8%",
+      "f1Score": "0.978"
+    },
+    {
+      "id": "HOT-CHUNGTHANG-10",
+      "name": "CHUNGTHANG / SOUTH LHONAK",
+      "district": "Mangan",
+      "state": "Sikkim",
+      "region": "North Sikkim High Himalayas",
+      "lat": 27.6042,
+      "lng": 88.6475,
+      "hazardId": "glacial",
+      "hazardName": "Glacial Lake Outburst Flood (GLOF)",
+      "severity": "CRITICAL MORAINE RUPTURE RISK",
+      "score": 0.96,
+      "trigger": "Proglacial lake volume surge (+42%) with terminal moraine hydrostatic pressure 2.85 MPa",
+      "station": "NODE-LHONAK-7371",
+      "historicalIncidents": 84,
+      "modelPrecision": "100.0%",
+      "f1Score": "0.981"
+    },
+    {
+      "id": "HOT-CHAMOLI-11",
+      "name": "CHAMOLI & JOSHIMATH",
+      "district": "Chamoli",
+      "state": "Uttarakhand",
+      "region": "Garhwal Himalayan Active Zone",
+      "lat": 30.4132,
+      "lng": 79.3242,
+      "hazardId": "glacial",
+      "hazardName": "Cryosphere Permafrost Liquefaction",
+      "severity": "GEOTECHNICAL SUBSIDENCE ALERT",
+      "score": 0.91,
+      "trigger": "High-altitude permafrost thaw rate 5.4 cm/mo with Alaknanda gorge debris siltation",
+      "station": "NODE-CHAMOLI-2464",
+      "historicalIncidents": 115,
+      "modelPrecision": "100.0%",
+      "f1Score": "0.981"
+    },
+    {
+      "id": "HOT-WAYANAD-12",
+      "name": "WAYANAD & MAPPADI",
+      "district": "Wayanad",
+      "state": "Kerala",
+      "region": "Western Ghats Escarpment",
+      "lat": 11.6854,
+      "lng": 76.132,
+      "hazardId": "landslide",
+      "hazardName": "High-Intensity Slope Failure Debris Flow",
+      "severity": "RED ALERT DEBRIS MUDFLOW",
+      "score": 0.97,
+      "trigger": "Cumulative 24h rainfall 372 mm on 42-degree slope, saturated pore water pressure breach (FS: 0.72)",
+      "station": "NODE-WAYANAD-6731",
+      "historicalIncidents": 140,
+      "modelPrecision": "98.9%",
+      "f1Score": "0.985"
+    },
+    {
+      "id": "HOT-NEPAL-KOSHI-17",
+      "name": "KOSHI TRANSBOUNDARY GORGE",
+      "district": "Sunsari / Bihar Border",
+      "state": "Bihar / Nepal Watershed",
+      "region": "Eastern Himalayan Foothills",
+      "lat": 26.85,
+      "lng": 87.05,
+      "hazardId": "landslide",
+      "hazardName": "Transboundary Soil Liquefaction & Mudflow",
+      "severity": "CRITICAL SLOPE RUPTURE & RIVER SURGE",
+      "score": 0.98,
+      "trigger": "Nepal Himalayan cloudburst generated 420mm rain, pore pressure 88 kPa, Factor of Safety collapsed to 0.68 with 28,000 ppm sediment surge into Koshi basin",
+      "station": "NODE-NEPAL-KOSHI-01",
+      "historicalIncidents": 210,
+      "modelPrecision": "98.9%",
+      "f1Score": "0.985"
+    },
+    {
+      "id": "HOT-PARADEEP-13",
+      "name": "PARADEEP & KENDRAPARA",
+      "district": "Jagatsinghpur",
+      "state": "Odisha",
+      "region": "Bay of Bengal Coastal Belt",
+      "lat": 20.3164,
+      "lng": 86.6114,
+      "hazardId": "cyclone",
+      "hazardName": "Very Severe Cyclonic Storm Vortex",
+      "severity": "STAGE IV LANDFALL WARNING",
+      "score": 0.96,
+      "trigger": "Central pressure 946 hPa with sustained eyewall winds 165 km/h and 4.2m storm surge",
+      "station": "NODE-PARADEEP-7541",
+      "historicalIncidents": 146,
+      "modelPrecision": "98.2%",
+      "f1Score": "0.990"
+    },
+    {
+      "id": "HOT-NAGAPATTINAM-14",
+      "name": "NAGAPATTINAM & KARAIKAL",
+      "district": "Nagapattinam",
+      "state": "Tamil Nadu",
+      "region": "Coromandel Coastal Shelf",
+      "lat": 10.7656,
+      "lng": 79.8424,
+      "hazardId": "tsunami",
+      "hazardName": "INCOIS Tsunami Early Warning Alert",
+      "severity": "COASTAL RUNUP INUNDATION",
+      "score": 0.93,
+      "trigger": "DART oceanic buoy 1.45m displacement wave with 3.8m coastal runup projection",
+      "station": "NODE-NAGAPAT-6110",
+      "historicalIncidents": 18,
+      "modelPrecision": "96.4%",
+      "f1Score": "0.952"
+    },
+    {
+      "id": "HOT-SHIMLA-15",
+      "name": "SHIMLA & MANDI",
+      "district": "Mandi",
+      "state": "Himachal Pradesh",
+      "region": "Beas River Basin",
+      "lat": 31.7087,
+      "lng": 76.932,
+      "hazardId": "landslide",
+      "hazardName": "Himalayan Highway Slump & Landslide",
+      "severity": "NH21 BLOCKAGE CRITICAL",
+      "score": 0.89,
+      "trigger": "Flash cloudburst saturated overburden rock strata (FS: 0.81), triggering 18,000 m3 debris slide",
+      "station": "NODE-MANDI-1750",
+      "historicalIncidents": 210,
+      "modelPrecision": "98.9%",
+      "f1Score": "0.985"
+    },
+    {
+      "id": "HOT-SIMILIPAL-16",
+      "name": "SIMILIPAL BIOSPHERE",
+      "district": "Mayurbhanj",
+      "state": "Odisha",
+      "region": "Eastern Highlands Forest",
+      "lat": 21.85,
+      "lng": 86.35,
+      "hazardId": "fires",
+      "hazardName": "Biomass Wildfire Inferno",
+      "severity": "HIGH RADIATIVE POWER CONFLAGRATION",
+      "score": 0.86,
+      "trigger": "FSI MODIS sensor detected 218 MW fire radiative power with dry fuel moisture index 0.12",
+      "station": "NODE-SIMILIP-7570",
+      "historicalIncidents": 190,
+      "modelPrecision": "97.4%",
+      "f1Score": "0.965"
+    }
+  ],
+  "downstream_connectivity": {
+    "silchar": {
+      "river": "Barak",
+      "state": "Assam",
+      "historical_floods_silchar": 373,
+      "downstream": [
+        {
+          "name": "Badarpur",
+          "dist_km": 28,
+          "flow_hours": 14,
+          "vulnerability": "High (Bottleneck Barrage)",
+          "spillover_prob": 0.88
+        },
+        {
+          "name": "Hailakandi",
+          "dist_km": 42,
+          "flow_hours": 18,
+          "vulnerability": "Severe (Katlicherra Basin)",
+          "spillover_prob": 0.82
+        },
+        {
+          "name": "Karimganj",
+          "dist_km": 55,
+          "flow_hours": 24,
+          "vulnerability": "Critical (Kushiara Confluence)",
+          "spillover_prob": 0.76
+        }
+      ],
+      "danger_level_m": 19.83,
+      "spillover_multiplier": 0.88
+    },
+    "nepal_koshi": {
+      "river": "Koshi",
+      "state": "Nepal / Bihar Transboundary",
+      "historical_floods": 210,
+      "downstream": [
+        {
+          "name": "Bhimnagar Barrage",
+          "dist_km": 18,
+          "flow_hours": 2.2,
+          "vulnerability": "Critical (Main Sluice Embankment)",
+          "spillover_prob": 0.96
+        },
+        {
+          "name": "Supaul Floodplain",
+          "dist_km": 45,
+          "flow_hours": 6.8,
+          "vulnerability": "Severe (Alluvial Debris Siltation)",
+          "spillover_prob": 0.91
+        },
+        {
+          "name": "Saharsa Riparian Lowlands",
+          "dist_km": 78,
+          "flow_hours": 12.5,
+          "vulnerability": "High (Avulsion Sump)",
+          "spillover_prob": 0.84
+        }
+      ],
+      "danger_level_m": 71.5,
+      "spillover_multiplier": 0.94
+    },
+    "patna": {
+      "river": "Ganga",
+      "state": "Bihar",
+      "historical_floods_patna": 380,
+      "downstream": [
+        {
+          "name": "Mokama",
+          "dist_km": 85,
+          "flow_hours": 16,
+          "vulnerability": "High (Tal Basin Overflow)",
+          "spillover_prob": 0.85
+        },
+        {
+          "name": "Barh",
+          "dist_km": 60,
+          "flow_hours": 12,
+          "vulnerability": "Moderate (Embankment Strain)",
+          "spillover_prob": 0.79
+        },
+        {
+          "name": "Bhagalpur",
+          "dist_km": 220,
+          "flow_hours": 36,
+          "vulnerability": "Critical (Flood Plain)",
+          "spillover_prob": 0.74
+        }
+      ],
+      "danger_level_m": 50.52,
+      "spillover_multiplier": 0.85
+    },
+    "delhi": {
+      "river": "Yamuna",
+      "state": "Delhi NCR",
+      "historical_floods_delhi": 395,
+      "downstream": [
+        {
+          "name": "Noida",
+          "dist_km": 20,
+          "flow_hours": 6,
+          "vulnerability": "High (Low-lying Floodplains)",
+          "spillover_prob": 0.84
+        },
+        {
+          "name": "Faridabad",
+          "dist_km": 35,
+          "flow_hours": 10,
+          "vulnerability": "Moderate (Drainage Surcharge)",
+          "spillover_prob": 0.78
+        },
+        {
+          "name": "Mathura",
+          "dist_km": 145,
+          "flow_hours": 28,
+          "vulnerability": "High (Ghat Submergence)",
+          "spillover_prob": 0.71
+        }
+      ],
+      "danger_level_m": 205.33,
+      "spillover_multiplier": 0.82
+    },
+    "cuttack": {
+      "river": "Mahanadi",
+      "state": "Odisha",
+      "historical_floods_cuttack": 370,
+      "downstream": [
+        {
+          "name": "Jagatsinghpur",
+          "dist_km": 40,
+          "flow_hours": 11,
+          "vulnerability": "Severe (Deltaic Branching)",
+          "spillover_prob": 0.87
+        },
+        {
+          "name": "Kendrapara",
+          "dist_km": 58,
+          "flow_hours": 15,
+          "vulnerability": "Critical (Marshland Spill)",
+          "spillover_prob": 0.81
+        },
+        {
+          "name": "Paradip",
+          "dist_km": 82,
+          "flow_hours": 22,
+          "vulnerability": "High (Tidal Estuary)",
+          "spillover_prob": 0.74
+        }
+      ],
+      "danger_level_m": 27.43,
+      "spillover_multiplier": 0.87
+    },
+    "ankleshwar_vapi": {
+      "cluster_name": "Gujarat Golden Corridor",
+      "state": "Gujarat",
+      "historical_incidents": 215,
+      "downstream": [
+        {
+          "name": "Bharuch Urban Zone",
+          "dist_km": 14,
+          "flow_hours": 3,
+          "vulnerability": "High (Toxic Air Drift)",
+          "spillover_prob": 0.85
+        },
+        {
+          "name": "Dahej Estuary",
+          "dist_km": 45,
+          "flow_hours": 8,
+          "vulnerability": "Critical (Marine Outfall)",
+          "spillover_prob": 0.78
+        }
+      ]
+    },
+    "south_lhonak_glof": {
+      "reach_name": "Teesta River High Mountain Basin",
+      "state": "Sikkim",
+      "historical_incidents": 84,
+      "downstream": [
+        {
+          "name": "Chungthang Dam",
+          "dist_km": 28,
+          "flow_hours": 1.5,
+          "vulnerability": "Critical (Hydro Dam Inundation)",
+          "spillover_prob": 0.94
+        },
+        {
+          "name": "Mangan Headquarters",
+          "dist_km": 52,
+          "flow_hours": 3.4,
+          "vulnerability": "High (River Terrace Collapse)",
+          "spillover_prob": 0.88
+        },
+        {
+          "name": "Singtam & Rangpo",
+          "dist_km": 85,
+          "flow_hours": 5.8,
+          "vulnerability": "Severe (NH10 Lifeline Severed)",
+          "spillover_prob": 0.81
+        }
+      ]
+    },
+    "coromandel_tsunami": {
+      "reach_name": "Coromandel & Northern Tamil Nadu Shelf",
+      "state": "Tamil Nadu / Puducherry",
+      "historical_incidents": 18,
+      "downstream": [
+        {
+          "name": "Nagapattinam Lowlands",
+          "dist_km": 12,
+          "flow_hours": 0.6,
+          "vulnerability": "Dense Fishing Coastal Hamlets",
+          "spillover_prob": 0.96
+        },
+        {
+          "name": "Karaikal Port & Town",
+          "dist_km": 24,
+          "flow_hours": 0.9,
+          "vulnerability": "Commercial Harbor Infrastructure",
+          "spillover_prob": 0.91
+        },
+        {
+          "name": "Cuddalore Old Town",
+          "dist_km": 64,
+          "flow_hours": 1.4,
+          "vulnerability": "Estuarine Delta Settlements",
+          "spillover_prob": 0.85
+        }
+      ]
+    },
+    "odisha_cyclone_belt": {
+      "reach_name": "Bay of Bengal Coastal Sector (Paradeep - Puri)",
+      "state": "Odisha",
+      "historical_incidents": 146,
+      "downstream": [
+        {
+          "name": "Jagatsinghpur Coastal Plains",
+          "dist_km": 15,
+          "flow_hours": 1.2,
+          "vulnerability": "Paddy Agricultural Belt",
+          "spillover_prob": 0.95
+        },
+        {
+          "name": "Kendrapara Low-Lying Delta",
+          "dist_km": 32,
+          "flow_hours": 2.4,
+          "vulnerability": "Bhitarkanika Mangrove Boundary",
+          "spillover_prob": 0.89
+        },
+        {
+          "name": "Cuttack-Bhubaneswar Urban Corridor",
+          "dist_km": 78,
+          "flow_hours": 4.8,
+          "vulnerability": "Metro Grid & Power Transmission Lines",
+          "spillover_prob": 0.76
+        }
+      ]
+    }
+  },
+  "geotechnical_physics": {
+    "landslide_infinite_slope": {
+      "cohesion_effective_kpa_baseline": 18.5,
+      "friction_angle_deg_baseline": 31.0,
+      "saturated_unit_weight_kn_m3": 19.8,
+      "critical_factor_of_safety": 1.0,
+      "warning_factor_of_safety": 1.25
+    },
+    "nepal_transboundary_watershed": {
+      "koshi_catchment_sqkm": 71500,
+      "gandak_catchment_sqkm": 44900,
+      "monsoonal_soil_saturation_threshold_pct": 85.0,
+      "excess_runoff_multiplier": 1.42
+    }
+  }
+}
