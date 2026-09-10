@@ -3,6 +3,8 @@ import {
   getAuth,
   GoogleAuthProvider,
   signInWithPopup,
+  signInWithRedirect,
+  getRedirectResult,
   signOut as fbSignOut,
   onAuthStateChanged,
   RecaptchaVerifier,
@@ -41,4 +43,15 @@ if (isFirebaseConfigured) {
   }
 }
 
-export { app, auth, googleProvider, fbSignOut, signInWithPopup, signInWithPhoneNumber, RecaptchaVerifier, onAuthStateChanged };
+export {
+  app,
+  auth,
+  googleProvider,
+  fbSignOut,
+  signInWithPopup,
+  signInWithRedirect,
+  getRedirectResult,
+  signInWithPhoneNumber,
+  RecaptchaVerifier,
+  onAuthStateChanged,
+};

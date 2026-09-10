@@ -4,6 +4,8 @@ import {
   googleProvider,
   fbSignOut,
   signInWithPopup,
+  signInWithRedirect,
+  getRedirectResult,
   signInWithPhoneNumber,
   RecaptchaVerifier,
   onAuthStateChanged,
@@ -117,9 +119,35 @@ export function AuthProvider({ children }) {
     }
   }, [user]);
 
-  // Subscribe to live Firebase auth changes when configured
+  // Subscribe to live Firebase auth changes and capture redirect results
   useEffect(() => {
     if (!isFirebaseConfigured || !auth) return;
+
+    getRedirectResult(auth)
+      .then((result) => {
+        if (result?.user) {
+          const fbUser = result.user;
+          const defaultName = fbUser.displayName || (fbUser.email ? fbUser.email.split('@')[0] : 'Authorized User');
+          const loggedUser = {
+            uid: fbUser.uid,
+            displayName: defaultName,
+            email: fbUser.email,
+            phoneNumber: fbUser.phoneNumber,
+            photoURL: fbUser.photoURL || getInitialsAvatar(defaultName),
+            provider: 'google',
+            role: 'Disaster Risk Analyst',
+            lastLogin: new Date().toISOString(),
+          };
+          setUser(loggedUser);
+          setAuthLoading(false);
+          setAuthModalOpen(false);
+          transmitAuthLog(loggedUser);
+        }
+      })
+      .catch((err) => {
+        console.warn('[Firebase Redirect Result notice]:', err.code, err.message);
+        setAuthLoading(false);
+      });
 
     const unsubscribe = onAuthStateChanged(auth, (fbUser) => {
       if (fbUser) {
@@ -148,12 +176,30 @@ export function AuthProvider({ children }) {
 
   const greetingInfo = useMemo(() => computeGreeting(user), [user]);
 
-  // Google login handler
-  const loginWithGoogle = useCallback(async () => {
+  // Google login handler with popup and redirect fallback
+  const loginWithGoogle = useCallback(async (useRedirect = false) => {
     setAuthLoading(true);
     setAuthError(null);
 
     if (isFirebaseConfigured && auth && googleProvider) {
+      if (useRedirect) {
+        try {
+          await signInWithRedirect(auth, googleProvider);
+          return { success: true };
+        } catch (err) {
+          console.error('[Firebase Google Redirect Auth error]:', err.code, err.message);
+          setAuthLoading(false);
+          let errorMsg = 'Google redirect authentication failed. Please try again.';
+          if (err.code === 'auth/unauthorized-domain') {
+            errorMsg = 'Domain not authorized in Firebase Console. Please add this domain under Firebase Console > Authentication > Settings > Authorized domains.';
+          } else if (err.message) {
+            errorMsg = err.message;
+          }
+          setAuthError(errorMsg);
+          return { success: false, error: errorMsg };
+        }
+      }
+
       try {
         const result = await signInWithPopup(auth, googleProvider);
         const fbUser = result.user;
@@ -177,19 +223,24 @@ export function AuthProvider({ children }) {
         console.error('[Firebase Google Auth error]:', err.code, err.message);
         setAuthLoading(false);
         let errorMsg = 'Google authentication failed. Please try again.';
-        if (err.code === 'auth/popup-closed-by-user') {
+        let isPopupBlocked = false;
+
+        if (err.code === 'auth/popup-blocked') {
+          isPopupBlocked = true;
+          errorMsg = 'Popup blocked by browser. Please enable popups or use the Redirect Sign-In option.';
+        } else if (err.code === 'auth/popup-closed-by-user') {
           errorMsg = 'Google sign-in popup was closed before completing.';
         } else if (err.code === 'auth/cancelled-popup-request') {
           errorMsg = 'Sign-in popup request was cancelled.';
         } else if (err.code === 'auth/unauthorized-domain') {
-          errorMsg = 'Domain not authorized in Firebase Console. Please add your domain (e.g. localhost, 127.0.0.1) under Firebase Console > Authentication > Settings > Authorized domains.';
+          errorMsg = 'Domain not authorized in Firebase Console. Please add your Vercel domain under Firebase Console > Authentication > Settings > Authorized domains.';
         } else if (err.code === 'auth/operation-not-allowed') {
           errorMsg = 'Google sign-in provider is not enabled in Firebase Console. Please enable Google in Firebase Console > Authentication > Sign-in method.';
         } else if (err.message) {
           errorMsg = err.message;
         }
         setAuthError(errorMsg);
-        return { success: false, error: errorMsg };
+        return { success: false, error: errorMsg, popupBlocked: isPopupBlocked };
       }
     } else {
       setAuthLoading(false);
@@ -411,6 +462,7 @@ export function AuthProvider({ children }) {
     logout,
     authLoading,
     authError,
+    clearAuthError: () => setAuthError(null),
     phoneConfirmation,
     isFirebaseLive: isFirebaseConfigured,
   };

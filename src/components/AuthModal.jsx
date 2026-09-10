@@ -9,6 +9,7 @@ export default function AuthModal({ isOpen, onClose }) {
     loginWithAdmin,
     authLoading,
     authError,
+    clearAuthError,
     isFirebaseLive,
   } = useAuth();
 
@@ -32,6 +33,7 @@ export default function AuthModal({ isOpen, onClose }) {
   useEffect(() => {
     if (isOpen) {
       setLocalError('');
+      clearAuthError?.();
       setOtpSent(false);
       setOtpCode('');
       setOtpMessage('');
@@ -41,6 +43,12 @@ export default function AuthModal({ isOpen, onClose }) {
       setAdminPassword('');
     }
   }, [isOpen]);
+
+  const handleTabChange = (tab) => {
+    setActiveTab(tab);
+    setLocalError('');
+    clearAuthError?.();
+  };
 
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -60,9 +68,10 @@ export default function AuthModal({ isOpen, onClose }) {
 
   if (!isOpen) return null;
 
-  const handleGoogleSignIn = async () => {
+  const handleGoogleSignIn = async (useRedirect = false) => {
     setLocalError('');
-    const result = await loginWithGoogle();
+    clearAuthError?.();
+    const result = await loginWithGoogle(useRedirect);
     if (!result?.success && result?.error !== 'Popup closed') {
       setLocalError(result?.error || 'Google authentication failed. Please try again.');
     }
@@ -157,10 +166,7 @@ export default function AuthModal({ isOpen, onClose }) {
             role="tab"
             aria-selected={activeTab === 'google'}
             className={`auth-tab-btn ${activeTab === 'google' ? 'active-tab' : ''}`}
-            onClick={() => {
-              setActiveTab('google');
-              setLocalError('');
-            }}
+            onClick={() => handleTabChange('google')}
           >
             <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
               <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
@@ -176,10 +182,7 @@ export default function AuthModal({ isOpen, onClose }) {
             role="tab"
             aria-selected={activeTab === 'phone'}
             className={`auth-tab-btn ${activeTab === 'phone' ? 'active-tab' : ''}`}
-            onClick={() => {
-              setActiveTab('phone');
-              setLocalError('');
-            }}
+            onClick={() => handleTabChange('phone')}
           >
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
               <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
@@ -192,10 +195,7 @@ export default function AuthModal({ isOpen, onClose }) {
             role="tab"
             aria-selected={activeTab === 'admin'}
             className={`auth-tab-btn ${activeTab === 'admin' ? 'active-tab' : ''}`}
-            onClick={() => {
-              setActiveTab('admin');
-              setLocalError('');
-            }}
+            onClick={() => handleTabChange('admin')}
           >
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
               <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
@@ -226,7 +226,7 @@ export default function AuthModal({ isOpen, onClose }) {
               <button
                 type="button"
                 className="clean-box-btn google-sign-in-btn"
-                onClick={handleGoogleSignIn}
+                onClick={() => handleGoogleSignIn(false)}
                 disabled={authLoading}
               >
                 <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
@@ -236,6 +236,16 @@ export default function AuthModal({ isOpen, onClose }) {
                   <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
                 </svg>
                 {authLoading ? 'CONNECTING TO GOOGLE...' : 'CONTINUE WITH GOOGLE'}
+              </button>
+
+              <button
+                type="button"
+                className="clean-box-btn auth-secondary-btn"
+                style={{ marginTop: '10px', width: '100%', fontSize: '11px', letterSpacing: '0.04em' }}
+                onClick={() => handleGoogleSignIn(true)}
+                disabled={authLoading}
+              >
+                SIGN IN VIA REDIRECT (IF POPUP IS BLOCKED)
               </button>
             </div>
           </div>
@@ -423,7 +433,29 @@ export default function AuthModal({ isOpen, onClose }) {
               <line x1="12" y1="8" x2="12" y2="12" />
               <line x1="12" y1="16" x2="12.01" y2="16" />
             </svg>
-            <span>{localError || authError}</span>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', textAlign: 'left' }}>
+              <span>{localError || authError}</span>
+              {activeTab === 'google' && (localError || authError).toLowerCase().includes('popup') && (
+                <button
+                  type="button"
+                  style={{
+                    background: 'transparent',
+                    border: 'none',
+                    color: '#ef4444',
+                    textDecoration: 'underline',
+                    cursor: 'pointer',
+                    fontSize: '11px',
+                    padding: 0,
+                    textAlign: 'left',
+                    fontWeight: 600,
+                  }}
+                  onClick={() => handleGoogleSignIn(true)}
+                  disabled={authLoading}
+                >
+                  Click here to sign in via full-page redirect
+                </button>
+              )}
+            </div>
           </div>
         )}
       </div>
