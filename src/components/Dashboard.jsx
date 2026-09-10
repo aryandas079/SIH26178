@@ -34,6 +34,7 @@ import {
 import { renderHazardAnomalyOverlays } from '../utils/hazardOverlayRenderer';
 import TopicAnalyticsRadar from './TopicAnalyticsRadar';
 import HistoricalDatasetExplorerModal from './HistoricalDatasetExplorerModal';
+import { useAuth } from '../context/AuthContext';
 
 // Pre-curated Indian geographic ecosystems & regional hubs
 const QUICK_PRESETS = [
@@ -189,6 +190,7 @@ export default function Dashboard({
   onToggleDetail: controlledOnToggleDetail,
   onSetViewPreset: controlledOnSetViewPreset,
 }) {
+  const { user, isAuthenticated } = useAuth();
   // Local fallback if not provided from parent
   const [internalViewDetails, setInternalViewDetails] = useState({
     nodeTelemetry: false,
@@ -1912,6 +1914,14 @@ export default function Dashboard({
               </span>
             </div>
             <div className="cockpit-sync-badge">
+              {isAuthenticated && user && (
+                <div className="cockpit-operator-indicator">
+                  <span className="live-pulse-dot" style={{ backgroundColor: '#10b981', width: '7px', height: '7px' }} />
+                  <span className="operator-badge-text">
+                    OPERATOR: <strong>{user.displayName}</strong> [{user.role || 'Analyst'}]
+                  </span>
+                </div>
+              )}
               <span className="sync-status-text">
                 TIMESTAMP: {liveData ? liveData.time : 'LIVE'} // REAL-TIME PHYSICAL SENSOR
               </span>

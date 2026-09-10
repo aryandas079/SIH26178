@@ -13307,7 +13307,13 @@
 /* Responsive adjustment for Mobile Header */
 @media (max-width: 640px) {
   .user-greeting-pill {
-    display: none !important;
+    display: inline-flex !important;
+    padding: 0.2rem 0.45rem !important;
+    font-size: 0.58rem !important;
+    max-width: 110px !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
   }
   .profile-popover-panel {
     right: -10px;
@@ -13407,7 +13413,14 @@
   }
 
   .user-greeting-pill {
-    display: none !important;
+    display: inline-flex !important;
+    padding: 0.2rem 0.45rem !important;
+    font-size: 0.6rem !important;
+    max-width: 120px !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+    letter-spacing: 0.02em !important;
   }
 
   .header-profile-avatar-btn {
@@ -13994,6 +14007,124 @@
     min-height: 46px !important;
     font-size: 0.72rem !important;
     touch-action: manipulation !important;
+  }
+}
+
+/* Active Operator Indicator Badges */
+.cockpit-operator-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.2rem 0.6rem;
+  background: rgba(16, 185, 129, 0.08);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  border-radius: 4px;
+  font-family: 'Instagram Sans', sans-serif;
+  font-size: 0.72rem;
+  color: var(--text-title);
+  letter-spacing: 0.04em;
+  margin-bottom: 0.25rem;
+}
+
+.cockpit-operator-indicator strong {
+  color: #10b981;
+  font-weight: 700;
+}
+
+.hero-operator-badge {
+  margin: 0 auto 1.5rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0.4rem 1rem;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-medium);
+  border-radius: 9999px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-title);
+  animation: authFadeIn 0.3s ease;
+}
+
+.hero-operator-badge strong {
+  color: #10b981;
+}
+
+/* Authenticated Header User Identity & Sign Out */
+.header-authenticated-user-group {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.header-user-identity-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.25rem 0.65rem 0.25rem 0.35rem;
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-pill, 9999px);
+  color: var(--text-title);
+  font-family: 'Instagram Sans', sans-serif;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  user-select: none;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+.header-user-avatar-img {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1.5px solid #10b981;
+}
+
+.header-user-name-text {
+  max-width: 140px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.header-sign-out-btn {
+  color: #ef4444 !important;
+  border-color: rgba(239, 68, 68, 0.35) !important;
+  background: rgba(239, 68, 68, 0.06) !important;
+  font-size: 0.7rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.05em !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 0.35rem !important;
+  padding: 0.35rem 0.65rem !important;
+  border-radius: 6px !important;
+  cursor: pointer !important;
+  touch-action: manipulation !important;
+}
+
+.header-sign-out-btn:hover {
+  background: rgba(239, 68, 68, 0.14) !important;
+  border-color: #ef4444 !important;
+}
+
+@media (max-width: 768px) {
+  .header-user-name-text {
+    max-width: 85px !important;
+    font-size: 0.68rem !important;
+  }
+  .header-user-identity-btn {
+    padding: 0.2rem 0.45rem 0.2rem 0.25rem !important;
+  }
+  .header-user-avatar-img {
+    width: 22px !important;
+    height: 22px !important;
+  }
+  .header-sign-out-btn {
+    padding: 0.25rem 0.45rem !important;
+    font-size: 0.62rem !important;
   }
 }
 

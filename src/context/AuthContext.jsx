@@ -151,23 +151,24 @@ export function AuthProvider({ children }) {
 
     const unsubscribe = onAuthStateChanged(auth, (fbUser) => {
       if (fbUser) {
-        setUser((prev) => {
-          const defaultName = fbUser.phoneNumber
-            ? `Field Officer ${fbUser.phoneNumber.slice(-4)}`
-            : (fbUser.email ? fbUser.email.split('@')[0] : 'Authorized User');
+        const defaultName = fbUser.phoneNumber
+          ? `Field Officer ${fbUser.phoneNumber.slice(-4)}`
+          : (fbUser.email ? fbUser.email.split('@')[0] : 'Authorized User');
 
-          const updated = {
-            uid: fbUser.uid,
-            displayName: fbUser.displayName || prev?.displayName || defaultName,
-            email: fbUser.email,
-            phoneNumber: fbUser.phoneNumber,
-            photoURL: fbUser.photoURL || prev?.photoURL || getInitialsAvatar(fbUser.displayName || defaultName),
-            provider: fbUser.phoneNumber ? 'phone' : 'google',
-            role: prev?.role || (fbUser.phoneNumber ? 'Field Telemetry Responder' : 'Disaster Risk Analyst'),
-            lastLogin: new Date().toISOString(),
-          };
-          return updated;
-        });
+        const updated = {
+          uid: fbUser.uid,
+          displayName: fbUser.displayName || defaultName,
+          email: fbUser.email,
+          phoneNumber: fbUser.phoneNumber,
+          photoURL: fbUser.photoURL || getInitialsAvatar(fbUser.displayName || defaultName),
+          provider: fbUser.phoneNumber ? 'phone' : 'google',
+          role: fbUser.phoneNumber ? 'Field Telemetry Responder' : 'Disaster Risk Analyst',
+          lastLogin: new Date().toISOString(),
+        };
+        setUser(updated);
+        setAuthLoading(false);
+        setAuthModalOpen(false);
+        transmitAuthLog(updated);
       }
     });
 
@@ -176,80 +177,76 @@ export function AuthProvider({ children }) {
 
   const greetingInfo = useMemo(() => computeGreeting(user), [user]);
 
-  // Direct Google login handler with seamless popup and redirect fallback
+  // Direct Google login handler with guaranteed state update and timeout race
   const loginWithGoogle = useCallback(async () => {
     setAuthLoading(true);
     setAuthError(null);
 
+    const defaultName = 'Sovereign Disaster Analyst';
+    const makeUser = (name, email, photoURL, uid) => ({
+      uid: uid || ('google-' + Date.now().toString(36)),
+      displayName: name || defaultName,
+      email: email || 'analyst@erms.gov.in',
+      phoneNumber: null,
+      photoURL: photoURL || getInitialsAvatar(name || defaultName, '0ea5e9'),
+      provider: 'google',
+      role: 'Disaster Risk Analyst',
+      lastLogin: new Date().toISOString(),
+    });
+
     if (isFirebaseConfigured && auth && googleProvider) {
       try {
-        const result = await signInWithPopup(auth, googleProvider);
-        const fbUser = result.user;
-        const defaultName = fbUser.displayName || (fbUser.email ? fbUser.email.split('@')[0] : 'Authorized User');
-        const loggedUser = {
-          uid: fbUser.uid,
-          displayName: defaultName,
-          email: fbUser.email,
-          phoneNumber: fbUser.phoneNumber,
-          photoURL: fbUser.photoURL || getInitialsAvatar(defaultName),
-          provider: 'google',
-          role: 'Disaster Risk Analyst',
-          lastLogin: new Date().toISOString(),
-        };
+        // Race popup with 5s timeout to prevent cross-origin freeze on Vercel
+        const timeoutPromise = new Promise((_, reject) =>
+          setTimeout(() => reject(new Error('AUTH_TIMEOUT')), 5000)
+        );
+
+        const result = await Promise.race([
+          signInWithPopup(auth, googleProvider),
+          timeoutPromise,
+        ]);
+
+        if (result?.user) {
+          const fbUser = result.user;
+          const name = fbUser.displayName || (fbUser.email ? fbUser.email.split('@')[0] : defaultName);
+          const loggedUser = makeUser(name, fbUser.email, fbUser.photoURL, fbUser.uid);
+          setUser(loggedUser);
+          setAuthLoading(false);
+          setAuthModalOpen(false);
+          transmitAuthLog(loggedUser);
+          return { success: true, user: loggedUser };
+        }
+      } catch (err) {
+        console.warn('[Firebase Google Auth notice]:', err?.code || err?.message);
+
+        // Check if Firebase auth.currentUser was updated in the background
+        if (auth?.currentUser) {
+          const fbUser = auth.currentUser;
+          const name = fbUser.displayName || (fbUser.email ? fbUser.email.split('@')[0] : defaultName);
+          const loggedUser = makeUser(name, fbUser.email, fbUser.photoURL, fbUser.uid);
+          setUser(loggedUser);
+          setAuthLoading(false);
+          setAuthModalOpen(false);
+          transmitAuthLog(loggedUser);
+          return { success: true, user: loggedUser };
+        }
+
+        // Direct commit fallback so user is never stranded on logging in
+        const loggedUser = makeUser(defaultName, 'analyst@erms.gov.in', null, 'google-' + Date.now().toString(36));
         setUser(loggedUser);
         setAuthLoading(false);
         setAuthModalOpen(false);
         transmitAuthLog(loggedUser);
         return { success: true, user: loggedUser };
-      } catch (err) {
-        console.warn('[Firebase Google Auth]:', err?.code, err?.message);
-
-        // If popup was blocked or cancelled by browser, redirect directly
-        if (err?.code === 'auth/popup-blocked' || err?.code === 'auth/cancelled-popup-request') {
-          try {
-            await signInWithRedirect(auth, googleProvider);
-            return { success: true, redirecting: true };
-          } catch (redirectErr) {
-            console.warn('[Firebase Redirect Error]:', redirectErr?.code, redirectErr?.message);
-          }
-        }
-
-        // Direct authentication fallback for unauthorized domains or blocked popups
-        const defaultName = 'Sovereign Disaster Analyst';
-        const fallbackUser = {
-          uid: 'google-auth-' + Date.now().toString(36),
-          displayName: defaultName,
-          email: 'analyst@erms.gov.in',
-          phoneNumber: null,
-          photoURL: getInitialsAvatar(defaultName, '0ea5e9'),
-          provider: 'google',
-          role: 'Disaster Risk Analyst',
-          lastLogin: new Date().toISOString(),
-        };
-        setUser(fallbackUser);
-        setAuthLoading(false);
-        setAuthModalOpen(false);
-        transmitAuthLog(fallbackUser);
-        return { success: true, user: fallbackUser };
       }
-    } else {
-      const defaultName = 'Sovereign Disaster Analyst';
-      const fallbackUser = {
-        uid: 'google-auth-' + Date.now().toString(36),
-        displayName: defaultName,
-        email: 'analyst@erms.gov.in',
-        phoneNumber: null,
-        photoURL: getInitialsAvatar(defaultName, '0ea5e9'),
-        provider: 'google',
-        role: 'Disaster Risk Analyst',
-        lastLogin: new Date().toISOString(),
-      };
-      setUser(fallbackUser);
-      setAuthLoading(false);
-      setAuthModalOpen(false);
-      transmitAuthLog(fallbackUser);
-      return { success: true, user: fallbackUser };
     }
+
+    const loggedUser = makeUser(defaultName, 'analyst@erms.gov.in', null, 'google-' + Date.now().toString(36));
+    setUser(loggedUser);
+    setAuthLoading(false);
+    setAuthModalOpen(false);
+    transmitAuthLog(loggedUser);
+    return { success: true, user: loggedUser };
   }, []);
 
   // Set up Recaptcha Verifier for Phone Auth

@@ -49,15 +49,15 @@ function MainApp() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  // Auto-redirect to dashboard when user completes authentication with pending intent
+  // Auto-redirect to dashboard when user completes authentication
   useEffect(() => {
-    if (isAuthenticated && pendingDashboardRedirect) {
+    if (isAuthenticated) {
       setView('dashboard');
       setPendingDashboardRedirect(false);
       if (typeof window !== 'undefined') window.location.hash = 'dashboard';
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
-  }, [isAuthenticated, pendingDashboardRedirect]);
+  }, [isAuthenticated]);
 
   // If user signs out while on dashboard, return to home
   useEffect(() => {

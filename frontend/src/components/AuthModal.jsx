@@ -73,7 +73,9 @@ export default function AuthModal({ isOpen, onClose }) {
     setLocalError('');
     clearAuthError?.();
     const result = await loginWithGoogle();
-    if (!result?.success && result?.error !== 'Popup closed') {
+    if (result?.success) {
+      onClose();
+    } else if (result?.error !== 'Popup closed') {
       setLocalError(result?.error || 'Google authentication failed. Please try again.');
     }
   };
@@ -114,8 +116,10 @@ export default function AuthModal({ isOpen, onClose }) {
     }
 
     const res = await verifyPhoneOtp(targetCode, phoneUserName.trim());
-    if (!res.success) {
-      setLocalError(res.error || 'Invalid verification code.');
+    if (res?.success) {
+      onClose();
+    } else {
+      setLocalError(res?.error || 'Invalid verification code.');
     }
   };
 
@@ -124,7 +128,9 @@ export default function AuthModal({ isOpen, onClose }) {
     setLocalError('');
 
     const res = await loginWithAdmin(adminId.trim(), adminPassword);
-    if (!res || !res.success) {
+    if (res?.success) {
+      onClose();
+    } else {
       setLocalError(res?.error || 'ACCESS DENIED // INVALID ADMIN ID OR PASSWORD');
     }
   };
