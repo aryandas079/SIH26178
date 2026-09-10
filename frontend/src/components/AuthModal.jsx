@@ -4,6 +4,7 @@ import { useAuth } from '../context/AuthContext';
 export default function AuthModal({ isOpen, onClose }) {
   const {
     loginWithGoogle,
+    loginWithDemo,
     sendPhoneOtp,
     verifyPhoneOtp,
     loginWithAdmin,
@@ -138,7 +139,7 @@ export default function AuthModal({ isOpen, onClose }) {
     >
       <div className="auth-prompt-card auth-prompt-card-wide" onClick={(e) => e.stopPropagation()}>
         {/* Invisible reCAPTCHA container for live Firebase Phone Auth */}
-        <div id="recaptcha-container" style={{ display: 'none' }} />
+        <div id="recaptcha-container" />
 
         <div className="auth-card-header">
           <div className="auth-header-left">
@@ -246,6 +247,16 @@ export default function AuthModal({ isOpen, onClose }) {
                 disabled={authLoading}
               >
                 SIGN IN VIA REDIRECT (IF POPUP IS BLOCKED)
+              </button>
+
+              <button
+                type="button"
+                className="clean-box-btn auth-demo-btn"
+                style={{ marginTop: '8px', width: '100%', fontSize: '11px', letterSpacing: '0.04em', background: 'rgba(56, 189, 248, 0.08)', color: '#38bdf8', borderColor: 'rgba(56, 189, 248, 0.3)' }}
+                onClick={() => loginWithDemo('google')}
+                disabled={authLoading}
+              >
+                ENTER AS VERIFIED DEMO OPERATOR
               </button>
             </div>
           </div>
@@ -428,31 +439,72 @@ export default function AuthModal({ isOpen, onClose }) {
 
         {(localError || authError) && (
           <div className="auth-error-alert" role="alert">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" style={{ flexShrink: 0, marginTop: '2px' }}>
               <circle cx="12" cy="12" r="10" />
               <line x1="12" y1="8" x2="12" y2="12" />
               <line x1="12" y1="16" x2="12.01" y2="16" />
             </svg>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', textAlign: 'left' }}>
-              <span>{localError || authError}</span>
-              {activeTab === 'google' && (localError || authError).toLowerCase().includes('popup') && (
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', textAlign: 'left', width: '100%' }}>
+              <span style={{ fontWeight: 600 }}>{localError || authError}</span>
+              {activeTab === 'google' && (
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', marginTop: '2px' }}>
+                  <button
+                    type="button"
+                    style={{
+                      background: 'transparent',
+                      border: 'none',
+                      color: '#ef4444',
+                      textDecoration: 'underline',
+                      cursor: 'pointer',
+                      fontSize: '11px',
+                      padding: 0,
+                      textAlign: 'left',
+                      fontWeight: 600,
+                    }}
+                    onClick={() => handleGoogleSignIn(true)}
+                    disabled={authLoading}
+                  >
+                    Click here to sign in via full-page redirect
+                  </button>
+                  <button
+                    type="button"
+                    style={{
+                      background: 'transparent',
+                      border: 'none',
+                      color: '#0284c7',
+                      textDecoration: 'underline',
+                      cursor: 'pointer',
+                      fontSize: '11px',
+                      padding: 0,
+                      textAlign: 'left',
+                      fontWeight: 600,
+                    }}
+                    onClick={() => loginWithDemo('google')}
+                    disabled={authLoading}
+                  >
+                    Or enter directly with Demo Operator profile
+                  </button>
+                </div>
+              )}
+              {activeTab === 'phone' && (
                 <button
                   type="button"
                   style={{
                     background: 'transparent',
                     border: 'none',
-                    color: '#ef4444',
+                    color: '#0284c7',
                     textDecoration: 'underline',
                     cursor: 'pointer',
                     fontSize: '11px',
                     padding: 0,
                     textAlign: 'left',
                     fontWeight: 600,
+                    marginTop: '2px',
                   }}
-                  onClick={() => handleGoogleSignIn(true)}
+                  onClick={() => loginWithDemo('phone', { phoneNumber: phoneNumber || '+91 99999 99999', displayName: phoneUserName || 'Field Officer' })}
                   disabled={authLoading}
                 >
-                  Click here to sign in via full-page redirect
+                  Or enter directly with Field Responder profile (Bypass SMS)
                 </button>
               )}
             </div>

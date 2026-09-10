@@ -18,7 +18,7 @@ import {
   getAllIndiaAnomalyHotspots,
   getDistanceKm,
 } from '../utils/anomalyDetectionEngine';
-import { resolveGeodeticFix, uploadedTelemetryStore } from '../utils/spatialMlPredictionEngine';
+import { resolveGeodeticFix, uploadedTelemetryStore, ALL_INDIA_SETTLEMENTS } from '../utils/spatialMlPredictionEngine';
 import { realtimeSensorStreamService } from '../services/realtimeSensorStreamService';
 import {
   SAMPLE_SENSOR_DATASETS,
@@ -803,18 +803,42 @@ export default function Dashboard({
     setIsSimulatingStream(false);
   };
 
-  // Handle Search Input Change
+  // Handle Search Input Change with Nationwide Settlements Autocomplete
   const handleSearchChange = (e) => {
     const val = e.target.value;
     setSearchQuery(val);
     if (searchFeedback) setSearchFeedback(null);
     if (val.trim().length > 0) {
-      const filtered = QUICK_PRESETS.filter(
+      const q = val.toLowerCase().trim();
+      const presetMatches = QUICK_PRESETS.filter(
         (loc) =>
-          loc.name.toLowerCase().includes(val.toLowerCase()) ||
-          loc.region.toLowerCase().includes(val.toLowerCase())
+          loc.name.toLowerCase().includes(q) ||
+          loc.region.toLowerCase().includes(q)
       );
-      setSuggestions(filtered);
+
+      const settlementMatches = (ALL_INDIA_SETTLEMENTS || [])
+        .filter(
+          (s) =>
+            s.name.toLowerCase().includes(q) ||
+            (s.district && s.district.toLowerCase().includes(q)) ||
+            (s.state && s.state.toLowerCase().includes(q)) ||
+            (s.river && s.river.toLowerCase().includes(q))
+        )
+        .map((s) => ({
+          name: s.name.toUpperCase(),
+          region: `${s.district ? s.district + ', ' : ''}${s.state}`.toUpperCase(),
+          lat: s.lat,
+          lng: s.lng,
+        }));
+
+      const combined = [...presetMatches];
+      settlementMatches.forEach((sm) => {
+        if (!combined.some((c) => c.name.toUpperCase() === sm.name.toUpperCase())) {
+          combined.push(sm);
+        }
+      });
+
+      setSuggestions(combined.slice(0, 10));
       setShowSuggestions(true);
     } else {
       setSuggestions([]);
@@ -833,93 +857,142 @@ export default function Dashboard({
     }
   };
 
-  // Freeform Search submission with India Boundary Enforcement
+  // Freeform Search submission with 4-Tier Nationwide Geocoding and India Boundary Enforcement
   const handleSearchSubmit = async (e) => {
     if (e && e.preventDefault) e.preventDefault();
     if (!searchQuery || searchQuery.trim().length === 0) return;
 
     const query = searchQuery.trim();
+    const queryLower = query.toLowerCase();
     setShowSuggestions(false);
     setSearchFeedback(null);
     setIsLoading(true);
 
-    // Check local presets first (e.g. Silchar, New Delhi, Mumbai, etc.)
+    // Tier 1: Local presets and settlements exact match
     const localMatch = QUICK_PRESETS.find(
-      (p) => p.name.toUpperCase() === query.toUpperCase() ||
-             p.name.toLowerCase() === query.toLowerCase()
+      (p) => p.name.toLowerCase() === queryLower
+    ) || (ALL_INDIA_SETTLEMENTS || []).find(
+      (s) => s.name.toLowerCase() === queryLower
     );
 
+    if (localMatch && localMatch.lat && localMatch.lng) {
+      const pName = localMatch.name.toUpperCase();
+      const pRegion = localMatch.region || `${localMatch.district ? localMatch.district + ', ' : ''}${localMatch.state}`.toUpperCase();
+      setSearchFeedback(null);
+      loadLocationData(localMatch.lat, localMatch.lng, pName, pRegion);
+      if (mapInstanceRef.current) {
+        mapInstanceRef.current.flyTo([localMatch.lat, localMatch.lng], 8.5, { duration: 1.2 });
+      }
+      setIsLoading(false);
+      return;
+    }
+
+    // Tier 2: Open-Meteo Geocoding API
     try {
-      // Query Open-Meteo Geocoding with count=10 to find and prioritize Indian places
       const geoUrl = `https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(query)}&count=10&language=en&format=json`;
-      const res = await fetch(geoUrl);
-      const data = await res.json();
+      const ctrl = new AbortController();
+      const tId = setTimeout(() => ctrl.abort(), 4500);
+      const res = await fetch(geoUrl, { signal: ctrl.signal }).catch(() => null);
+      clearTimeout(tId);
 
-      if (data.results && data.results.length > 0) {
-        // Find match within India (country_code == 'IN' or geodetic bbox lat: 6-37.5, lng: 68-97.5)
-        const indianResult = data.results.find((r) => {
-          if (r.country_code === 'IN') return true;
-          if (r.country && r.country.toLowerCase() === 'india') return true;
-          if (r.latitude >= 6.0 && r.latitude <= 37.5 && r.longitude >= 68.0 && r.longitude <= 97.5) return true;
-          return false;
-        });
-
-        if (indianResult) {
-          // Location found in India!
-          const placeName = indianResult.name.toUpperCase();
-          const regionDesc = [indianResult.admin1, indianResult.country || 'INDIA'].filter(Boolean).join(', ').toUpperCase();
-          setSearchFeedback(null);
-          loadLocationData(indianResult.latitude, indianResult.longitude, placeName, regionDesc);
-          if (mapInstanceRef.current) {
-            mapInstanceRef.current.flyTo([indianResult.latitude, indianResult.longitude], 8.5, { duration: 1.2 });
-          }
-        } else {
-          // Location found, but it is OUTSIDE INDIA!
-          const foreignResult = data.results[0];
-          const foreignLocationName = foreignResult.name;
-          const foreignCountry = foreignResult.country || foreignResult.country_code || 'International';
-
-          setSearchFeedback({
-            type: 'warning',
-            message: 'Our sensors are only currently working within India.',
-            details: `"${foreignLocationName}" (${foreignCountry}) is located outside India. Our telemetric sensor grid and early-warning models operate exclusively within sovereign Indian territory.`,
+      if (res && res.ok) {
+        const data = await res.json().catch(() => null);
+        if (data && data.results && data.results.length > 0) {
+          const indianResult = data.results.find((r) => {
+            if (r.country_code === 'IN') return true;
+            if (r.country && r.country.toLowerCase() === 'india') return true;
+            if (r.latitude >= 6.0 && r.latitude <= 37.5 && r.longitude >= 68.0 && r.longitude <= 97.5) return true;
+            return false;
           });
+
+          if (indianResult) {
+            const placeName = indianResult.name.toUpperCase();
+            const regionDesc = [indianResult.admin1, indianResult.country || 'INDIA'].filter(Boolean).join(', ').toUpperCase();
+            setSearchFeedback(null);
+            loadLocationData(indianResult.latitude, indianResult.longitude, placeName, regionDesc);
+            if (mapInstanceRef.current) {
+              mapInstanceRef.current.flyTo([indianResult.latitude, indianResult.longitude], 8.5, { duration: 1.2 });
+            }
+            setIsLoading(false);
+            return;
+          } else {
+            const foreignResult = data.results[0];
+            const foreignLocationName = foreignResult.name;
+            const foreignCountry = foreignResult.country || foreignResult.country_code || 'International';
+
+            setSearchFeedback({
+              type: 'warning',
+              message: 'Our sensors are only currently working within India.',
+              details: `"${foreignLocationName}" (${foreignCountry}) is located outside India. Our telemetric sensor grid and early-warning models operate exclusively within sovereign Indian territory.`,
+            });
+            setIsLoading(false);
+            return;
+          }
+        }
+      }
+    } catch {
+      // Proceed to Tier 3
+    }
+
+    // Tier 3: OpenStreetMap Nominatim Geocoding API
+    try {
+      const nominatimUrl = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(query)}&countrycodes=in&format=json&limit=5`;
+      const ctrlNom = new AbortController();
+      const tIdNom = setTimeout(() => ctrlNom.abort(), 4500);
+      const resNom = await fetch(nominatimUrl, {
+        headers: { 'Accept-Language': 'en' },
+        signal: ctrlNom.signal,
+      }).catch(() => null);
+      clearTimeout(tIdNom);
+
+      if (resNom && resNom.ok) {
+        const nomData = await resNom.json().catch(() => null);
+        if (Array.isArray(nomData) && nomData.length > 0) {
+          const topResult = nomData[0];
+          const lat = parseFloat(topResult.lat);
+          const lng = parseFloat(topResult.lon);
+          const placeName = (topResult.name || topResult.display_name.split(',')[0]).trim().toUpperCase();
+          const regionDesc = topResult.display_name.split(',').slice(1, 3).join(',').trim().toUpperCase() || 'INDIA';
+
+          setSearchFeedback(null);
+          loadLocationData(lat, lng, placeName, regionDesc);
+          if (mapInstanceRef.current) {
+            mapInstanceRef.current.flyTo([lat, lng], 8.5, { duration: 1.2 });
+          }
           setIsLoading(false);
           return;
         }
-      } else if (localMatch) {
-        // Fallback to local preset if geocoder didn't return matches
-        setSearchFeedback(null);
-        loadLocationData(localMatch.lat, localMatch.lng, localMatch.name, localMatch.region);
-        if (mapInstanceRef.current) {
-          mapInstanceRef.current.flyTo([localMatch.lat, localMatch.lng], 8.5, { duration: 1.2 });
-        }
-      } else {
-        // Place not found
-        setSearchFeedback({
-          type: 'error',
-          message: 'Location not found within India.',
-          details: `Could not locate "${query}". Please check the spelling or select a verified Indian telemetry hub below.`,
-        });
       }
-    } catch (err) {
-      console.error('Geocoding error:', err);
-      if (localMatch) {
-        setSearchFeedback(null);
-        loadLocationData(localMatch.lat, localMatch.lng, localMatch.name, localMatch.region);
-        if (mapInstanceRef.current) {
-          mapInstanceRef.current.flyTo([localMatch.lat, localMatch.lng], 8.5, { duration: 1.2 });
-        }
-      } else {
-        setSearchFeedback({
-          type: 'error',
-          message: 'Telemetry network error while resolving coordinates.',
-          details: 'Please check your connection or choose a primary telemetry hub.',
-        });
-      }
-    } finally {
-      setIsLoading(false);
+    } catch {
+      // Proceed to Tier 4
     }
+
+    // Tier 4: Fuzzy Match in ALL_INDIA_SETTLEMENTS
+    const fuzzyMatch = (ALL_INDIA_SETTLEMENTS || []).find(
+      (s) =>
+        s.name.toLowerCase().includes(queryLower) ||
+        (s.district && s.district.toLowerCase().includes(queryLower)) ||
+        (s.state && s.state.toLowerCase().includes(queryLower)) ||
+        queryLower.includes(s.name.toLowerCase())
+    );
+
+    if (fuzzyMatch) {
+      const pName = fuzzyMatch.name.toUpperCase();
+      const pRegion = `${fuzzyMatch.district ? fuzzyMatch.district + ', ' : ''}${fuzzyMatch.state}`.toUpperCase();
+      setSearchFeedback(null);
+      loadLocationData(fuzzyMatch.lat, fuzzyMatch.lng, pName, pRegion);
+      if (mapInstanceRef.current) {
+        mapInstanceRef.current.flyTo([fuzzyMatch.lat, fuzzyMatch.lng], 8.5, { duration: 1.2 });
+      }
+    } else {
+      setSearchFeedback({
+        type: 'error',
+        message: 'Location not found within India.',
+        details: `Could not locate "${query}". Please check the spelling or select a verified Indian telemetry hub below.`,
+      });
+    }
+
+    setIsLoading(false);
   };
 
   // Toggle Hazard selection & re-evaluate anomalies

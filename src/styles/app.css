@@ -2621,6 +2621,36 @@
   100% { stroke-dashoffset: 50; }
 }
 
+.cyclone-vortex-container {
+  position: relative;
+  width: 220px;
+  height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: auto;
+}
+
+.cyclone-isobar-ring {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  animation: cycloneIsobarSpin 12s linear infinite;
+  transform-origin: center;
+}
+
+@keyframes cycloneIsobarSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.cyclone-spiral-arm {
+  animation: cycloneIsobarSpin 8s linear infinite reverse;
+  transform-origin: center;
+}
+
 .doppler-radar-pulse {
   animation: radarPulseAnim 3s infinite ease-in-out;
 }

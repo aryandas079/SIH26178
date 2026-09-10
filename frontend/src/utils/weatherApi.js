@@ -53,6 +53,65 @@ export function getUVLabel(uv) {
   return `${uv.toFixed(1)} (Extreme)`;
 }
 
+export function calculateRegionalAqi(lat, lng, locationName = '') {
+  const loc = (locationName || '').toLowerCase();
+  let baseAqi = 95;
+
+  // Delhi NCR & Gangetic Alluvial Belt (High particulate concentration)
+  if (
+    loc.includes('delhi') || loc.includes('noida') || loc.includes('gurugram') ||
+    loc.includes('kanpur') || loc.includes('lucknow') || loc.includes('patna') ||
+    (lat >= 25.0 && lat <= 30.5 && lng >= 75.5 && lng <= 86.5)
+  ) {
+    baseAqi = 265;
+  }
+  // Western Arid / Thar Desert Zone (High PM10 dust)
+  else if (
+    loc.includes('thar') || loc.includes('jaisalmer') || loc.includes('churu') || loc.includes('bikaner') ||
+    (lat >= 24.5 && lat <= 29.5 && lng >= 69.5 && lng <= 75.0)
+  ) {
+    baseAqi = 158;
+  }
+  // Western Ghats / Coastal South & West (Maritime ventilation)
+  else if (
+    loc.includes('mumbai') || loc.includes('chennai') || loc.includes('kochi') ||
+    loc.includes('kolkata') || loc.includes('sundarbans') || loc.includes('puri') ||
+    (lat <= 20.0 && (lng <= 74.0 || lng >= 80.0))
+  ) {
+    baseAqi = 84;
+  }
+  // High Altitude Himalayan / Glacial Alpine (Pristine clean air)
+  else if (
+    loc.includes('leh') || loc.includes('ladakh') || loc.includes('shimla') ||
+    loc.includes('sikkim') || loc.includes('gangtok') || lat >= 31.0
+  ) {
+    baseAqi = 32;
+  }
+  // Northeast River Valleys (Silchar, Guwahati, Barak)
+  else if (
+    loc.includes('silchar') || loc.includes('guwahati') || loc.includes('assam') ||
+    loc.includes('cherrapunji') || lng >= 90.0
+  ) {
+    baseAqi = 72;
+  }
+  // Central Deccan Plateau (Bengaluru, Hyderabad, Pune, Indore)
+  else if (loc.includes('bengaluru') || loc.includes('hyderabad') || loc.includes('pune')) {
+    baseAqi = 78;
+  }
+
+  // Small time-of-day diurnal variation
+  const hour = new Date().getHours();
+  const diurnal = Math.round(Math.sin(((hour - 7) / 24) * 2 * Math.PI) * 12);
+  const aqiValue = Math.max(18, Math.min(460, baseAqi + diurnal));
+  const aqiInfo = getAQILabel(aqiValue);
+
+  return {
+    aqiValue,
+    airQuality: aqiInfo.label,
+    airQualityColor: aqiInfo.color,
+  };
+}
+
 async function fetchWttrWeatherData(lat, lng, locationName, regionName) {
   const url = `https://wttr.in/${lat},${lng}?format=j1`;
   const controller = new AbortController();
@@ -72,13 +131,14 @@ async function fetchWttrWeatherData(lat, lng, locationName, regionName) {
   const cloudCover = parseInt(c.cloudcover, 10) || 45;
   const visibilityKm = parseInt(c.visibility, 10) || 9;
   const uv = parseFloat(c.uvIndex) || 3.0;
+  const pressureMb = parseInt(c.pressure, 10) || 1010;
   const condition = c.weatherDesc?.[0]?.value || 'Partly Cloudy';
 
   const rainProb = precip > 0 ? Math.min(100, Math.round(precip * 15 + 35)) : (humidity > 80 ? 40 : 15);
   const dewPoint = Math.round(temp - ((100 - humidity) / 5));
   const heatIndex = Math.max(temp, Math.round(temp + 0.3 * (humidity / 100) * (temp - 12)));
   const realFeelShade = Math.round(apparent - 2);
-  const aqiInfo = getAQILabel(75);
+  const aqiCalc = calculateRegionalAqi(lat, lng, locationName);
 
   const now = new Date();
   const formattedTime = now.toLocaleTimeString('en-US', { hour: 'numeric', hour12: true });
@@ -96,9 +156,9 @@ async function fetchWttrWeatherData(lat, lng, locationName, regionName) {
     realFeelShade: `${realFeelShade}°`,
     wind: `${windDir} ${windSpeed} km/h`,
     heatIndex: `${heatIndex}°`,
-    airQuality: aqiInfo.label,
-    airQualityColor: aqiInfo.color,
-    aqiValue: 75,
+    airQuality: aqiCalc.airQuality,
+    airQualityColor: aqiCalc.airQualityColor,
+    aqiValue: aqiCalc.aqiValue,
     maxUvIndex: getUVLabel(uv),
     brightnessIndex: cloudCover > 70 ? '4 (Dull)' : (cloudCover > 40 ? '6 (Moderate)' : '9 (Bright)'),
     windGusts: `${windGusts} km/h`,
@@ -108,6 +168,7 @@ async function fetchWttrWeatherData(lat, lng, locationName, regionName) {
     visibility: `${visibilityKm} km`,
     cloudCeiling: cloudCover > 10 ? `${Math.round(2000 + (100 - cloudCover) * 80)} m` : 'Clear (>12,000 m)',
     dewPoint: `${dewPoint}° C`,
+    pressure: `${pressureMb} mb`,
     elevation: '216 m',
   };
 }
@@ -155,8 +216,7 @@ function computePhysicalWeatherEstimate(lat, lng, locationName, regionName) {
   const windSpeed = Math.round(10 + Math.abs(solarFactor) * 6);
   const dewPoint = Math.round(temp - ((100 - humidity) / 5));
   const heatIndex = Math.max(temp, Math.round(temp + 0.3 * (humidity / 100) * (temp - 12)));
-  const aqiValue = isDesert ? 145 : (isHimalayan ? 35 : (isCoastal ? 85 : 110));
-  const aqiInfo = getAQILabel(aqiValue);
+  const aqiCalc = calculateRegionalAqi(lat, lng, locationName);
   const formattedTime = new Date().toLocaleTimeString('en-US', { hour: 'numeric', hour12: true });
 
   return {
@@ -172,9 +232,9 @@ function computePhysicalWeatherEstimate(lat, lng, locationName, regionName) {
     realFeelShade: `${apparent - 2}°`,
     wind: `SW ${windSpeed} km/h`,
     heatIndex: `${heatIndex}°`,
-    airQuality: aqiInfo.label,
-    airQualityColor: aqiInfo.color,
-    aqiValue,
+    airQuality: aqiCalc.airQuality,
+    airQualityColor: aqiCalc.airQualityColor,
+    aqiValue: aqiCalc.aqiValue,
     maxUvIndex: '4.5 (Moderate)',
     brightnessIndex: '6 (Moderate)',
     windGusts: `${windSpeed + 6} km/h`,
@@ -184,6 +244,7 @@ function computePhysicalWeatherEstimate(lat, lng, locationName, regionName) {
     visibility: `${isHimalayan ? 15 : 8} km`,
     cloudCeiling: '2500 m',
     dewPoint: `${dewPoint}° C`,
+    pressure: '1012 mb',
     elevation: isHimalayan ? '2200 m' : (isDesert ? '280 m' : '150 m'),
   };
 }
@@ -229,8 +290,10 @@ export async function fetchLiveWeatherData(lat, lng, locationName = 'LOCAL REGIO
     const rawVis = weatherData.hourly?.visibility?.[0] ?? 8000;
     const visibilityKm = Math.max(1, Math.round(rawVis / 1000));
 
-    const usAqi = aqiCurrent.us_aqi ?? 85;
+    const regionalAqi = calculateRegionalAqi(lat, lng, locationName);
+    const usAqi = typeof aqiCurrent.us_aqi === 'number' ? Math.round(aqiCurrent.us_aqi) : regionalAqi.aqiValue;
     const aqiInfo = getAQILabel(usAqi);
+    const pressureMb = Math.round(current.surface_pressure ?? current.pressure_msl ?? 1010);
 
     const realFeelShade = Math.round(apparent - 2);
     const heatIndex = Math.max(temp, Math.round(temp + 0.3 * (humidity / 100) * (temp - 12)));
@@ -269,6 +332,7 @@ export async function fetchLiveWeatherData(lat, lng, locationName = 'LOCAL REGIO
       visibility: `${visibilityKm} km`,
       cloudCeiling,
       dewPoint: `${dewPoint}° C`,
+      pressure: `${pressureMb} mb`,
       elevation: `${weatherData.elevation ?? 216} m`,
     };
   } catch (openMeteoErr) {
