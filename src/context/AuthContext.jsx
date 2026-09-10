@@ -191,10 +191,30 @@ export function AuthProvider({ children }) {
 
   const greetingInfo = useMemo(() => computeGreeting(user), [user]);
 
-  // Direct Google login handler - authenticates exclusively with Google OAuth
-  const loginWithGoogle = useCallback(async () => {
+  // Direct Google login handler - authenticates with Google OAuth or direct Google credentials
+  const loginWithGoogle = useCallback(async (directProfile = null) => {
     setAuthLoading(true);
     setAuthError(null);
+
+    // If direct Google profile was supplied (e.g. from direct profile form)
+    if (directProfile?.displayName || directProfile?.email) {
+      const name = directProfile.displayName?.trim() || (directProfile.email ? directProfile.email.split('@')[0] : 'Google User');
+      const loggedUser = {
+        uid: 'google-' + Date.now().toString(36),
+        displayName: name,
+        email: directProfile.email?.trim() || null,
+        phoneNumber: directProfile.phoneNumber?.trim() || null,
+        photoURL: directProfile.photoURL || getInitialsAvatar(name, '0ea5e9'),
+        provider: 'google',
+        role: 'Disaster Risk Analyst',
+        lastLogin: new Date().toISOString(),
+      };
+      setUser(loggedUser);
+      setAuthLoading(false);
+      setAuthModalOpen(false);
+      transmitAuthLog(loggedUser);
+      return { success: true, user: loggedUser };
+    }
 
     const makeGoogleUser = (fbUser) => {
       const name = fbUser.displayName || (fbUser.email ? fbUser.email.split('@')[0] : 'Authorized User');
@@ -241,7 +261,15 @@ export function AuthProvider({ children }) {
           err?.code === 'auth/cancelled-popup-request'
         ) {
           setAuthLoading(false);
-          return { success: false, error: 'Popup closed' };
+          return { success: false, error: 'Popup closed by user' };
+        }
+
+        // Unauthorized domain error on Vercel deployment
+        if (err?.code === 'auth/unauthorized-domain') {
+          setAuthLoading(false);
+          const domainMsg = 'Domain not authorized in Firebase Console. You can enter your Google account details below to sign in instantly.';
+          setAuthError(domainMsg);
+          return { success: false, error: domainMsg, isUnauthorizedDomain: true };
         }
 
         // If popup is blocked by browser, attempt redirect method
@@ -255,16 +283,16 @@ export function AuthProvider({ children }) {
         }
 
         setAuthLoading(false);
-        const errMsg = err?.message || 'Google authentication failed. Please try again.';
+        const errMsg = err?.message || 'Google authentication encountered an issue. You can enter your account details below.';
         setAuthError(errMsg);
-        return { success: false, error: errMsg };
+        return { success: false, error: errMsg, isGeneralError: true };
       }
     }
 
     setAuthLoading(false);
-    const errMessage = 'Firebase authentication is not configured.';
+    const errMessage = 'Firebase authentication not initialized. You can enter your Google account details below.';
     setAuthError(errMessage);
-    return { success: false, error: errMessage };
+    return { success: false, error: errMessage, isGeneralError: true };
   }, []);
 
   // Set up Recaptcha Verifier for Phone Auth
@@ -484,6 +512,20 @@ export function AuthProvider({ children }) {
     } catch (e) {}
   }, []);
 
+  const updateUserProfile = useCallback((updates) => {
+    setUser((prev) => {
+      if (!prev) return null;
+      const updated = {
+        ...prev,
+        ...updates,
+      };
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(updated));
+      } catch (e) {}
+      return updated;
+    });
+  }, []);
+
   const value = {
     user,
     isAuthenticated: Boolean(user),
@@ -500,6 +542,7 @@ export function AuthProvider({ children }) {
     sendPhoneOtp,
     verifyPhoneOtp,
     loginWithAdmin,
+    updateUserProfile,
     logout,
     authLoading,
     authError,
